@@ -17,6 +17,129 @@
             color: #333;
             scroll-behavior: smooth;
         }
+        /* NAVIGATION */
+        nav {
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+        }
+        .nav-link {
+            transition: color 0.2s, border-bottom 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: #E4B85B;
+            border-bottom: 2px solid #E4B85B;
+        }
+        /* BOUTONS CTA */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.10);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-cta:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 12px 32px rgba(44, 62, 80, 0.13);
+        }
+        /* SÉPARATEUR DORÉ */
+        .gold-separator {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #E4B85B 0%, #fffbe6 100%);
+            border-radius: 2px;
+            margin: 0.5rem auto 1.5rem auto;
+        }
+        /* VILLAS */
+        .villa-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 32px rgba(44, 62, 80, 0.10);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .villa-card:hover {
+            transform: scale(1.035);
+            box-shadow: 0 18px 48px rgba(44, 62, 80, 0.16);
+        }
+        .villa-card .villa-img {
+            transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+        }
+        .villa-card:hover .villa-img {
+            transform: scale(1.08);
+        }
+        .villa-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: linear-gradient(90deg, #E4B85B 60%, #fffbe6 100%);
+            color: #2F7A85;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.35em 1em;
+            border-radius: 9999px;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+            z-index: 2;
+        }
+        /* FORMULAIRE CONTACT */
+        .contact-form-premium {
+            background: #fff;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+            border-radius: 1.25rem;
+        }
+        .floating-label {
+            position: relative;
+        }
+        .floating-label input,
+        .floating-label textarea {
+            background: transparent;
+            border: 1.5px solid #E4B85B;
+            border-radius: 0.75rem;
+            padding: 1.2rem 1rem 0.6rem 1rem;
+            width: 100%;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+        .floating-label label {
+            position: absolute;
+            left: 1rem;
+            top: 1.1rem;
+            color: #888;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: 0.2s;
+            background: transparent;
+        }
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label,
+        .floating-label textarea:focus + label,
+        .floating-label textarea:not(:placeholder-shown) + label {
+            top: 0.2rem;
+            left: 0.9rem;
+            font-size: 0.85rem;
+            color: #2F7A85;
+            background: #fffbe6;
+            padding: 0 0.2em;
+        }
+        /* FOOTER */
+        footer {
+            background: #2F7A85;
+        }
+        .footer-social a {
+            background: #fffbe6;
+            color: #2F7A85;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .footer-social a:hover {
+            background: #E4B85B;
+            color: #fff;
+            transform: scale(1.15);
+        }
         .hero-video {
             position: absolute;
             top: 0;
@@ -106,17 +229,17 @@
 <body class="antialiased">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white bg-opacity-90 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="container max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <a href="#" class="flex items-center">
                     <img src="https://raw.githubusercontent.com/crastril/Kazas/main/Kazas%20Logo%20trsp.png" alt="Kazas Logo" class="h-16">
                 </a>
             </div>
             <div class="hidden md:flex space-x-8">
-                <a href="#villas" class="text-gray-700 hover:text-amber-600 transition">Nos Villas</a>
-                <a href="#experience" class="text-gray-700 hover:text-amber-600 transition">L'Expérience</a>
-                <a href="#calendar" class="text-gray-700 hover:text-amber-600 transition">Disponibilités</a>
-                <a href="#contact" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+                <a href="#villas" class="nav-link text-gray-700 hover:text-amber-600 transition">Nos Villas</a>
+                <a href="#experience" class="nav-link text-gray-700 hover:text-amber-600 transition">L'Expérience</a>
+                <a href="#calendar" class="nav-link text-gray-700 hover:text-amber-600 transition">Disponibilités</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-amber-600 transition">Contact</a>
             </div>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-gray-700 focus:outline-none" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -139,18 +262,18 @@
             <source src="https://raw.githubusercontent.com/crastril/Kazas/main/mixkit-aerial-view-of-a-tropical-beach-with-green-palms-1573-hd-ready.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay absolute inset-0"></div>
-        <div class="container mx-auto px-6 z-10 text-center text-white">
+        <div class="container max-w-screen-xl mx-auto px-6 z-10 text-center text-white">
             <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">L'Art de Vivre Créole, au cœur de la Martinique.</h1>
             <p class="text-xl md:text-2xl max-w-2xl mx-auto mb-8 font-light"> 
                 Nos villas d'exception vous invitent à vivre une expérience unique en Martinique, 
                 entre luxe discret et authenticité tropicale.
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#calendar" class="bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
-                    Voir les disponibilités
+                <a href="#calendar" class="btn-cta bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-calendar-alt"></i> Voir les disponibilités
                 </a>
-                <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
-                    Contactez-nous
+                <a href="#contact" class="btn-cta bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-envelope"></i> Contactez-nous
                 </a>
             </div>
         </div>
@@ -168,18 +291,19 @@
 
     <!-- Villas Section -->
     <section id="villas" class="py-20 bg-white palm-pattern">
-        <div class="container mx-auto px-6">
+        <div class="container max-w-screen-xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Nos Villas d'Exception</h2>
-                <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+                <div class="gold-separator"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Villa 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+                <div class="villa-card bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
+                        <span class="villa-badge">Coup de cœur</span>
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-46155129/original/033ef31d-ea24-42f9-8be4-e77758c23a77.jpeg?im_w=1200" 
-                             alt="Villa Cacyli" class="w-full h-full object-cover">
+                             alt="Villa Cacyli" class="villa-img w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                             <h3 class="text-xl font-serif font-bold text-white">Villa Cacyli</h3>
                         </div>
@@ -202,10 +326,10 @@
                 </div>
                 
                 <!-- Villa 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+                <div class="villa-card bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-54044418/original/b98cc4f6-0d78-44a8-9e89-dfb52c28e4af.jpeg?im_w=1200" 
-                             alt="Villa Cocotte" class="w-full h-full object-cover">
+                             alt="Villa Cocotte" class="villa-img w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                             <h3 class="text-xl font-serif font-bold text-white">Villa Cocotte</h3>
                         </div>
@@ -228,10 +352,10 @@
                 </div>
                 
                 <!-- Villa 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+                <div class="villa-card bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Duplex St Catherine" class="w-full h-full object-cover">
+                             alt="Duplex St Catherine" class="villa-img w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                             <h3 class="text-xl font-serif font-bold text-white">Duplex St Catherine</h3>
                         </div>
@@ -259,14 +383,14 @@
 
     <!-- Experience Section -->
     <section id="experience" class="py-20 bg-[#F9F7F0]">
-        <div class="container mx-auto px-6">
+        <div class="container max-w-screen-xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">L'Expérience Kazas</h2>
+                <div class="gold-separator"></div>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Un séjour avec Kazas, c'est bien plus qu'une location de luxe. C'est une immersion dans 
                     l'art de vivre martiniquais, où chaque détail a été pensé pour votre bien-être.
                 </p>
-                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -371,13 +495,13 @@ Je recommande!"
 
     <!-- Calendar Section -->
     <section id="calendar" class="py-20 bg-[#F5F0E1]">
-        <div class="container mx-auto px-6">
+        <div class="container max-w-screen-xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Disponibilités</h2>
+                <div class="gold-separator"></div>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Consultez les disponibilités de nos villas et planifiez votre séjour en Martinique.
                 </p>
-                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
             </div>
             
             <!-- Villa Selection -->
@@ -411,23 +535,25 @@ Je recommande!"
             </div>
             
             <!-- Calendar Grid -->
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead>
-                        <tr>
-                            <th class="py-2 text-gray-600 font-medium">Lun</th>
-                            <th class="py-2 text-gray-600 font-medium">Mar</th>
-                            <th class="py-2 text-gray-600 font-medium">Mer</th>
-                            <th class="py-2 text-gray-600 font-medium">Jeu</th>
-                            <th class="py-2 text-gray-600 font-medium">Ven</th>
-                            <th class="py-2 text-gray-600 font-medium">Sam</th>
-                            <th class="py-2 text-gray-600 font-medium">Dim</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body">
-                        <!-- Calendar will be generated by JavaScript -->
-                    </tbody>
-                </table>
+            <div class="overflow-x-auto flex justify-center">
+                <div class="w-full max-w-md">
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th class="py-2 text-gray-600 font-medium">Lun</th>
+                                <th class="py-2 text-gray-600 font-medium">Mar</th>
+                                <th class="py-2 text-gray-600 font-medium">Mer</th>
+                                <th class="py-2 text-gray-600 font-medium">Jeu</th>
+                                <th class="py-2 text-gray-600 font-medium">Ven</th>
+                                <th class="py-2 text-gray-600 font-medium">Sam</th>
+                                <th class="py-2 text-gray-600 font-medium">Dim</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendar-body">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
             <!-- Calendar Legend -->
@@ -462,50 +588,31 @@ Je recommande!"
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-[#F9F7F0]">
-        <div class="container mx-auto px-6">
+        <div class="container max-w-screen-xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Contactez-nous</h2>
+                <div class="gold-separator"></div>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Notre équipe est à votre disposition pour répondre à toutes vos questions et vous aider 
                     à organiser votre séjour parfait en Martinique.
                 </p>
-                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <!-- Contact Form -->
-                <div class="bg-white p-8 rounded-xl shadow-md">
+                <div class="contact-form-premium p-8">
                     <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
-                    <form id="contact-form" aria-labelledby="contact-heading">
-                        <div role="alert" id="form-error" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4"></div>
-                        <div role="alert" id="form-success" class="hidden bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"></div>
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
+                    <form action="https://formspree.io/f/mblyenpg" method="POST">
+                        <div class="mb-6 floating-label">
+                            <input type="email" name="email" id="email" placeholder=" " required>
+                            <label for="email">Votre email</label>
                         </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
+                        <div class="mb-6 floating-label">
+                            <textarea name="message" id="message" rows="4" placeholder=" " required></textarea>
+                            <label for="message">Votre message</label>
                         </div>
-                        <div class="mb-4">
-                            <label for="phone" class="block text-gray-700 mb-2">Téléphone</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
-                        </div>
-                        <div class="mb-4">
-                            <label for="villa" class="block text-gray-700 mb-2">Villa intéressée</label>
-                            <select id="villa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
-                                <option value="">Sélectionnez une villa</option>
-                                <option value="bellevue">Villa Bellevue</option>
-                                <option value="mangrove">Villa Mangrove</option>
-                                <option value="carbet">Villa Carbet</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-full font-medium transition duration-300">
-                            Envoyer le message
+                        <button type="submit" class="btn-cta w-full bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-full font-medium transition duration-300">
+                            <i class="fas fa-paper-plane"></i> Envoyer
                         </button>
                     </form>
                 </div>
@@ -548,14 +655,14 @@ Je recommande!"
                     <!-- Social Links -->
                     <div class="bg-white p-8 rounded-xl shadow-md">
                         <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Suivez-nous</h3>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                        <div class="footer-social flex space-x-4">
+                            <a href="#" class="w-12 h-12 rounded-full flex items-center justify-center">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                            <a href="#" class="w-12 h-12 rounded-full flex items-center justify-center">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                            <a href="#" class="w-12 h-12 rounded-full flex items-center justify-center">
                                 <i class="fab fa-airbnb"></i>
                             </a>
                         </div>
@@ -567,7 +674,7 @@ Je recommande!"
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
+        <div class="container max-w-screen-xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-serif font-bold mb-4">Kazas</h3>
@@ -596,20 +703,16 @@ Je recommande!"
         // Mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
         menuBtn.addEventListener('click', function() {
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
             this.setAttribute('aria-expanded', !isExpanded);
             mobileMenu.classList.toggle('hidden');
-            
-            // Close when clicking outside
             if (!isExpanded) {
                 document.addEventListener('click', closeMenuOnClickOutside);
             } else {
                 document.removeEventListener('click', closeMenuOnClickOutside);
             }
         });
-        
         function closeMenuOnClickOutside(e) {
             if (!mobileMenu.contains(e.target) && e.target !== menuBtn) {
                 mobileMenu.classList.add('hidden');
@@ -618,188 +721,60 @@ Je recommande!"
             }
         }
 
-        // Calendar functionality
+        // --- CALENDRIER ---
         const currentDate = new Date();
         let currentMonth = currentDate.getMonth();
         let currentYear = currentDate.getFullYear();
         let selectedDates = new Set();
-        
-        // Force refresh to current month initially
-        generateCalendar(currentMonth, currentYear);
-        
-        const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
-                           "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-        
-        // Availability data structure (to be populated by API)
-        let availabilityData = {};
-        
-        // Function to fetch availability from API
-        async function fetchAvailability(year, month) {
-            try {
-                // In production, replace with actual API call
-                // const response = await fetch(`/api/availability?year=${year}&month=${month}`);
-                // availabilityData = await response.json();
-                
-                // Mock data for demo
-                availabilityData = {
-            bellevue: {
-                '2023-7-5': 'available',
-                '2023-7-6': 'available',
-                '2023-7-7': 'available',
-                '2023-7-8': 'booked',
-                '2023-7-9': 'booked',
-                '2023-7-10': 'available',
-                '2023-7-11': 'available',
-                '2023-7-12': 'available',
-                '2023-7-13': 'available',
-                '2023-7-14': 'booked',
-                '2023-7-15': 'booked',
-                '2023-7-16': 'booked',
-                '2023-7-17': 'available',
-                '2023-7-18': 'available',
-                '2023-7-19': 'available',
-                '2023-7-20': 'available',
-                '2023-7-21': 'available',
-                '2023-7-22': 'available',
-                '2023-7-23': 'available',
-                '2023-7-24': 'available',
-                '2023-7-25': 'available',
-                '2023-7-26': 'available',
-                '2023-7-27': 'available',
-                '2023-7-28': 'available',
-                '2023-7-29': 'available',
-                '2023-7-30': 'available',
-                '2023-7-31': 'available'
-            },
-            mangrove: {
-                '2023-7-5': 'booked',
-                '2023-7-6': 'booked',
-                '2023-7-7': 'booked',
-                '2023-7-8': 'available',
-                '2023-7-9': 'available',
-                '2023-7-10': 'available',
-                '2023-7-11': 'available',
-                '2023-7-12': 'available',
-                '2023-7-13': 'available',
-                '2023-7-14': 'available',
-                '2023-7-15': 'available',
-                '2023-7-16': 'available',
-                '2023-7-17': 'available',
-                '2023-7-18': 'available',
-                '2023-7-19': 'available',
-                '2023-7-20': 'available',
-                '2023-7-21': 'available',
-                '2023-7-22': 'available',
-                '2023-7-23': 'available',
-                '2023-7-24': 'available',
-                '2023-7-25': 'available',
-                '2023-7-26': 'available',
-                '2023-7-27': 'available',
-                '2023-7-28': 'available',
-                '2023-7-29': 'available',
-                '2023-7-30': 'available',
-                '2023-7-31': 'available'
-            },
-            carbet: {
-                '2023-7-5': 'available',
-                '2023-7-6': 'available',
-                '2023-7-7': 'available',
-                '2023-7-8': 'available',
-                '2023-7-9': 'available',
-                '2023-7-10': 'available',
-                '2023-7-11': 'available',
-                '2023-7-12': 'available',
-                '2023-7-13': 'available',
-                '2023-7-14': 'available',
-                '2023-7-15': 'available',
-                '2023-7-16': 'available',
-                '2023-7-17': 'available',
-                '2023-7-18': 'available',
-                '2023-7-19': 'available',
-                '2023-7-20': 'available',
-                '2023-7-21': 'available',
-                '2023-7-22': 'available',
-                '2023-7-23': 'available',
-                '2023-7-24': 'available',
-                '2023-7-25': 'available',
-                '2023-7-26': 'available',
-                '2023-7-27': 'available',
-                '2023-7-28': 'available',
-                '2023-7-29': 'available',
-                '2023-7-30': 'available',
-                '2023-7-31': 'available'
-            }
+        const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+        // Dates réservées (exemple hardcodé)
+        const reservedDates = {
+            bellevue: ["2025-7-8", "2025-7-9", "2025-7-14", "2025-7-15", "2025-7-16"],
+            mangrove: ["2025-7-5", "2025-7-6"],
+            carbet: []
         };
-        
+
         function generateCalendar(month, year) {
             const calendarBody = document.getElementById('calendar-body');
             const currentMonthDisplay = document.getElementById('current-month');
-            
             currentMonthDisplay.textContent = `${monthNames[month]} ${year}`;
-            
-            // Clear previous calendar
             calendarBody.innerHTML = '';
-            
-            // Get first day of month and total days in month
             const firstDay = new Date(year, month, 1);
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            
-            // Get the day of the week for the first day (0-6, 0=Sunday)
             let startingDay = firstDay.getDay();
-            // Adjust for Monday as first day (French calendar)
             startingDay = startingDay === 0 ? 6 : startingDay - 1;
-            
-            // Create date object for the calendar
             let date = 1;
-            
-            // Create calendar rows (we need exactly 6 rows for consistent layout)
             for (let i = 0; i < 6; i++) {
-                // Create row even if no days left to keep layout consistent
-                
-                // Create row
                 const row = document.createElement('tr');
-                
-                // Create cells for each day of the week
                 for (let j = 0; j < 7; j++) {
                     const cell = document.createElement('td');
                     cell.className = 'p-2';
-                    
                     if (i === 0 && j < startingDay) {
-                        // Empty cells before the first day
                         cell.textContent = '';
                     } else if (date > daysInMonth) {
-                        // Empty cells after last day but still create them
                         const dayDiv = document.createElement('div');
                         dayDiv.className = 'p-2';
                         cell.appendChild(dayDiv);
                     } else {
-                        // Cells with dates
                         const dayDiv = document.createElement('div');
                         dayDiv.className = 'calendar-day p-2 rounded-lg text-center';
-                        
-                        // Add date number
                         const dateSpan = document.createElement('span');
                         dateSpan.className = 'block font-medium';
                         dateSpan.textContent = date;
                         dayDiv.appendChild(dateSpan);
-                        
-                        // Check availability for selected villas
+                        // Villas sélectionnées
                         const selectedVillas = Array.from(document.querySelectorAll('.villa-checkbox:checked')).map(cb => cb.value);
-                        const dateKey = `${year}-${month + 1}-${date}`;
-                        
+                        const thisDateKey = `${year}-${month + 1}-${date}`;
                         let allAvailable = selectedVillas.length > 0;
                         let anyBooked = false;
-                        
                         for (const villa of selectedVillas) {
-                            if (availabilityData[villa] && availabilityData[villa][dateKey] === 'booked') {
+                            if (reservedDates[villa] && reservedDates[villa].includes(thisDateKey)) {
                                 allAvailable = false;
                                 anyBooked = true;
                                 break;
-                            } else if (!availabilityData[villa] || !availabilityData[villa][dateKey]) {
-                                allAvailable = false;
                             }
                         }
-                        
                         if (selectedVillas.length === 0) {
                             dayDiv.classList.add('bg-gray-100');
                         } else if (allAvailable) {
@@ -809,69 +784,50 @@ Je recommande!"
                         } else {
                             dayDiv.classList.add('bg-gray-100');
                         }
-                        
-                        // Highlight today
+                        // Aujourd'hui
                         if (date === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
                             dayDiv.classList.add('border-2', 'border-amber-600');
                         }
-                        
-                        // Add click handler for date selection
+                        // Sélection de date
                         dayDiv.addEventListener('click', function() {
-                            const dateKey = `${year}-${month + 1}-${date}`;
-                            
-                            if (selectedDates.has(dateKey)) {
-                                selectedDates.delete(dateKey);
-                                dayDiv.classList.remove('villa-selected');
+                            if (selectedDates.has(thisDateKey)) {
+                                selectedDates.delete(thisDateKey);
                             } else {
-                                selectedDates.add(dateKey);
-                                dayDiv.classList.add('villa-selected');
+                                selectedDates.add(thisDateKey);
                             }
-                            
-                            // Update calendar to reflect changes
                             generateCalendar(currentMonth, currentYear);
+                            updateSelectedDatesDisplay();
                         });
-                        
-                        // Highlight if date is selected
-                        const dateKey = `${year}-${month + 1}-${date}`;
-                        if (selectedDates.has(dateKey)) {
+                        // Affichage si sélectionné
+                        if (selectedDates.has(thisDateKey)) {
                             dayDiv.classList.add('villa-selected');
                         }
-                        
                         cell.appendChild(dayDiv);
                         date++;
                     }
-                    
                     row.appendChild(cell);
                 }
-                
                 calendarBody.appendChild(row);
             }
         }
-        
         function updateSelectedDatesDisplay() {
             const selectedDatesContainer = document.getElementById('selected-dates');
             if (selectedDates.size === 0) {
                 selectedDatesContainer.textContent = '';
                 return;
             }
-            
             const dates = Array.from(selectedDates).sort();
             const formattedDates = dates.map(dateStr => {
                 const [year, month, day] = dateStr.split('-');
                 return `${day}/${month}/${year}`;
             });
-            
             selectedDatesContainer.innerHTML = `
                 <p class="font-medium mb-2">Dates sélectionnées:</p>
                 <p>${formattedDates.join(', ')}</p>
             `;
         }
-        
-        // Initialize calendar
         generateCalendar(currentMonth, currentYear);
         updateSelectedDatesDisplay();
-        
-        // Previous month button
         document.getElementById('prev-month').addEventListener('click', function() {
             currentMonth--;
             if (currentMonth < 0) {
@@ -881,8 +837,6 @@ Je recommande!"
             generateCalendar(currentMonth, currentYear);
             updateSelectedDatesDisplay();
         });
-        
-        // Next month button
         document.getElementById('next-month').addEventListener('click', function() {
             currentMonth++;
             if (currentMonth > 11) {
@@ -890,31 +844,25 @@ Je recommande!"
                 currentYear++;
             }
             generateCalendar(currentMonth, currentYear);
+            updateSelectedDatesDisplay();
         });
-        
-        // Villa checkbox changes
         document.querySelectorAll('.villa-checkbox').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 generateCalendar(currentMonth, currentYear);
+                updateSelectedDatesDisplay();
             });
         });
-        
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
                     document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
