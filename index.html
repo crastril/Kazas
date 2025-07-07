@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kazas | Luxury Villas Martinique</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/crastril/Kazas/main/Kazas%20Logo.png">
+    <meta name="description" content="Villas de luxe en Martinique - Kazas propose des hébergements d'exception avec piscines privées, services haut de gamme et vues panoramiques sur les Caraïbes.">
+    <title>Kazas | Villas de Luxe en Martinique</title>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Lato', sans-serif;
-            background-color: #F7F5F0;
+            background-color: #F5F0E1;
             color: #333;
             scroll-behavior: smooth;
         }
@@ -85,13 +86,13 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .testimonial-card {
-            background: linear-gradient(to bottom right, #F7F5F0, #ffffff);
+            background: linear-gradient(to bottom right, #F5F0E1, #ffffff);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .amenity-icon {
             width: 60px;
             height: 60px;
-            background-color: #F7F5F0;
+            background-color: #F5F0E1;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -107,7 +108,9 @@
     <nav class="fixed w-full z-50 bg-white bg-opacity-90 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <a href="#" class="logo text-3xl font-bold text-gray-800 relative">Kazas</a>
+                <a href="#" class="flex items-center">
+                    <img src="https://raw.githubusercontent.com/crastril/Kazas/main/Kazas%20Logo%20trsp.png" alt="Kazas Logo" class="h-16">
+                </a>
             </div>
             <div class="hidden md:flex space-x-8">
                 <a href="#villas" class="text-gray-700 hover:text-amber-600 transition">Nos Villas</a>
@@ -116,8 +119,8 @@
                 <a href="#contact" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-700 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="menu-btn" class="text-gray-700 focus:outline-none" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -155,11 +158,11 @@
         
         <!-- Sticky Contact Buttons -->
         <div class="fixed right-6 bottom-6 z-50 flex flex-col space-y-3">
-            <a href="#" class="contact-btn bg-[#FF5A5F] text-white px-6 py-3 rounded-full shadow-lg flex items-center">
-                <i class="fab fa-airbnb text-xl mr-2"></i> Airbnb
+            <a href="https://www.airbnb.com/users/show/[YOUR_ID]" target="_blank" rel="noopener noreferrer" class="contact-btn bg-[#FF5A5F] text-white px-6 py-3 rounded-full shadow-lg flex items-center">
+                <i class="fab fa-airbnb text-xl mr-2" aria-hidden="true"></i> Airbnb
             </a>
-            <a href="#" class="contact-btn bg-[#25D366] text-white px-6 py-3 rounded-full shadow-lg flex items-center">
-                <i class="fab fa-whatsapp text-xl mr-2"></i> WhatsApp
+            <a href="https://wa.me/596696123456" target="_blank" rel="noopener noreferrer" class="contact-btn bg-[#25D366] text-white px-6 py-3 rounded-full shadow-lg flex items-center">
+                <i class="fab fa-whatsapp text-xl mr-2" aria-hidden="true"></i> WhatsApp
             </a>
         </div>
     </section>
@@ -258,7 +261,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50">
+    <section id="experience" class="py-20 bg-[#F9F7F0]">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">L'Expérience Kazas</h2>
@@ -371,7 +374,7 @@
     </section>
 
     <!-- Calendar Section -->
-    <section id="calendar" class="py-20 bg-white">
+    <section id="calendar" class="py-20 bg-[#F5F0E1]">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Disponibilités</h2>
@@ -462,7 +465,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20 bg-[#F9F7F0]">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Contactez-nous</h2>
@@ -477,7 +480,9 @@
                 <!-- Contact Form -->
                 <div class="bg-white p-8 rounded-xl shadow-md">
                     <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
-                    <form>
+                    <form id="contact-form" aria-labelledby="contact-heading">
+                        <div role="alert" id="form-error" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4"></div>
+                        <div role="alert" id="form-success" class="hidden bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"></div>
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
                             <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
@@ -570,7 +575,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-serif font-bold mb-4">Kazas</h3>
                     <p class="text-gray-400">
@@ -587,27 +592,6 @@
                         <li><a href="#contact" class="text-gray-400 hover:text-amber-500 transition">Contact</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="font-serif font-bold mb-4">Informations</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">CGV</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">Mentions légales</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">Politique de confidentialité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-serif font-bold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">
-                        Abonnez-vous pour recevoir nos offres exclusives et actualités.
-                    </p>
-                    <div class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2023 Kazas Martinique. Tous droits réservés.</p>
@@ -617,21 +601,54 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            
+            // Close when clicking outside
+            if (!isExpanded) {
+                document.addEventListener('click', closeMenuOnClickOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
         });
+        
+        function closeMenuOnClickOutside(e) {
+            if (!mobileMenu.contains(e.target) && e.target !== menuBtn) {
+                mobileMenu.classList.add('hidden');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
 
         // Calendar functionality
-        let currentDate = new Date();
+        const currentDate = new Date();
         let currentMonth = currentDate.getMonth();
         let currentYear = currentDate.getFullYear();
         let selectedDates = new Set();
         
+        // Force refresh to current month initially
+        generateCalendar(currentMonth, currentYear);
+        
         const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
                            "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
         
-        // Sample availability data (in a real app, this would come from an API)
-        const availabilityData = {
+        // Availability data structure (to be populated by API)
+        let availabilityData = {};
+        
+        // Function to fetch availability from API
+        async function fetchAvailability(year, month) {
+            try {
+                // In production, replace with actual API call
+                // const response = await fetch(`/api/availability?year=${year}&month=${month}`);
+                // availabilityData = await response.json();
+                
+                // Mock data for demo
+                availabilityData = {
             bellevue: {
                 '2023-7-5': 'available',
                 '2023-7-6': 'available',
@@ -742,10 +759,9 @@
             // Create date object for the calendar
             let date = 1;
             
-            // Create calendar rows
+            // Create calendar rows (we need exactly 6 rows for consistent layout)
             for (let i = 0; i < 6; i++) {
-                // Stop if we've gone through all days
-                if (date > daysInMonth) break;
+                // Create row even if no days left to keep layout consistent
                 
                 // Create row
                 const row = document.createElement('tr');
@@ -759,8 +775,10 @@
                         // Empty cells before the first day
                         cell.textContent = '';
                     } else if (date > daysInMonth) {
-                        // Empty cells after last day
-                        cell.textContent = '';
+                        // Empty cells after last day but still create them
+                        const dayDiv = document.createElement('div');
+                        dayDiv.className = 'p-2';
+                        cell.appendChild(dayDiv);
                     } else {
                         // Cells with dates
                         const dayDiv = document.createElement('div');
@@ -908,6 +926,31 @@
                 }
             });
         });
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Kazas",
+        "image": "https://raw.githubusercontent.com/crastril/Kazas/main/Kazas%20Logo%20trsp.png",
+        "description": "Villas de luxe en Martinique avec services haut de gamme",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Les Trois-Îlets",
+            "addressLocality": "Martinique",
+            "postalCode": "97229",
+            "addressCountry": "MQ"
+        },
+        "telephone": "+596696123456",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "priceRange": "$$"
+    }
     </script>
 </body>
 </html>
