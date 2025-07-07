@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazas | Luxury Villas Martinique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #F7F5F0;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            position: relative;
+        }
+        .logo::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -25px;
+            width: 40px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M0,50 L50,0 L100,50 Z" fill="%23E4B85B"/></svg>');
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        .logo::after {
+            content: "";
+            position: absolute;
+            top: -25px;
+            right: -15px;
+            width: 30px;
+            height: 40px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 100"><path d="M0,0 L25,50 L50,0 L25,100 Z" fill="%236A8E3E"/></svg>');
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        .palm-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,0 Q60,20 50,40 Q40,20 50,0 Z M50,40 Q60,60 50,80 Q40,60 50,40 Z" fill="%232F7A85" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+        }
+        .calendar-day {
+            transition: all 0.2s ease;
+        }
+        .calendar-day:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .villa-available {
+            background-color: #6A8E3E;
+            color: white;
+        }
+        .villa-booked {
+            background-color: #B25F41;
+            color: white;
+        }
+        .villa-selected {
+            background-color: #2F7A85;
+            color: white;
+        }
+        .contact-btn {
+            transition: all 0.3s ease;
+        }
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .testimonial-card {
+            background: linear-gradient(to bottom right, #F7F5F0, #ffffff);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .amenity-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #F7F5F0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: #2F7A85;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white bg-opacity-90 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="logo text-3xl font-bold text-gray-800 relative">Kazas</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#villas" class="text-gray-700 hover:text-amber-600 transition">Nos Villas</a>
+                <a href="#experience" class="text-gray-700 hover:text-amber-600 transition">L'Expérience</a>
+                <a href="#calendar" class="text-gray-700 hover:text-amber-600 transition">Disponibilités</a>
+                <a href="#contact" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 shadow-lg">
+            <a href="#villas" class="block py-2 text-gray-700 hover:text-amber-600 transition">Nos Villas</a>
+            <a href="#experience" class="block py-2 text-gray-700 hover:text-amber-600 transition">L'Expérience</a>
+            <a href="#calendar" class="block py-2 text-gray-700 hover:text-amber-600 transition">Disponibilités</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-amber-600 transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="container mx-auto px-6 z-10 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">L'Art de Vivre Créole</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto mb-8 font-light">
+                Bienvenue aux Kazas, où l'élégance caribéenne rencontre le confort contemporain. 
+                Nos villas d'exception vous invitent à vivre une expérience unique en Martinique, 
+                entre luxe discret et authenticité tropicale.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#calendar" class="bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    Voir les disponibilités
+                </a>
+                <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    Contactez-nous
+                </a>
+            </div>
+        </div>
+        
+        <!-- Sticky Contact Buttons -->
+        <div class="fixed right-6 bottom-6 z-50 flex flex-col space-y-3">
+            <a href="#" class="contact-btn bg-[#FF5A5F] text-white px-6 py-3 rounded-full shadow-lg flex items-center">
+                <i class="fab fa-airbnb text-xl mr-2"></i> Airbnb
+            </a>
+            <a href="#" class="contact-btn bg-[#25D366] text-white px-6 py-3 rounded-full shadow-lg flex items-center">
+                <i class="fab fa-whatsapp text-xl mr-2"></i> WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Villas Section -->
+    <section id="villas" class="py-20 bg-white palm-pattern">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Nos Villas d'Exception</h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Villa 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Villa Bellevue" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h3 class="text-xl font-serif font-bold text-white">Villa Bellevue</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-amber-600 font-medium">4 chambres</span>
+                            <span class="text-teal-700 font-medium">Piscine privée</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Perchée sur les hauteurs des Trois-Îlets, cette villa panoramique offre une vue imprenable 
+                            sur la baie de Fort-de-France et le coucher de soleil.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-serif text-gray-800">À partir de 450€/nuit</span>
+                            <button class="villa-details-btn bg-teal-700 text-white px-4 py-2 rounded-full text-sm font-medium" data-villa="bellevue">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Villa 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Villa Mangrove" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h3 class="text-xl font-serif font-bold text-white">Villa Mangrove</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-amber-600 font-medium">3 chambres</span>
+                            <span class="text-teal-700 font-medium">Plage privée</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Nichée au bord d'une mangrove préservée, cette villa contemporaine allie intimité et accès direct 
+                            à une crique paradisiaque.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-serif text-gray-800">À partir de 380€/nuit</span>
+                            <button class="villa-details-btn bg-teal-700 text-white px-4 py-2 rounded-full text-sm font-medium" data-villa="mangrove">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Villa 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-500 hover:scale-105">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Villa Carbet" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h3 class="text-xl font-serif font-bold text-white">Villa Carbet</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-amber-600 font-medium">5 chambres</span>
+                            <span class="text-teal-700 font-medium">Jardin tropical</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Inspirée des carbets traditionnels, cette spacieuse villa en bois noble s'intègre harmonieusement 
+                            dans un jardin luxuriant de 2 hectares.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-serif text-gray-800">À partir de 520€/nuit</span>
+                            <button class="villa-details-btn bg-teal-700 text-white px-4 py-2 rounded-full text-sm font-medium" data-villa="carbet">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">L'Expérience Kazas</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Un séjour aux Kazas, c'est bien plus qu'une location de luxe. C'est une immersion dans 
+                    l'art de vivre martiniquais, où chaque détail a été pensé pour votre bien-être.
+                </p>
+                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Service 1 -->
+                <div class="text-center">
+                    <div class="amenity-icon mb-4">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-gray-800 mb-2">Conciergerie Privée</h3>
+                    <p class="text-gray-600">
+                        Notre équipe dédiée organise excursions, réservations et services sur mesure 
+                        pour sublimer votre séjour.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="text-center">
+                    <div class="amenity-icon mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-gray-800 mb-2">Chef à Domicile</h3>
+                    <p class="text-gray-600">
+                        Découvrez la gastronomie créole avec nos chefs partenaires qui préparent 
+                        des repas inoubliables dans votre villa.
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="text-center">
+                    <div class="amenity-icon mb-4">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-gray-800 mb-2">Spa Privatif</h3>
+                    <p class="text-gray-600">
+                        Massages, soins visage et corps avec des produits locaux pour un moment 
+                        de pure détente dans l'intimité de votre villa.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Full-width image divider -->
+            <div class="mt-16 h-64 md:h-96 w-full overflow-hidden rounded-xl">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                     alt="Experience Kazas" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-serif font-bold text-center text-gray-800 mb-12">Ils ont vécu l'expérience</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sophie D." class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold">Sophie D.</h4>
+                                <div class="flex text-amber-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "La Villa Bellevue a dépassé toutes nos attentes. Le lever de soleil depuis la terrasse 
+                            est un spectacle quotidien, et l'attention portée aux détails dans la décoration 
+                            et le service est remarquable. Nous reviendrons sans hésiter."
+                        </p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card p-8 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jean-Luc T." class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold">Jean-Luc T.</h4>
+                                <div class="flex text-amber-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "Nous avons passé deux semaines magiques à la Villa Carbet en famille. L'espace est 
+                            parfaitement conçu pour préserver l'intimité de chacun tout en permettant des moments 
+                            conviviaux. Le jardin est un véritable paradis pour les enfants."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Disponibilités</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Consultez les disponibilités de nos villas et planifiez votre séjour en Martinique.
+                </p>
+                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Villa Selection -->
+            <div class="bg-gray-50 p-6 rounded-xl mb-8">
+                <h3 class="text-xl font-serif font-bold text-gray-800 mb-4">Sélectionnez vos villas</h3>
+                <div class="flex flex-wrap gap-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" class="villa-checkbox" value="bellevue" checked>
+                        <span class="ml-2 text-gray-700">Villa Bellevue</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" class="villa-checkbox" value="mangrove" checked>
+                        <span class="ml-2 text-gray-700">Villa Mangrove</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" class="villa-checkbox" value="carbet" checked>
+                        <span class="ml-2 text-gray-700">Villa Carbet</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Calendar Navigation -->
+            <div class="flex justify-between items-center mb-6">
+                <button id="prev-month" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h3 id="current-month" class="text-xl font-serif font-bold text-gray-800">Juillet 2023</h3>
+                <button id="next-month" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Calendar Grid -->
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="py-2 text-gray-600 font-medium">Lun</th>
+                            <th class="py-2 text-gray-600 font-medium">Mar</th>
+                            <th class="py-2 text-gray-600 font-medium">Mer</th>
+                            <th class="py-2 text-gray-600 font-medium">Jeu</th>
+                            <th class="py-2 text-gray-600 font-medium">Ven</th>
+                            <th class="py-2 text-gray-600 font-medium">Sam</th>
+                            <th class="py-2 text-gray-600 font-medium">Dim</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- Calendar will be generated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Calendar Legend -->
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-green-600 mr-2"></div>
+                    <span class="text-sm text-gray-600">Disponible</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-red-600 mr-2"></div>
+                    <span class="text-sm text-gray-600">Réservé</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-teal-700 mr-2"></div>
+                    <span class="text-sm text-gray-600">Sélectionné</span>
+                </div>
+            </div>
+            
+            <!-- Selected Dates -->
+            <div id="selected-dates" class="mt-8 text-center text-gray-700">
+                <!-- Selected dates will appear here -->
+            </div>
+            
+            <!-- Booking CTA -->
+            <div class="mt-6 text-center">
+                <a href="#contact" class="inline-block bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    Réserver maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-4">Contactez-nous</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Notre équipe est à votre disposition pour répondre à toutes vos questions et vous aider 
+                    à organiser votre séjour parfait en Martinique.
+                </p>
+                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
+                    <form>
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 mb-2">Téléphone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
+                        </div>
+                        <div class="mb-4">
+                            <label for="villa" class="block text-gray-700 mb-2">Villa intéressée</label>
+                            <select id="villa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700">
+                                <option value="">Sélectionnez une villa</option>
+                                <option value="bellevue">Villa Bellevue</option>
+                                <option value="mangrove">Villa Mangrove</option>
+                                <option value="carbet">Villa Carbet</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-full font-medium transition duration-300">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <div class="bg-white p-8 rounded-xl shadow-md mb-8">
+                        <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Coordonnées</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-teal-700 mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Adresse</h4>
+                                    <p class="text-gray-600">Les Trois-Îlets, 97229 Martinique</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-teal-700 mr-4 mt-1">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Téléphone</h4>
+                                    <p class="text-gray-600">+596 696 123 456</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-teal-700 mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Email</h4>
+                                    <p class="text-gray-600">contact@kazas-martinique.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Suivez-nous</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-teal-700 hover:bg-teal-700 hover:text-white transition">
+                                <i class="fab fa-airbnb"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-serif font-bold mb-4">Kazas</h3>
+                    <p class="text-gray-400">
+                        Villas d'exception en Martinique, où luxe et authenticité créole se rencontrent 
+                        pour des séjours inoubliables.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#villas" class="text-gray-400 hover:text-amber-500 transition">Nos Villas</a></li>
+                        <li><a href="#experience" class="text-gray-400 hover:text-amber-500 transition">L'Expérience</a></li>
+                        <li><a href="#calendar" class="text-gray-400 hover:text-amber-500 transition">Disponibilités</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-amber-500 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold mb-4">Informations</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">CGV</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">Mentions légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">
+                        Abonnez-vous pour recevoir nos offres exclusives et actualités.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Kazas Martinique. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Calendar functionality
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+        let selectedDates = new Set();
+        
+        const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+                           "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        
+        // Sample availability data (in a real app, this would come from an API)
+        const availabilityData = {
+            bellevue: {
+                '2023-7-5': 'available',
+                '2023-7-6': 'available',
+                '2023-7-7': 'available',
+                '2023-7-8': 'booked',
+                '2023-7-9': 'booked',
+                '2023-7-10': 'available',
+                '2023-7-11': 'available',
+                '2023-7-12': 'available',
+                '2023-7-13': 'available',
+                '2023-7-14': 'booked',
+                '2023-7-15': 'booked',
+                '2023-7-16': 'booked',
+                '2023-7-17': 'available',
+                '2023-7-18': 'available',
+                '2023-7-19': 'available',
+                '2023-7-20': 'available',
+                '2023-7-21': 'available',
+                '2023-7-22': 'available',
+                '2023-7-23': 'available',
+                '2023-7-24': 'available',
+                '2023-7-25': 'available',
+                '2023-7-26': 'available',
+                '2023-7-27': 'available',
+                '2023-7-28': 'available',
+                '2023-7-29': 'available',
+                '2023-7-30': 'available',
+                '2023-7-31': 'available'
+            },
+            mangrove: {
+                '2023-7-5': 'booked',
+                '2023-7-6': 'booked',
+                '2023-7-7': 'booked',
+                '2023-7-8': 'available',
+                '2023-7-9': 'available',
+                '2023-7-10': 'available',
+                '2023-7-11': 'available',
+                '2023-7-12': 'available',
+                '2023-7-13': 'available',
+                '2023-7-14': 'available',
+                '2023-7-15': 'available',
+                '2023-7-16': 'available',
+                '2023-7-17': 'available',
+                '2023-7-18': 'available',
+                '2023-7-19': 'available',
+                '2023-7-20': 'available',
+                '2023-7-21': 'available',
+                '2023-7-22': 'available',
+                '2023-7-23': 'available',
+                '2023-7-24': 'available',
+                '2023-7-25': 'available',
+                '2023-7-26': 'available',
+                '2023-7-27': 'available',
+                '2023-7-28': 'available',
+                '2023-7-29': 'available',
+                '2023-7-30': 'available',
+                '2023-7-31': 'available'
+            },
+            carbet: {
+                '2023-7-5': 'available',
+                '2023-7-6': 'available',
+                '2023-7-7': 'available',
+                '2023-7-8': 'available',
+                '2023-7-9': 'available',
+                '2023-7-10': 'available',
+                '2023-7-11': 'available',
+                '2023-7-12': 'available',
+                '2023-7-13': 'available',
+                '2023-7-14': 'available',
+                '2023-7-15': 'available',
+                '2023-7-16': 'available',
+                '2023-7-17': 'available',
+                '2023-7-18': 'available',
+                '2023-7-19': 'available',
+                '2023-7-20': 'available',
+                '2023-7-21': 'available',
+                '2023-7-22': 'available',
+                '2023-7-23': 'available',
+                '2023-7-24': 'available',
+                '2023-7-25': 'available',
+                '2023-7-26': 'available',
+                '2023-7-27': 'available',
+                '2023-7-28': 'available',
+                '2023-7-29': 'available',
+                '2023-7-30': 'available',
+                '2023-7-31': 'available'
+            }
+        };
+        
+        function generateCalendar(month, year) {
+            const calendarBody = document.getElementById('calendar-body');
+            const currentMonthDisplay = document.getElementById('current-month');
+            
+            currentMonthDisplay.textContent = `${monthNames[month]} ${year}`;
+            
+            // Clear previous calendar
+            calendarBody.innerHTML = '';
+            
+            // Get first day of month and total days in month
+            const firstDay = new Date(year, month, 1);
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Get the day of the week for the first day (0-6, 0=Sunday)
+            let startingDay = firstDay.getDay();
+            // Adjust for Monday as first day (French calendar)
+            startingDay = startingDay === 0 ? 6 : startingDay - 1;
+            
+            // Create date object for the calendar
+            let date = 1;
+            
+            // Create calendar rows
+            for (let i = 0; i < 6; i++) {
+                // Stop if we've gone through all days
+                if (date > daysInMonth) break;
+                
+                // Create row
+                const row = document.createElement('tr');
+                
+                // Create cells for each day of the week
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('td');
+                    cell.className = 'p-2';
+                    
+                    if (i === 0 && j < startingDay) {
+                        // Empty cells before the first day
+                        cell.textContent = '';
+                    } else if (date > daysInMonth) {
+                        // Empty cells after last day
+                        cell.textContent = '';
+                    } else {
+                        // Cells with dates
+                        const dayDiv = document.createElement('div');
+                        dayDiv.className = 'calendar-day p-2 rounded-lg text-center';
+                        
+                        // Add date number
+                        const dateSpan = document.createElement('span');
+                        dateSpan.className = 'block font-medium';
+                        dateSpan.textContent = date;
+                        dayDiv.appendChild(dateSpan);
+                        
+                        // Check availability for selected villas
+                        const selectedVillas = Array.from(document.querySelectorAll('.villa-checkbox:checked')).map(cb => cb.value);
+                        const dateKey = `${year}-${month + 1}-${date}`;
+                        
+                        let allAvailable = selectedVillas.length > 0;
+                        let anyBooked = false;
+                        
+                        for (const villa of selectedVillas) {
+                            if (availabilityData[villa] && availabilityData[villa][dateKey] === 'booked') {
+                                allAvailable = false;
+                                anyBooked = true;
+                                break;
+                            } else if (!availabilityData[villa] || !availabilityData[villa][dateKey]) {
+                                allAvailable = false;
+                            }
+                        }
+                        
+                        if (selectedVillas.length === 0) {
+                            dayDiv.classList.add('bg-gray-100');
+                        } else if (allAvailable) {
+                            dayDiv.classList.add('villa-available');
+                        } else if (anyBooked) {
+                            dayDiv.classList.add('villa-booked');
+                        } else {
+                            dayDiv.classList.add('bg-gray-100');
+                        }
+                        
+                        // Highlight today
+                        if (date === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
+                            dayDiv.classList.add('border-2', 'border-amber-600');
+                        }
+                        
+                        // Add click handler for date selection
+                        dayDiv.addEventListener('click', function() {
+                            const dateKey = `${year}-${month + 1}-${date}`;
+                            
+                            if (selectedDates.has(dateKey)) {
+                                selectedDates.delete(dateKey);
+                                dayDiv.classList.remove('villa-selected');
+                            } else {
+                                selectedDates.add(dateKey);
+                                dayDiv.classList.add('villa-selected');
+                            }
+                            
+                            // Update calendar to reflect changes
+                            generateCalendar(currentMonth, currentYear);
+                        });
+                        
+                        // Highlight if date is selected
+                        const dateKey = `${year}-${month + 1}-${date}`;
+                        if (selectedDates.has(dateKey)) {
+                            dayDiv.classList.add('villa-selected');
+                        }
+                        
+                        cell.appendChild(dayDiv);
+                        date++;
+                    }
+                    
+                    row.appendChild(cell);
+                }
+                
+                calendarBody.appendChild(row);
+            }
+        }
+        
+        function updateSelectedDatesDisplay() {
+            const selectedDatesContainer = document.getElementById('selected-dates');
+            if (selectedDates.size === 0) {
+                selectedDatesContainer.textContent = '';
+                return;
+            }
+            
+            const dates = Array.from(selectedDates).sort();
+            const formattedDates = dates.map(dateStr => {
+                const [year, month, day] = dateStr.split('-');
+                return `${day}/${month}/${year}`;
+            });
+            
+            selectedDatesContainer.innerHTML = `
+                <p class="font-medium mb-2">Dates sélectionnées:</p>
+                <p>${formattedDates.join(', ')}</p>
+            `;
+        }
+        
+        // Initialize calendar
+        generateCalendar(currentMonth, currentYear);
+        updateSelectedDatesDisplay();
+        
+        // Previous month button
+        document.getElementById('prev-month').addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+            updateSelectedDatesDisplay();
+        });
+        
+        // Next month button
+        document.getElementById('next-month').addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+        
+        // Villa checkbox changes
+        document.querySelectorAll('.villa-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                generateCalendar(currentMonth, currentYear);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
