@@ -505,83 +505,96 @@ Je recommande!"
             </div>
             
             <!-- Villa Selection -->
-            <div class="bg-gray-50 p-6 rounded-xl mb-8">
-                <h3 class="text-xl font-serif font-bold text-gray-800 mb-4">Sélectionnez vos villas</h3>
-                <div class="flex flex-wrap gap-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" class="villa-checkbox" value="bellevue" checked>
-                        <span class="ml-2 text-gray-700">Villa Cacyli</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" class="villa-checkbox" value="mangrove" checked>
-                        <span class="ml-2 text-gray-700">Villa Cocotte</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" class="villa-checkbox" value="carbet" checked>
-                        <span class="ml-2 text-gray-700">Duplex St Catherine</span>
-                    </label>
+            <div class="flex flex-col md:flex-row gap-8 mb-8">
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-xl font-serif font-bold text-gray-800 mb-4">Choisissez votre villa</h3>
+                    <div class="space-y-6">
+                        <label class="flex items-center p-3 bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer border-2 border-transparent hover:border-amber-400">
+                            <input type="checkbox" class="villa-checkbox hidden" value="bellevue" checked>
+                            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-46155129/original/033ef31d-ea24-42f9-8be4-e77758c23a77.jpeg?im_w=240" alt="Villa Cacyli" class="w-16 h-16 object-cover rounded-lg mr-4 border-2 border-gray-200">
+                            <span class="flex-1 text-lg font-serif text-gray-800">Villa Cacyli</span>
+                            <span class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 bg-gray-50 checkmark transition">
+                                <svg class="hidden w-4 h-4 text-teal-700" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                        </label>
+                        <label class="flex items-center p-3 bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer border-2 border-transparent hover:border-amber-400">
+                            <input type="checkbox" class="villa-checkbox hidden" value="mangrove" checked>
+                            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-54044418/original/b98cc4f6-0d78-44a8-9e89-dfb52c28e4af.jpeg?im_w=240" alt="Villa Cocotte" class="w-16 h-16 object-cover rounded-lg mr-4 border-2 border-gray-200">
+                            <span class="flex-1 text-lg font-serif text-gray-800">Villa Cocotte</span>
+                            <span class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 bg-gray-50 checkmark transition">
+                                <svg class="hidden w-4 h-4 text-teal-700" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                        </label>
+                        <label class="flex items-center p-3 bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer border-2 border-transparent hover:border-amber-400">
+                            <input type="checkbox" class="villa-checkbox hidden" value="carbet" checked>
+                            <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Duplex St Catherine" class="w-16 h-16 object-cover rounded-lg mr-4 border-2 border-gray-200">
+                            <span class="flex-1 text-lg font-serif text-gray-800">Duplex St Catherine</span>
+                            <span class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 bg-gray-50 checkmark transition">
+                                <svg class="hidden w-4 h-4 text-teal-700" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                        </label>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Calendar Navigation -->
-            <div class="flex justify-between items-center mb-6">
-                <button id="prev-month" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <h3 id="current-month" class="text-xl font-serif font-bold text-gray-800">Juillet 2025</h3>
-                <button id="next-month" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <!-- Calendar Grid -->
-            <div class="overflow-x-auto flex justify-center">
-                <div class="w-full max-w-md">
-                    <table class="w-full">
-                        <thead>
-                            <tr>
-                                <th class="py-2 text-gray-600 font-medium">Lun</th>
-                                <th class="py-2 text-gray-600 font-medium">Mar</th>
-                                <th class="py-2 text-gray-600 font-medium">Mer</th>
-                                <th class="py-2 text-gray-600 font-medium">Jeu</th>
-                                <th class="py-2 text-gray-600 font-medium">Ven</th>
-                                <th class="py-2 text-gray-600 font-medium">Sam</th>
-                                <th class="py-2 text-gray-600 font-medium">Dim</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calendar-body">
-                            <!-- Calendar will be generated by JavaScript -->
-                        </tbody>
-                    </table>
+                <div class="flex-1">
+                    <!-- Calendar Navigation -->
+                    <div class="flex justify-between items-center mb-6">
+                        <button id="prev-month" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h3 id="current-month" class="text-xl font-serif font-bold text-gray-800">Juillet 2025</h3>
+                        <button id="next-month" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Calendar Grid -->
+                    <div class="overflow-x-auto flex justify-center">
+                        <div class="w-full max-w-md">
+                            <table class="w-full">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 text-gray-600 font-medium">Lun</th>
+                                        <th class="py-2 text-gray-600 font-medium">Mar</th>
+                                        <th class="py-2 text-gray-600 font-medium">Mer</th>
+                                        <th class="py-2 text-gray-600 font-medium">Jeu</th>
+                                        <th class="py-2 text-gray-600 font-medium">Ven</th>
+                                        <th class="py-2 text-gray-600 font-medium">Sam</th>
+                                        <th class="py-2 text-gray-600 font-medium">Dim</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="calendar-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar Legend -->
+                    <div class="mt-8 flex flex-wrap justify-center gap-4">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-green-600 mr-2"></div>
+                            <span class="text-sm text-gray-600">Disponible</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-red-600 mr-2"></div>
+                            <span class="text-sm text-gray-600">Réservé</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-teal-700 mr-2"></div>
+                            <span class="text-sm text-gray-600">Sélectionné</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Selected Dates -->
+                    <div id="selected-dates" class="mt-8 text-center text-gray-700">
+                        <!-- Selected dates will appear here -->
+                    </div>
+                    
+                    <!-- Booking CTA -->
+                    <div class="mt-6 text-center">
+                        <a href="#contact" class="inline-block bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                            Réserver maintenant
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Calendar Legend -->
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <div class="flex items-center">
-                    <div class="w-4 h-4 rounded-full bg-green-600 mr-2"></div>
-                    <span class="text-sm text-gray-600">Disponible</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-4 h-4 rounded-full bg-red-600 mr-2"></div>
-                    <span class="text-sm text-gray-600">Réservé</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-4 h-4 rounded-full bg-teal-700 mr-2"></div>
-                    <span class="text-sm text-gray-600">Sélectionné</span>
-                </div>
-            </div>
-            
-            <!-- Selected Dates -->
-            <div id="selected-dates" class="mt-8 text-center text-gray-700">
-                <!-- Selected dates will appear here -->
-            </div>
-            
-            <!-- Booking CTA -->
-            <div class="mt-6 text-center">
-                <a href="#contact" class="inline-block bg-teal-700 hover:bg-teal-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
-                    Réserver maintenant
-                </a>
             </div>
         </div>
     </section>
@@ -746,20 +759,41 @@ Je recommande!"
             }
         }
 
-        // --- CALENDRIER ---
+        // --- NOUVEAU CALENDRIER ---
         const currentDate = new Date();
         let currentMonth = currentDate.getMonth();
         let currentYear = currentDate.getFullYear();
-        let selectedDates = new Set();
+        let selectionStart = null;
+        let selectionEnd = null;
         const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
         // Dates réservées (exemple hardcodé)
         const reservedDates = {
             bellevue: ["2025-7-8", "2025-7-9", "2025-7-14", "2025-7-15", "2025-7-16"],
             mangrove: ["2025-7-5", "2025-7-6"],
             carbet: []
         };
-
+        function isBeforeToday(year, month, day) {
+            const d = new Date(year, month, day);
+            d.setHours(0,0,0,0);
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            return d < today;
+        }
+        function isReserved(year, month, day) {
+            const selectedVillas = Array.from(document.querySelectorAll('.villa-checkbox:checked')).map(cb => cb.value);
+            const key = `${year}-${month+1}-${day}`;
+            for (const villa of selectedVillas) {
+                if (reservedDates[villa] && reservedDates[villa].includes(key)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        function isInSelection(year, month, day) {
+            if (!selectionStart || !selectionEnd) return false;
+            const d = new Date(year, month, day);
+            return d >= selectionStart && d <= selectionEnd;
+        }
         function generateCalendar(month, year) {
             const calendarBody = document.getElementById('calendar-body');
             const currentMonthDisplay = document.getElementById('current-month');
@@ -788,44 +822,66 @@ Je recommande!"
                         dateSpan.className = 'block font-medium';
                         dateSpan.textContent = date;
                         dayDiv.appendChild(dateSpan);
-                        // Villas sélectionnées
-                        const selectedVillas = Array.from(document.querySelectorAll('.villa-checkbox:checked')).map(cb => cb.value);
-                        const thisDateKey = `${year}-${month + 1}-${date}`;
-                        let allAvailable = selectedVillas.length > 0;
-                        let anyBooked = false;
-                        for (const villa of selectedVillas) {
-                            if (reservedDates[villa] && reservedDates[villa].includes(thisDateKey)) {
-                                allAvailable = false;
-                                anyBooked = true;
-                                break;
-                            }
-                        }
-                        if (selectedVillas.length === 0) {
-                            dayDiv.classList.add('bg-gray-100');
-                        } else if (allAvailable) {
-                            dayDiv.classList.add('villa-available');
-                        } else if (anyBooked) {
-                            dayDiv.classList.add('villa-booked');
+                        // Désactiver les dates passées
+                        if (isBeforeToday(year, month, date)) {
+                            dayDiv.classList.add('bg-gray-200', 'text-gray-400', 'cursor-not-allowed');
+                        } else if (isReserved(year, month, date)) {
+                            dayDiv.classList.add('bg-red-200', 'text-red-600', 'cursor-not-allowed');
                         } else {
-                            dayDiv.classList.add('bg-gray-100');
+                            dayDiv.classList.add('villa-available');
+                            dayDiv.style.cursor = 'pointer';
+                            dayDiv.addEventListener('click', function() {
+                                const clickedDate = new Date(year, month, date);
+                                if (!selectionStart || (selectionStart && selectionEnd)) {
+                                    // Premier clic ou nouvelle sélection
+                                    selectionStart = clickedDate;
+                                    selectionEnd = null;
+                                } else if (selectionStart && !selectionEnd) {
+                                    // Deuxième clic : définir la fin
+                                    let start = selectionStart;
+                                    let end = clickedDate;
+                                    if (clickedDate < selectionStart) {
+                                        start = clickedDate;
+                                        end = selectionStart;
+                                    }
+                                    // Vérifier qu'il n'y a pas de dates réservées ou passées dans l'intervalle
+                                    let valid = true;
+                                    let d = new Date(start);
+                                    while (d <= end) {
+                                        if (isBeforeToday(d.getFullYear(), d.getMonth(), d.getDate()) || isReserved(d.getFullYear(), d.getMonth(), d.getDate())) {
+                                            valid = false;
+                                            break;
+                                        }
+                                        d.setDate(d.getDate()+1);
+                                    }
+                                    if (valid) {
+                                        selectionStart = start;
+                                        selectionEnd = end;
+                                    } else {
+                                        // Si intervalle non valide, recommencer
+                                        selectionStart = clickedDate;
+                                        selectionEnd = null;
+                                    }
+                                }
+                                generateCalendar(currentMonth, currentYear);
+                                updateSelectedDatesDisplay();
+                            });
                         }
                         // Aujourd'hui
                         if (date === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
                             dayDiv.classList.add('border-2', 'border-amber-600');
                         }
-                        // Sélection de date
-                        dayDiv.addEventListener('click', function() {
-                            if (selectedDates.has(thisDateKey)) {
-                                selectedDates.delete(thisDateKey);
-                            } else {
-                                selectedDates.add(thisDateKey);
+                        // Sélection d'intervalle
+                        if (selectionStart && selectionEnd) {
+                            const d = new Date(year, month, date);
+                            if (d >= selectionStart && d <= selectionEnd) {
+                                dayDiv.classList.add('bg-teal-700', 'text-white', 'ring-2', 'ring-amber-400');
                             }
-                            generateCalendar(currentMonth, currentYear);
-                            updateSelectedDatesDisplay();
-                        });
-                        // Affichage si sélectionné
-                        if (selectedDates.has(thisDateKey)) {
-                            dayDiv.classList.add('villa-selected');
+                        } else if (selectionStart && !selectionEnd) {
+                            const d = new Date(year, month, date);
+                            if (d.getTime() === selectionStart.getTime()) {
+                                dayDiv.classList.add('bg-teal-700', 'text-white', 'ring-2', 'ring-amber-400');
+                            }
                         }
                         cell.appendChild(dayDiv);
                         date++;
@@ -837,19 +893,25 @@ Je recommande!"
         }
         function updateSelectedDatesDisplay() {
             const selectedDatesContainer = document.getElementById('selected-dates');
-            if (selectedDates.size === 0) {
+            if (!selectionStart || !selectionEnd) {
                 selectedDatesContainer.textContent = '';
+                // Synchronisation avec le formulaire : vider les champs
+                const debut = document.getElementById('date_debut');
+                const fin = document.getElementById('date_fin');
+                if (debut) debut.value = '';
+                if (fin) fin.value = '';
                 return;
             }
-            const dates = Array.from(selectedDates).sort();
-            const formattedDates = dates.map(dateStr => {
-                const [year, month, day] = dateStr.split('-');
-                return `${day}/${month}/${year}`;
-            });
+            const format = d => `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
             selectedDatesContainer.innerHTML = `
-                <p class="font-medium mb-2">Dates sélectionnées:</p>
-                <p>${formattedDates.join(', ')}</p>
+                <p class="font-medium mb-2">Séjour sélectionné :</p>
+                <p>Du <b>${format(selectionStart)}</b> au <b>${format(selectionEnd)}</b></p>
             `;
+            // Synchronisation avec le formulaire
+            const debut = document.getElementById('date_debut');
+            const fin = document.getElementById('date_fin');
+            if (debut) debut.value = selectionStart.toISOString().slice(0,10);
+            if (fin) fin.value = selectionEnd.toISOString().slice(0,10);
         }
         generateCalendar(currentMonth, currentYear);
         updateSelectedDatesDisplay();
@@ -891,6 +953,27 @@ Je recommande!"
                     document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
+        });
+        // Ajout JS pour afficher la coche stylisée sur la sélection villa
+        document.querySelectorAll('.villa-checkbox').forEach(cb => {
+            cb.addEventListener('change', function() {
+                const label = this.closest('label');
+                const svg = label.querySelector('svg');
+                if (this.checked) {
+                    svg.classList.remove('hidden');
+                    label.classList.add('border-teal-700');
+                } else {
+                    svg.classList.add('hidden');
+                    label.classList.remove('border-teal-700');
+                }
+            });
+            // Initial state
+            const label = cb.closest('label');
+            const svg = label.querySelector('svg');
+            if (cb.checked) {
+                svg.classList.remove('hidden');
+                label.classList.add('border-teal-700');
+            }
         });
     </script>
 
