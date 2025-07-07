@@ -604,8 +604,33 @@ Je recommande!"
                     <h3 class="text-xl font-serif font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
                     <form action="https://formspree.io/f/mblyenpg" method="POST">
                         <div class="mb-6 floating-label">
+                            <input type="text" name="prenom" id="prenom" placeholder=" " required>
+                            <label for="prenom">Prénom</label>
+                        </div>
+                        <div class="mb-6 floating-label">
+                            <input type="text" name="nom" id="nom" placeholder=" " required>
+                            <label for="nom">Nom</label>
+                        </div>
+                        <div class="mb-6 floating-label">
                             <input type="email" name="email" id="email" placeholder=" " required>
                             <label for="email">Votre email</label>
+                        </div>
+                        <div class="mb-6 floating-label">
+                            <input type="date" name="date_debut" id="date_debut" placeholder=" " required>
+                            <label for="date_debut">Date de début de réservation</label>
+                        </div>
+                        <div class="mb-6 floating-label">
+                            <input type="date" name="date_fin" id="date_fin" placeholder=" " required>
+                            <label for="date_fin">Date de fin de réservation</label>
+                        </div>
+                        <div class="mb-6 floating-label">
+                            <select name="logement" id="logement" required style="background:transparent; border: 1.5px solid #E4B85B; border-radius: 0.75rem; padding: 1.2rem 1rem 0.6rem 1rem; width: 100%; font-size: 1rem;">
+                                <option value="" disabled selected hidden></option>
+                                <option value="Villa Cacyli">Villa Cacyli</option>
+                                <option value="Villa Cocotte">Villa Cocotte</option>
+                                <option value="Duplex St Catherine">Duplex St Catherine</option>
+                            </select>
+                            <label for="logement" style="left: 1rem; top: 1.1rem; color: #888; font-size: 1rem; pointer-events: none; position: absolute; transition: 0.2s; background: transparent;">Logement souhaité</label>
                         </div>
                         <div class="mb-6 floating-label">
                             <textarea name="message" id="message" rows="4" placeholder=" " required></textarea>
