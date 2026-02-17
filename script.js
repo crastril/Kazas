@@ -214,7 +214,7 @@ function init() {
             }
 
             // --- Proportional Redistribution ---
-            const MAX_OCCUPANCY = 0.40;
+            const MAX_OCCUPANCY = 0.85;
             const headroom = MAX_OCCUPANCY - standardOccupancy;
             const totalRawBoost = occBoosts.reduce((sum, b) => sum + b.rawBoost, 0);
             const scaleFactor = totalRawBoost > headroom ? headroom / totalRawBoost : 1;
@@ -446,7 +446,7 @@ function switchSimulatorTab(tab) {
         // Activate "Sans Kazas" tab style
         tabSans.className = "flex-1 py-3 rounded-lg text-sm font-bold bg-gold text-primary-dark shadow-lg transition-all duration-300";
         tabAvec.className = "flex-1 py-3 rounded-lg text-sm font-bold text-white/60 hover:text-white transition-all duration-300";
-        
+
         // Show Sans Kazas result, Hide Avec Kazas
         resSans.classList.remove('hidden');
         resAvec.classList.add('hidden');
@@ -456,7 +456,7 @@ function switchSimulatorTab(tab) {
         // Activate "Avec Kazas" tab style
         tabAvec.className = "flex-1 py-3 rounded-lg text-sm font-bold bg-gold text-primary-dark shadow-lg transition-all duration-300";
         tabSans.className = "flex-1 py-3 rounded-lg text-sm font-bold text-white/60 hover:text-white transition-all duration-300";
-        
+
         // Show Avec Kazas result, Hide Sans Kazas
         resAvec.classList.remove('hidden');
         resAvec.classList.add('flex'); // Add flex back for layout
