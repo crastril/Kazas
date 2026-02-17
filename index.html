@@ -167,7 +167,8 @@
     <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center w-full px-4">
         <div id="mainNavContainer"
             class="glass-morphism rounded-full px-8 py-3 flex items-center justify-between shadow-glass max-w-5xl w-full transition-all duration-300 border border-white/20">
-            <a class="text-2xl font-bold tracking-tighter text-primary dark:text-white flex items-center gap-1"
+            <a id="navLogo"
+                class="text-2xl font-bold tracking-tighter text-primary dark:text-white flex items-center gap-1"
                 href="#">
                 Kazas<span class="text-gold text-3xl leading-none">.</span>
             </a>
@@ -264,9 +265,9 @@
                     propriété grâce à une modélisation basée sur notre expérience terrain.</p>
             </div>
             <div
-                class="glass-morphism rounded-[3rem] p-8 md:p-12 border border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center shadow-glass-high">
-                <div class="space-y-10">
-                    <div class="space-y-4">
+                class="glass-morphism rounded-[3rem] p-6 md:p-8 border border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center shadow-glass-high">
+                <div class="space-y-6">
+                    <div class="space-y-3">
                         <div class="flex justify-between text-sm font-medium">
                             <span class="text-white/80 uppercase tracking-wider">Nombre de Chambres</span>
                             <span class="text-gold" id="sim-rooms-value">4</span>
@@ -278,7 +279,19 @@
                             <span>10+</span>
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm font-medium">
+                            <span class="text-white/80 uppercase tracking-wider">Nombre de Couchages</span>
+                            <span class="text-gold" id="sim-capacity-value">6</span>
+                        </div>
+                        <input class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" max="15" min="2"
+                            type="range" value="6" id="sim-capacity" />
+                        <div class="flex justify-between text-xs text-white/40 font-mono">
+                            <span>2</span>
+                            <span>15+</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
                         <div class="flex justify-between text-sm font-medium">
                             <span class="text-white/80 uppercase tracking-wider">Équipements</span>
                             <span class="text-gold" id="sim-equipment-value">Premium</span>
@@ -290,7 +303,7 @@
                             <span>Luxe</span>
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-3">
                         <div class="flex justify-between text-sm font-medium mb-2">
                             <span class="text-white/80 uppercase tracking-wider">Options</span>
                         </div>
@@ -321,72 +334,136 @@
                                 </div>
                                 <span class="text-white/60 group-hover:text-white transition-colors">Vue Dégagée</span>
                             </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <div class="relative">
+                                    <input type="checkbox" id="sim-multisite" class="sr-only peer">
+                                    <div
+                                        class="w-5 h-5 border-2 border-white/20 rounded peer-checked:bg-gold peer-checked:border-gold transition-all">
+                                    </div>
+                                    <svg class="w-3 h-3 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-white/60 group-hover:text-white transition-colors">Multi-sites</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <div class="relative">
+                                    <input type="checkbox" id="sim-optimized-listing" class="sr-only peer">
+                                    <div
+                                        class="w-5 h-5 border-2 border-white/20 rounded peer-checked:bg-gold peer-checked:border-gold transition-all">
+                                    </div>
+                                    <svg class="w-3 h-3 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-white/60 group-hover:text-white transition-colors">Annonce
+                                    Optimisée</span>
+                            </label>
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-3">
                         <div class="flex justify-between text-sm font-medium">
                             <span class="text-white/80 uppercase tracking-wider">Décoration Professionnelle</span>
                             <span class="text-gold" id="sim-decoration-value">Oui</span>
                         </div>
                         <div class="flex gap-4">
                             <button id="sim-decoration-yes"
-                                class="flex-1 py-3 rounded-xl bg-gold text-primary font-bold shadow-neon transition-all">Oui</button>
+                                class="flex-1 py-2.5 rounded-xl bg-gold text-primary font-bold shadow-neon transition-all">Oui</button>
                             <button id="sim-decoration-no"
-                                class="flex-1 py-3 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 transition-all">Non</button>
+                                class="flex-1 py-2.5 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 transition-all">Non</button>
                         </div>
                         <input type="hidden" id="sim-decoration" value="true">
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-3">
                         <div class="flex justify-between text-sm font-medium">
                             <span class="text-white/80 uppercase tracking-wider">Photos Professionnelles</span>
                             <span class="text-gold" id="sim-photos-value">Non</span>
                         </div>
                         <div class="flex gap-4">
                             <button id="sim-photos-yes"
-                                class="flex-1 py-3 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 transition-all">Oui</button>
+                                class="flex-1 py-2.5 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 transition-all">Oui</button>
                             <button id="sim-photos-no"
-                                class="flex-1 py-3 rounded-xl bg-gold text-primary font-bold shadow-neon transition-all">Non</button>
+                                class="flex-1 py-2.5 rounded-xl bg-gold text-primary font-bold shadow-neon transition-all">Non</button>
                         </div>
                         <input type="hidden" id="sim-photos" value="false">
                     </div>
                 </div>
-                <div class="relative bg-black/20 rounded-3xl p-8 border border-white/5">
-                    <div class="flex justify-between items-end mb-8">
-                        <div>
-                            <p class="text-sm text-white/50 mb-1">Revenu Annuel Estimé</p>
-                            <p class="text-5xl font-bold text-white tracking-tight" id="sim-revenue-display">142 500 €
-                            </p>
+                <!-- Right Column: Results -->
+                <div class="space-y-4">
+                    <!-- Title -->
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-white mb-2">Estimation de vos revenus</h3>
+                        <p class="text-white/60 text-sm">Basé sur les données du marché Martinique</p>
+                    </div>
+
+                    <!-- Comparison Block -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Sans Kazas -->
+                        <div
+                            class="bg-white/5 backdrop-blur-md rounded-2xl p-3 border border-white/10 flex flex-col items-start justify-start h-full relative">
+                            <!-- Revenue at Top -->
+                            <div class="mb-3 w-full border-b border-white/5 pb-3">
+                                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Revenu Annuel Est.
+                                </p>
+                                <p class="text-xl md:text-2xl font-bold text-white/60" id="sim-market-display">114 000 €
+                                </p>
+                            </div>
+
+                            <div class="w-full space-y-2.5">
+                                <div>
+                                    <p class="text-[10px] text-white/40 mb-0.5">Prix / Nuit</p>
+                                    <p class="text-lg font-medium text-white/80" id="sim-price-standard">250 €</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-white/40 mb-0.5">Taux d'Occupation</p>
+                                    <p class="text-lg font-medium text-white/80" id="sim-occupancy-standard">50%</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-xs text-green-400 font-bold mb-1">+25% Kazas Expertise</p>
-                            <p class="text-sm text-white/40 line-through decoration-white/30"><span
-                                    id="sim-market-display">114 000 €</span> (Marché)</p>
+
+                        <!-- Avec Kazas -->
+                        <div
+                            class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-3 border border-gold shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-start justify-start h-full relative relative">
+                            <!-- Revenue at Top -->
+                            <div class="mb-3 w-full border-b border-gold/20 pb-3">
+                                <p class="text-[10px] uppercase tracking-widest text-gold/60 mb-1">Revenu Annuel Est.
+                                </p>
+                                <p class="text-2xl md:text-3xl font-bold text-gold" id="sim-revenue-display">142 500 €
+                                </p>
+                            </div>
+
+                            <div class="w-full space-y-3">
+                                <div>
+                                    <p class="text-[10px] text-gold/60 mb-0.5">Prix / Nuit</p>
+                                    <p class="text-lg font-bold text-gold" id="sim-price-kazas">350 €</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gold/60 mb-0.5">Taux d'Occupation</p>
+                                    <p class="text-lg font-bold text-gold" id="sim-occupancy-kazas">85%</p>
+                                </div>
+                                <ul class="mt-2 space-y-1 relative z-10" id="sim-impacts-list">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-end gap-6 h-48 relative">
-                        <div class="w-1/2 flex flex-col justify-end gap-2 group cursor-help">
-                            <div
-                                class="text-center text-xs text-white/40 opacity-0 group-hover:opacity-100 transition-opacity">
-                                Marché</div>
-                            <div class="w-full bg-white/20 rounded-t-lg h-[65%] relative overflow-hidden transition-all duration-1000"
-                                id="sim-market-bar"></div>
-                        </div>
-                        <div class="w-1/2 flex flex-col justify-end gap-2 group cursor-help relative">
-                            <div
-                                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gold text-primary text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-neon animate-bounce">
-                                Optimisé
-                            </div>
-                            <div
-                                class="text-center text-xs text-gold opacity-0 group-hover:opacity-100 transition-opacity">
-                                Kazas</div>
-                            <div class="w-full bg-gradient-to-t from-gold to-[#fff5cc] rounded-t-lg h-[90%] relative shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all duration-1000"
-                                id="sim-revenue-bar">
-                            </div>
+
+                    <!-- Monthly Revenue Chart -->
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10 mt-4">
+                        <p class="text-[10px] uppercase tracking-widest text-white/40 mb-3">Revenus Mensuels Estimés</p>
+                        <div id="sim-monthly-chart">
+                            <!-- Populated by JS -->
                         </div>
                     </div>
+
+                    <!-- Disclaimer -->
+                    <p class="text-[10px] text-white/30 italic text-center mt-4 border-t border-white/5 pt-4">
+                        *Ces chiffres sont des estimations basées sur des moyennes de marché. Les revenus réels peuvent
+                        varier selon la localisation, la saisonnalité et les caractéristiques uniques du bien.
+                    </p>
                 </div>
-            </div>
-        </div>
     </section>
     <section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="portfolio">
         <div class="max-w-7xl mx-auto">
@@ -765,7 +842,7 @@
             </div>
         </div>
     </footer>
-    <script type="module" src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 
 </html>
