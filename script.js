@@ -162,10 +162,10 @@ function init() {
             const equipmentPriceMultipliers = { 1: 1, 2: 1.10, 3: 1.20 };
             let standardPrice = basePrice * equipmentPriceMultipliers[equipment];
 
-            let standardOccupancy = 0.40;
+            let standardOccupancy = 0.30;
             if (equipment === 2) standardOccupancy += 0.02;
             if (equipment === 3) standardOccupancy += 0.04;
-            standardOccupancy = Math.min(standardOccupancy, 0.50);
+            standardOccupancy = Math.min(standardOccupancy, 0.40);
 
             // 2. Optimized (Avec Kazas) — Proportional Occupancy Redistribution
             let optimizedPrice = standardPrice;
@@ -175,7 +175,7 @@ function init() {
             const occBoosts = [];
 
             // Kazas Expertise baseline
-            occBoosts.push({ label: "Gestion Kazas", rawBoost: 0.05, detail: "" });
+            occBoosts.push({ label: "Gestion Kazas", rawBoost: 0.10, detail: "" });
 
             // Piscine
             if (hasPool) {
@@ -186,7 +186,7 @@ function init() {
 
             // Vue Dégagée
             if (hasView) {
-                const viewPrice = 25 + (rooms * 4);
+                const viewPrice = 12 + (rooms * 2);
                 optimizedPrice += viewPrice;
                 occBoosts.push({ label: "Vue Mer/Dégagée", rawBoost: 0.03, detail: `+${Math.round(viewPrice)}€ Prix` });
             }
@@ -214,7 +214,7 @@ function init() {
             }
 
             // --- Proportional Redistribution ---
-            const MAX_OCCUPANCY = 0.70;
+            const MAX_OCCUPANCY = 0.40;
             const headroom = MAX_OCCUPANCY - standardOccupancy;
             const totalRawBoost = occBoosts.reduce((sum, b) => sum + b.rawBoost, 0);
             const scaleFactor = totalRawBoost > headroom ? headroom / totalRawBoost : 1;
