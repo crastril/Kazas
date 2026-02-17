@@ -155,17 +155,17 @@ function init() {
 
             // --- Calculation Logic (Martinique Market) ---
 
-            // Base Price Formula
-            let basePrice = (rooms * 50) + (capacity * 10);
+            // Base Price Formula (reduced to match real market)
+            let basePrice = (rooms * 40) + (capacity * 8);
 
             // 1. Standard (Sans Kazas) Calculation
-            const equipmentPriceMultipliers = { 1: 1, 2: 1.15, 3: 1.3 };
+            const equipmentPriceMultipliers = { 1: 1, 2: 1.10, 3: 1.20 };
             let standardPrice = basePrice * equipmentPriceMultipliers[equipment];
 
-            let standardOccupancy = 0.45;
-            if (equipment === 2) standardOccupancy += 0.03;
-            if (equipment === 3) standardOccupancy += 0.05;
-            standardOccupancy = Math.min(standardOccupancy, 0.55);
+            let standardOccupancy = 0.40;
+            if (equipment === 2) standardOccupancy += 0.02;
+            if (equipment === 3) standardOccupancy += 0.04;
+            standardOccupancy = Math.min(standardOccupancy, 0.50);
 
             // 2. Optimized (Avec Kazas) — Proportional Occupancy Redistribution
             let optimizedPrice = standardPrice;
@@ -179,14 +179,14 @@ function init() {
 
             // Piscine
             if (hasPool) {
-                const poolPrice = 80 + (rooms * 10);
+                const poolPrice = 30 + (rooms * 8);
                 optimizedPrice += poolPrice;
-                occBoosts.push({ label: "Piscine", rawBoost: 0.05, detail: `+${Math.round(poolPrice)}€ Prix` });
+                occBoosts.push({ label: "Piscine", rawBoost: 0.04, detail: `+${Math.round(poolPrice)}€ Prix` });
             }
 
             // Vue Dégagée
             if (hasView) {
-                const viewPrice = 40 + (rooms * 5);
+                const viewPrice = 25 + (rooms * 4);
                 optimizedPrice += viewPrice;
                 occBoosts.push({ label: "Vue Mer/Dégagée", rawBoost: 0.03, detail: `+${Math.round(viewPrice)}€ Prix` });
             }
@@ -203,9 +203,9 @@ function init() {
 
             // Decoration
             if (hasDecoration) {
-                const priceBoost = optimizedPrice * 0.15;
+                const priceBoost = optimizedPrice * 0.10;
                 optimizedPrice += priceBoost;
-                occBoosts.push({ label: "Déco Pro", rawBoost: 0.05, detail: "+15% Prix" });
+                occBoosts.push({ label: "Déco Pro", rawBoost: 0.04, detail: "+10% Prix" });
             }
 
             // Photos Pro
@@ -243,14 +243,21 @@ function init() {
                 impacts.push({ label: `Équip. ${label}`, detail: "Base + solide" });
             }
 
-            // Yield Management
-            optimizedPrice *= 1.05;
+            // Yield Management (reduced impact)
+            optimizedPrice *= 1.03;
 
             // Cap (should already be ≤70% thanks to redistribution, safety net)
             optimizedOccupancy = Math.min(optimizedOccupancy, MAX_OCCUPANCY);
 
             // 3. Seasonality & Monthly Revenue
-            const seasonCoeffs = [1.3, 1.3, 1.2, 1.1, 0.8, 0.7, 0.85, 0.9, 0.6, 0.7, 0.9, 1.4];
+            // Martinique High Seasons: Dec-Apr (winter), Jul-Sep (summer)
+            // Low seasons: May-Jun, Oct-Nov
+            const seasonCoeffs = [1.4, 1.5, 1.3, 1.2, 0.7, 0.65, 1.1, 1.15, 0.95, 0.75, 0.85, 1.45];
+
+            // Different occupancy patterns: Standard is more erratic, Kazas is more stable
+            const standardOccCoeffs = [1.1, 1.15, 1.05, 1.0, 0.75, 0.70, 1.0, 1.05, 0.85, 0.70, 0.80, 1.2];
+            const kazasOccCoeffs = [1.15, 1.2, 1.12, 1.08, 0.85, 0.80, 1.1, 1.15, 0.95, 0.85, 0.90, 1.25];
+
             const monthLabels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
             const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -260,10 +267,16 @@ function init() {
             let optimizedRevenue = 0;
 
             for (let i = 0; i < 12; i++) {
-                const coeff = seasonCoeffs[i];
+                const priceCoeff = seasonCoeffs[i];
+                const stdOccCoeff = standardOccCoeffs[i];
+                const kazOccCoeff = kazasOccCoeffs[i];
                 const days = daysPerMonth[i];
-                const stdMonthly = Math.round(standardPrice * days * standardOccupancy * coeff);
-                const optMonthly = Math.round(optimizedPrice * days * optimizedOccupancy * coeff);
+
+                // Standard: price varies by season, occupancy fluctuates
+                const stdMonthly = Math.round(standardPrice * priceCoeff * days * standardOccupancy * stdOccCoeff);
+                // Kazas: better price + better occupancy stability
+                const optMonthly = Math.round(optimizedPrice * priceCoeff * days * optimizedOccupancy * kazOccCoeff);
+
                 monthlyStandard.push(stdMonthly);
                 monthlyOptimized.push(optMonthly);
                 standardRevenue += stdMonthly;
