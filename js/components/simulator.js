@@ -281,21 +281,21 @@ export function initSimulator() {
 
         function updateClasses(btnYes, btnNo, isYes) {
             if (isYes) {
-                btnYes.classList.replace('bg-white/5', 'bg-gold');
-                btnYes.classList.replace('text-white/60', 'text-primary');
-                btnYes.classList.add('font-bold', 'shadow-neon');
+                // Active Button (Yes)
+                btnYes.classList.remove('bg-white/5', 'text-white/60', 'hover:bg-white/10');
+                btnYes.classList.add('bg-gold', 'text-primary', 'font-bold', 'shadow-neon', 'hover:bg-gold/90');
 
-                btnNo.classList.replace('bg-gold', 'bg-white/5');
-                btnNo.classList.replace('text-primary', 'text-white/60');
-                btnNo.classList.remove('font-bold', 'shadow-neon');
+                // Inactive Button (No)
+                btnNo.classList.remove('bg-gold', 'text-primary', 'font-bold', 'shadow-neon', 'hover:bg-gold/90');
+                btnNo.classList.add('bg-white/5', 'text-white/60', 'hover:bg-white/10');
             } else {
-                btnNo.classList.replace('bg-white/5', 'bg-gold');
-                btnNo.classList.replace('text-white/60', 'text-primary');
-                btnNo.classList.add('font-bold', 'shadow-neon');
+                // Active Button (No)
+                btnNo.classList.remove('bg-white/5', 'text-white/60', 'hover:bg-white/10');
+                btnNo.classList.add('bg-gold', 'text-primary', 'font-bold', 'shadow-neon', 'hover:bg-gold/90');
 
-                btnYes.classList.replace('bg-gold', 'bg-white/5');
-                btnYes.classList.replace('text-primary', 'text-white/60');
-                btnYes.classList.remove('font-bold', 'shadow-neon');
+                // Inactive Button (Yes)
+                btnYes.classList.remove('bg-gold', 'text-primary', 'font-bold', 'shadow-neon', 'hover:bg-gold/90');
+                btnYes.classList.add('bg-white/5', 'text-white/60', 'hover:bg-white/10');
             }
         }
 
