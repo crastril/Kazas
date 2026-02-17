@@ -164,7 +164,8 @@
 
 <body
     class="bg-[#Fdfcf8] dark:bg-surface-dark font-sans text-primary dark:text-cream antialiased selection:bg-gold/30 selection:text-white overflow-x-hidden">
-    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center w-full px-4">
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-md md:bg-primary/60 transition-all duration-300">
         <div id="mainNavContainer"
             class="glass-morphism rounded-full px-8 py-3 flex items-center justify-between shadow-glass max-w-5xl w-full transition-all duration-300 border border-white/20">
             <a id="navLogo"
@@ -187,7 +188,7 @@
                 <span>Demander mon audit</span>
             </a>
         </div>
-    </nav>
+    </header>
     <header data-header-style="hero"
         class="relative h-screen min-h-[900px] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
@@ -212,7 +213,7 @@
                     <span class="text-xs font-bold text-white tracking-widest uppercase">Location Courte Durée</span>
                 </div>
                 <h1
-                    class="text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] text-white tracking-tight mb-8 drop-shadow-lg">
+                    class="text-4xl md:text-7xl lg:text-8xl font-bold leading-[1.05] text-white tracking-tight mb-6 md:mb-8 drop-shadow-lg">
                     Rentabilisez votre villa <br />
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-white">en Martinique</span>
                 </h1>
@@ -240,21 +241,19 @@
                             <span class="text-gold font-bold text-lg">+70%</span>
                         </div>
                     </div>
-                    <div class="mt-10 flex flex-col gap-3">
+                    <div class="mt-8 flex flex-col gap-3">
                         <a class="squishy-btn w-full bg-gold hover:bg-[#c9a330] text-primary-dark font-bold text-lg py-4 px-6 shadow-squishy-gold flex items-center justify-center gap-2"
                             href="#simulator">
                             Obtenir mon estimation gratuite
                             <span class="material-icons-round">trending_up</span>
                         </a>
-                        <a class="squishy-btn w-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base py-3 px-6 border border-white/20 flex items-center justify-center gap-2 transition-all"
+                        <a class="squishy-btn w-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base py-3 px-6 border border-white/20 flex items-center justify-center gap-2 transition-all hover:bg-white/10"
                             href="#portfolio">
                             Voir nos villas
                             <span class="material-icons-round">arrow_forward</span>
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
     </header>
     <section data-header-style="dark" class="py-32 px-4 relative overflow-hidden bg-surface-dark text-white"
         id="simulator">
@@ -401,8 +400,8 @@
                         <p class="text-white/60 text-sm">Basé sur les données du marché Martinique</p>
                     </div>
 
-                    <!-- Comparison Block -->
-                    <div class="grid grid-cols-2 gap-4">
+                    <!-- Results Display -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
                         <!-- Sans Kazas -->
                         <div
                             class="bg-white/5 backdrop-blur-md rounded-2xl p-3 border border-white/10 flex flex-col items-start justify-start h-full relative">
@@ -469,19 +468,15 @@
                 </div>
     </section>
     <section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="portfolio">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div>
-                    <span class="text-primary font-serif italic text-2xl">Nos villas</span>
-                    <h2 class="text-5xl font-bold text-primary mt-2">Propriétés en location</h2>
-                </div>
-                <a class="group flex items-center gap-2 text-primary font-bold border-b border-primary/20 pb-1 hover:border-primary transition-all"
-                    href="#">
-                    Voir toutes nos villas <span
-                        class="material-icons-round text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </a>
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <span class="text-gold font-semibold tracking-wider uppercase text-sm mb-2 block">Portfolio</span>
+                <h2 class="text-4xl md:text-5xl font-display text-primary-dark">Nos dernières <span
+                        class="text-gold">réalisations</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mt-4">Découvrez une sélection de villas que nous avons
+                    transformées en succès locatifs.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <div
                     class="group relative h-[500px] rounded-[2rem] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500">
                     <img alt="Villa Stanelle zen et piscine privée"
@@ -569,7 +564,7 @@
             class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] pointer-events-none">
         </div>
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
-            <div class="relative h-[600px] w-full flex items-center justify-center">
+            <div class="relative h-[400px] md:h-[600px] w-full flex items-center justify-center">
                 <div class="absolute w-[90%] h-[90%] mask-blob-split z-10 animate-float">
                     <img alt="After Renovation" class="w-full h-full object-cover"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUa1JugMJhgj8TUXYVNrN_A9Wt1eiMu4sBf-oUpoCqCUpEhGxuYwaRlRqsmP0BRYeu2JurCQI6OJpzVtUlf5_AzEqaYzQA7g4YSgSuBrllEaFvLepy041G4ugFVK1jj25nwEbgSVYLyW3O8CWdX6JEA-Z_FDraM8YuMJFraUQHO9qC9Uj_hhzmU7cJaIxhlLfjKTadDuRp3M0_NEn-sQDZyZd4MvOCJpd-ZBcmkS2mIZfPTQcPkXS8jaME_KbNvGZF9DqWqGivMP92" />
@@ -587,7 +582,7 @@
             <div>
                 <span class="text-gold font-bold tracking-widest text-sm uppercase mb-4 block">Étude de cas : Villa
                     Mahogan</span>
-                <h2 class="text-5xl font-bold mb-8 leading-tight">De 1 200€ par mois à <br /><span
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">De 1 200€ par mois à <br /><span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-white">3 800€ par
                         mois</span></h2>
                 <p class="text-white/70 text-lg mb-12 font-light border-l-2 border-gold/30 pl-6">
@@ -623,10 +618,12 @@
     </section>
     <section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="services">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-5xl font-bold text-primary mb-6">Nos services</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Que vous ayez déjà une villa ou que vous cherchiez à investir
-                </p>
+            <div class="text-center mb-16 md:mb-20">
+                <span class="text-gold font-semibold tracking-wider uppercase text-sm mb-2 block">Services</span>
+                <h2 class="text-4xl md:text-5xl font-display text-primary-dark">Comment nous <span
+                        class="text-gold">vous aidons</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mt-4">Que vous ayez déjà une villa ou que vous
+                    cherchiez à investir, nous avons la solution.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div
@@ -694,7 +691,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-gold shadow-lg">
                         <img alt="Owner" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ_L2mqR4A9zc0aI8lAkP2DDDJa7xoDzoSPyxjCyKjgUWFxTuXH1uTQyUpQdqap0J1N5xi6D_IpjlRF3VjMKkpcX5397oAC3AIRPMJWuG6FH-RIv3xMXkTbI4PL6I2MDLOaWN_zh9voIrkCWtFaf6l6FjfLgHWKzpd321FA1XAxkjlW9VIBF05VPzOwcAHfkhQD427wJQ--zkDxPYsvsFP9IrR9uLjE2bNe0sRqWaqxS_21i3je8RsvN2v9pMNrqr42vnsJVBCOz1E" />
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ_L2mqR4A9zc0aI8lAkP2DDDJa7xoDzoSPyxjCyKjgUWFxTuXH1uTQyUpQdqap0J1N5xi6D_IpjlRF3VjMKkpcX5397oAC3AIRPMJWuG6FH-RIv3xMXkTbI4PL6I2MDLOaWN_zh9voIrkCWtFaf6l6FjfLgHWKzpd321FA1XAxjjlW9VIBF05VPzOwcAHfkhQD427wJQ--zkDxPYsvsFP9IrR9uLjE2bNe0sRqWaqxS_21i3je8RsvN2v9pMNrqr42vnsJVBCOz1E" />
                     </div>
                     <div>
                         <h4 class="text-primary font-bold text-lg">Sophie M.</h4>
@@ -764,7 +761,7 @@
         <div class="max-w-7xl mx-auto px-6 pt-32 pb-16 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
                 <div class="lg:col-span-5">
-                    <h2 class="text-6xl font-bold mb-6 tracking-tight">Parlons de <span
+                    <h2 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Parlons de <span
                             class="text-gold font-serif italic">votre villa</span></h2>
                     <p class="text-white/60 text-lg mb-12 font-light">
                         Obtenez une estimation gratuite et découvrez comment nous pouvons augmenter vos revenus
@@ -814,7 +811,8 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Amenities Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                                 <div class="space-y-2">
                                     <label class="text-xs uppercase tracking-widest font-bold ml-2 text-white/50">Nom
                                         Complet</label>
