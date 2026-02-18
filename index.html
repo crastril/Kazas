@@ -179,6 +179,62 @@
         .chart-bar-fill {
             transition: height 1s ease-out;
         }
+
+        /* Simulator segmented buttons */
+        .sim-seg-btn {
+            padding: 0.5rem 0.5rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+        }
+
+        .sim-seg-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .sim-seg-btn.sim-seg-active {
+            background: #D4AF37;
+            color: #0F1A0F;
+            font-weight: 700;
+            border-color: #D4AF37;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+        }
+
+        /* Simulator slider override */
+        .sim-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .sim-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #D4AF37;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .sim-slider::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+        }
     </style>
 </head>
 
@@ -275,139 +331,145 @@
                     </div>
                 </div>
     </header>
-<section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="services">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 md:mb-20">
-            <span class="text-gold font-semibold tracking-wider uppercase text-sm mb-2 block">Services</span>
-            <h2 class="text-4xl md:text-5xl font-display text-primary-dark">Comment nous <span class="text-gold">vous
-                    aidons</span></h2>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto mt-4">Que vous ayez déjà une villa ou que vous
-                cherchiez à investir, nous avons la solution.</p>
-            <p class="text-gray-500 text-base max-w-3xl mx-auto mt-4 leading-relaxed">
-                Nous transformons votre propriété en une source de revenus performante grâce à une gestion complète :
-                optimisation des annonces, tarification dynamique, accueil premium et entretien rigoureux. Profitez de
-                votre investissement sans les contraintes.
-            </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-                class="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-squishy hover:shadow-squishy-hover transition-all duration-500 overflow-hidden">
-                <div
-                    class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors">
-                </div>
-                <span class="material-symbols-outlined text-5xl text-primary mb-6">domain_add</span>
-                <h3 class="text-2xl font-bold text-primary mb-4">Investisseurs</h3>
-                <p class="text-gray-500 text-sm mb-8 leading-relaxed">Vous cherchez à acheter une villa qui rapporte
-                    ? Nous vous aidons à trouver le bon bien et à le configurer pour maximiser vos revenus.</p>
-                <button
-                    class="squishy-btn w-full py-4 bg-primary/5 text-primary font-bold hover:bg-primary hover:text-white flex justify-center items-center gap-2 group-hover:shadow-lg">
-                    Demander mon audit
-                    <span class="material-icons-round text-sm">arrow_forward</span>
-                </button>
-            </div>
-            <div
-                class="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-squishy hover:shadow-squishy-hover transition-all duration-500 overflow-hidden transform md:-translate-y-8">
-                <div
-                    class="absolute -right-10 -top-10 w-40 h-40 bg-gold/10 rounded-full blur-3xl group-hover:bg-gold/20 transition-colors">
-                </div>
-                <span class="material-symbols-outlined text-5xl text-gold mb-6">key</span>
-                <h3 class="text-2xl font-bold text-primary mb-4">Nouveaux Propriétaires</h3>
-                <p class="text-gray-500 text-sm mb-8 leading-relaxed">Vous venez d'acquérir une villa ? Nous nous
-                    occupons de tout : mise en ligne, décoration, accueil des voyageurs, et gestion au quotidien.
+    <section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="services">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-20">
+                <span class="text-gold font-semibold tracking-wider uppercase text-sm mb-2 block">Services</span>
+                <h2 class="text-4xl md:text-5xl font-display text-primary-dark">Comment nous <span
+                        class="text-gold">vous
+                        aidons</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mt-4">Que vous ayez déjà une villa ou que vous
+                    cherchiez à investir, nous avons la solution.</p>
+                <p class="text-gray-500 text-base max-w-3xl mx-auto mt-4 leading-relaxed">
+                    Nous transformons votre propriété en une source de revenus performante grâce à une gestion complète
+                    :
+                    optimisation des annonces, tarification dynamique, accueil premium et entretien rigoureux. Profitez
+                    de
+                    votre investissement sans les contraintes.
                 </p>
-                <button
-                    class="squishy-btn w-full py-4 bg-gold text-white font-bold hover:bg-gold/90 flex justify-center items-center gap-2 shadow-neon">
-                    Demander mon audit
-                    <span class="material-icons-round text-sm">arrow_forward</span>
-                </button>
             </div>
-            <div
-                class="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-squishy hover:shadow-squishy-hover transition-all duration-500 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div
-                    class="absolute -right-10 -top-10 w-40 h-40 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition-colors">
-                </div>
-                <span class="material-symbols-outlined text-5xl text-gray-800 mb-6">trending_up</span>
-                <h3 class="text-2xl font-bold text-primary mb-4">Optimisation</h3>
-                <p class="text-gray-500 text-sm mb-8 leading-relaxed">Votre villa ne génère pas les revenus espérés
-                    ? Nous analysons votre situation et mettons en place les actions pour améliorer vos
-                    performances.</p>
-                <button
-                    class="squishy-btn w-full py-4 bg-gray-100 text-gray-800 font-bold hover:bg-gray-800 hover:text-white flex justify-center items-center gap-2">
-                    Demander mon audit
-                    <span class="material-icons-round text-sm">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</section><section id="case-study" data-header-style="dark"
-    class="py-32 px-4 relative bg-surface-dark overflow-hidden text-white">
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5">
-    </div>
-    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] pointer-events-none">
-    </div>
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
-        <div class="relative h-[400px] md:h-[600px] w-full flex items-center justify-center">
-            <div class="absolute w-[90%] h-[90%] mask-blob-split z-10 animate-float">
-                <img alt="After Renovation" class="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUa1JugMJhgj8TUXYVNrN_A9Wt1eiMu4sBf-oUpoCqCUpEhGxuYwaRlRqsmP0BRYeu2JurCQI6OJpzVtUlf5_AzEqaYzQA7g4YSgSuBrllEaFvLepy041G4ugFVK1jj25nwEbgSVYLyW3O8CWdX6JEA-Z_FDraM8YuMJFraUQHO9qC9Uj_hhzmU7cJaIxhlLfjKTadDuRp3M0_NEn-sQDZyZd4MvOCJpd-ZBcmkS2mIZfPTQcPkXS8jaME_KbNvGZF9DqWqGivMP92" />
-                <div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent pointer-events-none">
-                </div>
-                <div
-                    class="absolute bottom-10 right-10 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-                    <span class="font-bold text-white uppercase tracking-widest text-xs">Après Kazas</span>
-                </div>
-            </div>
-            <div
-                class="absolute w-[80%] h-[80%] rounded-blob bg-gray-800 opacity-50 blur-sm transform -translate-x-10 translate-y-10 z-0">
-            </div>
-        </div>
-        <div>
-            <span class="text-gold font-bold tracking-widest text-sm uppercase mb-4 block">Étude de cas : Villa
-                Mahogan</span>
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">De 1 200€ par mois à <br /><span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-white">3 800€ par
-                    mois</span></h2>
-            <p class="text-white/70 text-lg mb-8 font-light border-l-2 border-gold/30 pl-6">
-                En 3 mois, nous avons optimisé la décoration, les photos, et le prix pour transformer cette villa en
-                l'une des mieux notées de la zone. <span class="text-white/50 text-base italic">Revenus moyens sur
-                    l'année.</span>
-            </p>
-            <div class="mb-10 pl-6">
-                <a href="#simulator"
-                    class="inline-flex items-center gap-3 text-gold font-bold hover:text-white transition-colors group">
-                    Simuler mes gains potentiels
-                    <span
-                        class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-primary transition-all">
-                        <span class="material-icons-round text-sm">trending_up</span>
-                    </span>
-                </a>
-            </div>
-            <div class="bg-white/5 rounded-3xl p-8 border border-white/10 mb-10">
-                <div class="flex justify-between items-end gap-2 h-32">
-                    <div class="w-1/6 bg-white/10 rounded-t h-[30%]"></div>
-                    <div class="w-1/6 bg-white/10 rounded-t h-[35%]"></div>
-                    <div class="w-1/6 bg-white/10 rounded-t h-[25%] relative group">
-                        <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-white/40">Avant</div>
+                    class="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-squishy hover:shadow-squishy-hover transition-all duration-500 overflow-hidden">
+                    <div
+                        class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors">
                     </div>
-                    <div class="w-1/6 bg-gradient-to-t from-gold/50 to-gold rounded-t h-[60%] animate-pulse"></div>
-                    <div class="w-1/6 bg-gradient-to-t from-gold/50 to-gold rounded-t h-[85%]"></div>
-                    <div class="w-1/6 bg-gradient-to-t from-gold/50 to-gold rounded-t h-[95%] relative">
-                        <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gold font-bold">+112%
+                    <span class="material-symbols-outlined text-5xl text-primary mb-6">domain_add</span>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Investisseurs</h3>
+                    <p class="text-gray-500 text-sm mb-8 leading-relaxed">Vous cherchez à acheter une villa qui rapporte
+                        ? Nous vous aidons à trouver le bon bien et à le configurer pour maximiser vos revenus.</p>
+                    <button
+                        class="squishy-btn w-full py-4 bg-primary/5 text-primary font-bold hover:bg-primary hover:text-white flex justify-center items-center gap-2 group-hover:shadow-lg">
+                        Contactez nous
+                        <span class="material-icons-round text-sm">arrow_forward</span>
+                    </button>
+                </div>
+                <div
+                    class="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-squishy hover:shadow-squishy-hover transition-all duration-500 overflow-hidden transform md:-translate-y-8">
+                    <div
+                        class="absolute -right-10 -top-10 w-40 h-40 bg-gold/10 rounded-full blur-3xl group-hover:bg-gold/20 transition-colors">
+                    </div>
+                    <span class="material-symbols-outlined text-5xl text-gold mb-6">key</span>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Nouveaux Propriétaires</h3>
+                    <p class="text-gray-500 text-sm mb-8 leading-relaxed">Vous venez d'acquérir une villa ? Nous nous
+                        occupons de tout : mise en ligne, décoration, accueil des voyageurs, et gestion au quotidien.
+                    </p>
+                    <button
+                        class="squishy-btn w-full py-4 bg-gold text-white font-bold hover:bg-gold/90 flex justify-center items-center gap-2 shadow-neon">
+                        Contactez nous
+                        <span class="material-icons-round text-sm">arrow_forward</span>
+                    </button>
+                </div>
+                <div
+                    class="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-squishy hover:shadow-squishy-hover transition-all duration-500 overflow-hidden">
+                    <div
+                        class="absolute -right-10 -top-10 w-40 h-40 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition-colors">
+                    </div>
+                    <span class="material-symbols-outlined text-5xl text-gray-800 mb-6">trending_up</span>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Optimisation</h3>
+                    <p class="text-gray-500 text-sm mb-8 leading-relaxed">Votre villa ne génère pas les revenus espérés
+                        ? Nous analysons votre situation et mettons en place les actions pour améliorer vos
+                        performances.</p>
+                    <button
+                        class="squishy-btn w-full py-4 bg-gray-100 text-gray-800 font-bold hover:bg-gray-800 hover:text-white flex justify-center items-center gap-2">
+                        Contactez nous
+                        <span class="material-icons-round text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="case-study" data-header-style="dark"
+        class="py-32 px-4 relative bg-surface-dark overflow-hidden text-white">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+            <div class="relative h-[400px] md:h-[600px] w-full flex items-center justify-center">
+                <div class="absolute w-[90%] h-[90%] mask-blob-split z-10 animate-float">
+                    <img alt="After Renovation" class="w-full h-full object-cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUa1JugMJhgj8TUXYVNrN_A9Wt1eiMu4sBf-oUpoCqCUpEhGxuYwaRlRqsmP0BRYeu2JurCQI6OJpzVtUlf5_AzEqaYzQA7g4YSgSuBrllEaFvLepy041G4ugFVK1jj25nwEbgSVYLyW3O8CWdX6JEA-Z_FDraM8YuMJFraUQHO9qC9Uj_hhzmU7cJaIxhlLfjKTadDuRp3M0_NEn-sQDZyZd4MvOCJpd-ZBcmkS2mIZfPTQcPkXS8jaME_KbNvGZF9DqWqGivMP92" />
+                    <div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-10 right-10 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                        <span class="font-bold text-white uppercase tracking-widest text-xs">Après Kazas</span>
+                    </div>
+                </div>
+                <div
+                    class="absolute w-[80%] h-[80%] rounded-blob bg-gray-800 opacity-50 blur-sm transform -translate-x-10 translate-y-10 z-0">
+                </div>
+            </div>
+            <div>
+                <span class="text-gold font-bold tracking-widest text-sm uppercase mb-4 block">Étude de cas : Villa
+                    Mahogan</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">De 1 200€ par mois à <br /><span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-white">3 800€ par
+                        mois</span></h2>
+                <p class="text-white/70 text-lg mb-8 font-light border-l-2 border-gold/30 pl-6">
+                    En 3 mois, nous avons optimisé la décoration, les photos, et le prix pour transformer cette villa en
+                    l'une des mieux notées de la zone. <span class="text-white/50 text-base italic">Revenus moyens sur
+                        l'année.</span>
+                </p>
+                <div class="mb-10 pl-6">
+                    <a href="#simulator"
+                        class="inline-flex items-center gap-3 text-gold font-bold hover:text-white transition-colors group">
+                        Simuler mes gains potentiels
+                        <span
+                            class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-primary transition-all">
+                            <span class="material-icons-round text-sm">trending_up</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="bg-white/5 rounded-3xl p-8 border border-white/10 mb-10">
+                    <div class="flex justify-between items-end gap-2 h-32">
+                        <div class="w-1/6 bg-white/10 rounded-t h-[30%]"></div>
+                        <div class="w-1/6 bg-white/10 rounded-t h-[35%]"></div>
+                        <div class="w-1/6 bg-white/10 rounded-t h-[25%] relative group">
+                            <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-white/40">Avant</div>
+                        </div>
+                        <div class="w-1/6 bg-gradient-to-t from-gold/50 to-gold rounded-t h-[60%] animate-pulse"></div>
+                        <div class="w-1/6 bg-gradient-to-t from-gold/50 to-gold rounded-t h-[85%]"></div>
+                        <div class="w-1/6 bg-gradient-to-t from-gold/50 to-gold rounded-t h-[95%] relative">
+                            <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gold font-bold">+112%
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex justify-between text-xs text-white/30 mt-4 font-mono">
-                    <span>M1</span>
-                    <span>M2</span>
-                    <span>M3</span>
-                    <span>M4</span>
-                    <span>M5</span>
-                    <span>M6</span>
+                    <div class="flex justify-between text-xs text-white/30 mt-4 font-mono">
+                        <span>M1</span>
+                        <span>M2</span>
+                        <span>M3</span>
+                        <span>M4</span>
+                        <span>M5</span>
+                        <span>M6</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>    <section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="portfolio">
+    </section>
+    <section data-header-style="light" class="py-32 px-4 bg-[#Fdfcf8]" id="portfolio">
         <div class="container mx-auto px-4 md:px-6">
             <div class="text-center mb-12 md:mb-16">
                 <span class="text-gold font-semibold tracking-wider uppercase text-sm mb-2 block">Portfolio</span>
@@ -433,13 +495,17 @@
                             </div>
                         </div>
                         <p class="text-white/80 text-sm mb-3">Le Diamant, Martinique</p>
-                        <div class="flex justify-between items-center pt-3 border-t border-white/20">
+                        <div class="flex justify-between items-center pt-3 border-t border-white/20 mb-3">
                             <span class="text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-1">
                                 <span class="material-icons-round text-sm">pool</span> Piscine Privée
                             </span>
                             <span class="text-white font-bold">436€ <span
                                     class="text-xs font-normal opacity-70">/nuit</span></span>
                         </div>
+                        <a href="https://www.airbnb.fr/rooms/1392906290380630626" target="_blank"
+                            class="block w-full text-center py-3 rounded-xl bg-white/20 hover:bg-white/30 text-white text-sm font-bold backdrop-blur-md transition-all border border-white/10 hover:border-white/30">
+                            Voir sur Airbnb
+                        </a>
                     </div>
                 </div>
                 <div
@@ -458,7 +524,7 @@
                             </div>
                         </div>
                         <p class="text-white/80 text-sm mb-3">Le Vauclin, Martinique</p>
-                        <div class="flex justify-between items-center pt-3 border-t border-white/20">
+                        <div class="flex justify-between items-center pt-3 border-t border-white/20 mb-3">
                             <span
                                 class="text-xs font-bold text-green-300 uppercase tracking-wider flex items-center gap-1">
                                 <span class="material-icons-round text-sm">visibility</span> Vue Mer & Piscine
@@ -466,6 +532,10 @@
                             <span class="text-white font-bold">385€ <span
                                     class="text-xs font-normal opacity-70">/nuit</span></span>
                         </div>
+                        <a href="https://www.airbnb.fr/rooms/46155129" target="_blank"
+                            class="block w-full text-center py-3 rounded-xl bg-white/20 hover:bg-white/30 text-white text-sm font-bold backdrop-blur-md transition-all border border-white/10 hover:border-white/30">
+                            Voir sur Airbnb
+                        </a>
                     </div>
                 </div>
                 <div
@@ -484,13 +554,17 @@
                             </div>
                         </div>
                         <p class="text-white/80 text-sm mb-3">Le Vauclin, Martinique</p>
-                        <div class="flex justify-between items-center pt-3 border-t border-white/20">
+                        <div class="flex justify-between items-center pt-3 border-t border-white/20 mb-3">
                             <span class="text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-1">
                                 <span class="material-icons-round text-sm">favorite</span> Coup de Cœur
                             </span>
                             <span class="text-white font-bold">221€ <span
                                     class="text-xs font-normal opacity-70">/nuit</span></span>
                         </div>
+                        <a href="https://www.airbnb.fr/rooms/54044418" target="_blank"
+                            class="block w-full text-center py-3 rounded-xl bg-white/20 hover:bg-white/30 text-white text-sm font-bold backdrop-blur-md transition-all border border-white/10 hover:border-white/30">
+                            Voir sur Airbnb
+                        </a>
                     </div>
                 </div>
             </div>
@@ -509,128 +583,203 @@
             </div>
             <div
                 class="glass-morphism rounded-[3rem] p-6 md:p-8 border border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center shadow-glass-high">
-                <div class="space-y-6">
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm font-medium">
-                            <span class="text-white/80 uppercase tracking-wider">Nombre de Chambres</span>
-                            <span class="text-gold" id="sim-rooms-value">4</span>
+                <div class="space-y-5">
+                    <!-- ═══ GROUP 1: LOCALISATION ═══ -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-gold uppercase tracking-[0.2em] flex items-center gap-2">
+                            <span class="material-icons-round text-sm">location_on</span> Localisation
+                        </h4>
+
+                        <!-- Zone Martinique -->
+                        <div class="space-y-2">
+                            <span class="text-white/70 text-xs uppercase tracking-wider">Zone</span>
+                            <div class="grid grid-cols-2 gap-2" id="sim-zone-group">
+                                <button data-value="Sud_Caraibes" class="sim-seg-btn sim-seg-active">Sud
+                                    Caraïbes</button>
+                                <button data-value="Sud_Atlantique" class="sim-seg-btn">Sud Atlantique</button>
+                                <button data-value="Nord_Caraibes" class="sim-seg-btn">Nord Caraïbes</button>
+                                <button data-value="Nord_Atlantique" class="sim-seg-btn">Nord Atlantique</button>
+                            </div>
                         </div>
-                        <input class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" max="10" min="1"
-                            type="range" value="4" id="sim-rooms" />
-                        <div class="flex justify-between text-xs text-white/40 font-mono">
-                            <span>1</span>
-                            <span>10+</span>
+
+                        <!-- Vue Mer -->
+                        <div class="space-y-2">
+                            <span class="text-white/70 text-xs uppercase tracking-wider">Vue mer</span>
+                            <div class="grid grid-cols-3 gap-2" id="sim-ocean-view-group">
+                                <button data-value="none" class="sim-seg-btn sim-seg-active">Aucune</button>
+                                <button data-value="partial" class="sim-seg-btn">Partielle</button>
+                                <button data-value="dominant" class="sim-seg-btn">Dominante</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm font-medium">
-                            <span class="text-white/80 uppercase tracking-wider">Nombre de Couchages</span>
-                            <span class="text-gold" id="sim-capacity-value">6</span>
-                        </div>
-                        <input class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" max="15" min="2"
-                            type="range" value="6" id="sim-capacity" />
-                        <div class="flex justify-between text-xs text-white/40 font-mono">
-                            <span>2</span>
-                            <span>15+</span>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm font-medium">
-                            <span class="text-white/80 uppercase tracking-wider">Équipements</span>
-                            <span class="text-gold" id="sim-equipment-value">Premium</span>
-                        </div>
-                        <input class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer" max="3" min="1"
-                            type="range" value="3" id="sim-equipment" />
-                        <div class="flex justify-between text-xs text-white/40 font-mono">
-                            <span>Standard</span>
-                            <span>Luxe</span>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm font-medium mb-2">
-                            <span class="text-white/80 uppercase tracking-wider">Options</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3 md:flex md:gap-4">
-                            <label class="flex items-center gap-2 cursor-pointer group">
-                                <div class="relative">
-                                    <input type="checkbox" id="sim-pool" class="sr-only peer">
-                                    <div
-                                        class="w-5 h-5 border-2 border-white/20 rounded peer-checked:bg-gold peer-checked:border-gold transition-all">
-                                    </div>
-                                    <svg class="w-3 h-3 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
+
+                        <!-- Plage à pied -->
+                        <label class="flex items-center justify-between cursor-pointer group">
+                            <span class="text-white/70 text-xs uppercase tracking-wider">Plage accessible à pied</span>
+                            <div class="relative">
+                                <input type="checkbox" id="sim-beach-walkable" class="sr-only peer">
+                                <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all">
                                 </div>
-                                <span class="text-white/60 group-hover:text-white transition-colors">Piscine</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer group">
-                                <div class="relative">
-                                    <input type="checkbox" id="sim-view" class="sr-only peer">
-                                    <div
-                                        class="w-5 h-5 border-2 border-white/20 rounded peer-checked:bg-gold peer-checked:border-gold transition-all">
-                                    </div>
-                                    <svg class="w-3 h-3 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
+                                <div
+                                    class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform">
                                 </div>
-                                <span class="text-white/60 group-hover:text-white transition-colors">Vue Dégagée</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer group">
-                                <div class="relative">
-                                    <input type="checkbox" id="sim-multisite" class="sr-only peer">
-                                    <div
-                                        class="w-5 h-5 border-2 border-white/20 rounded peer-checked:bg-gold peer-checked:border-gold transition-all">
-                                    </div>
-                                    <svg class="w-3 h-3 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-white/60 group-hover:text-white transition-colors">Multi-sites</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer group">
-                                <div class="relative">
-                                    <input type="checkbox" id="sim-optimized-listing" class="sr-only peer">
-                                    <div
-                                        class="w-5 h-5 border-2 border-white/20 rounded peer-checked:bg-gold peer-checked:border-gold transition-all">
-                                    </div>
-                                    <svg class="w-3 h-3 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-white/60 group-hover:text-white transition-colors">Annonce
-                                    Optimisée</span>
-                            </label>
-                        </div>
+                            </div>
+                        </label>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm font-medium">
-                            <span class="text-white/80 uppercase tracking-wider">Décoration Professionnelle</span>
-                            <span class="text-gold" id="sim-decoration-value">Oui</span>
+
+                    <div class="border-t border-white/10"></div>
+
+                    <!-- ═══ GROUP 2: LE BIEN ═══ -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-gold uppercase tracking-[0.2em] flex items-center gap-2">
+                            <span class="material-icons-round text-sm">villa</span> Le Bien
+                        </h4>
+
+                        <!-- Chambres -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-white/70 uppercase tracking-wider">Chambres</span>
+                                <span class="text-gold font-bold" id="sim-bedrooms-value">3</span>
+                            </div>
+                            <input class="sim-slider" type="range" min="1" max="10" value="3" id="sim-bedrooms" />
+                            <div class="flex justify-between text-[10px] text-white/30 font-mono">
+                                <span>1</span><span>10</span>
+                            </div>
                         </div>
-                        <div class="flex gap-4">
-                            <button id="sim-decoration-yes"
-                                class="flex-1 py-2.5 rounded-xl bg-gold text-primary font-bold shadow-neon transition-all">Oui</button>
-                            <button id="sim-decoration-no"
-                                class="flex-1 py-2.5 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 transition-all">Non</button>
+
+                        <!-- Salles de bain -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-white/70 uppercase tracking-wider">Salles de bain</span>
+                                <span class="text-gold font-bold" id="sim-bathrooms-value">2</span>
+                            </div>
+                            <input class="sim-slider" type="range" min="1" max="10" value="2" id="sim-bathrooms" />
+                            <div class="flex justify-between text-[10px] text-white/30 font-mono">
+                                <span>1</span><span>10</span>
+                            </div>
                         </div>
-                        <input type="hidden" id="sim-decoration" value="true">
+
+                        <!-- Toggles row: Piscine, Jacuzzi, Clim -->
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <span class="text-white/70 text-xs uppercase tracking-wider">Piscine privée</span>
+                                <div class="relative">
+                                    <input type="checkbox" id="sim-private-pool" class="sr-only peer">
+                                    <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all">
+                                    </div>
+                                    <div
+                                        class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform">
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <span class="text-white/70 text-xs uppercase tracking-wider">Jacuzzi / Bain à
+                                    remous</span>
+                                <div class="relative">
+                                    <input type="checkbox" id="sim-hot-tub" class="sr-only peer">
+                                    <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all">
+                                    </div>
+                                    <div
+                                        class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform">
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <span class="text-white/70 text-xs uppercase tracking-wider">Climatisation (toutes
+                                    chambres)</span>
+                                <div class="relative">
+                                    <input type="checkbox" id="sim-ac" class="sr-only peer">
+                                    <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all">
+                                    </div>
+                                    <div
+                                        class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm font-medium">
-                            <span class="text-white/80 uppercase tracking-wider">Photos Professionnelles</span>
-                            <span class="text-gold" id="sim-photos-value">Non</span>
+
+                    <div class="border-t border-white/10"></div>
+
+                    <!-- ═══ GROUP 3: GESTION & VISIBILITÉ (collapsible) ═══ -->
+                    <div>
+                        <button id="sim-toggle-advanced"
+                            class="w-full py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl flex items-center justify-between group transition-all">
+                            <span class="text-white/80 font-medium text-sm flex items-center gap-2">
+                                <span class="material-icons-round text-gold text-sm">tune</span>
+                                Gestion & Visibilité
+                            </span>
+                            <span class="material-icons-round text-gold group-hover:translate-y-1 transition-transform"
+                                id="sim-toggle-icon">expand_more</span>
+                        </button>
+
+                        <div id="sim-advanced-options"
+                            class="hidden space-y-4 mt-4 transition-all duration-500 overflow-hidden">
+                            <!-- Wi-Fi -->
+                            <div class="space-y-2">
+                                <span class="text-white/70 text-xs uppercase tracking-wider">Qualité du Wi-Fi</span>
+                                <div class="grid grid-cols-4 gap-1" id="sim-wifi-group">
+                                    <button data-value="poor" class="sim-seg-btn text-[10px]">Faible</button>
+                                    <button data-value="ok"
+                                        class="sim-seg-btn sim-seg-active text-[10px]">Correct</button>
+                                    <button data-value="good" class="sim-seg-btn text-[10px]">Bon</button>
+                                    <button data-value="excellent" class="sim-seg-btn text-[10px]">Excellent</button>
+                                </div>
+                            </div>
+
+                            <!-- Note moyenne -->
+                            <div class="space-y-2">
+                                <span class="text-white/70 text-xs uppercase tracking-wider">Note moyenne</span>
+                                <div class="grid grid-cols-3 gap-2" id="sim-review-group">
+                                    <button data-value="lt_4_6" class="sim-seg-btn text-[10px]">&lt; 4.6</button>
+                                    <button data-value="4_6_to_4_79" class="sim-seg-btn sim-seg-active text-[10px]">4.6
+                                        – 4.79</button>
+                                    <button data-value="gte_4_8" class="sim-seg-btn text-[10px]">≥ 4.8</button>
+                                </div>
+                            </div>
+
+                            <!-- Min nights -->
+                            <div class="space-y-2">
+                                <span class="text-white/70 text-xs uppercase tracking-wider">Durée min. de séjour</span>
+                                <div class="grid grid-cols-3 gap-2" id="sim-min-nights-group">
+                                    <button data-value="1_2" class="sim-seg-btn sim-seg-active text-[10px]">1–2
+                                        nuits</button>
+                                    <button data-value="3_4" class="sim-seg-btn text-[10px]">3–4 nuits</button>
+                                    <button data-value="gte_5" class="sim-seg-btn text-[10px]">5+ nuits</button>
+                                </div>
+                            </div>
+
+                            <!-- Bool toggles -->
+                            <div class="space-y-3">
+                                <label class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-white/70 text-xs uppercase tracking-wider">Photos
+                                        professionnelles</span>
+                                    <div class="relative">
+                                        <input type="checkbox" id="sim-pro-photos" class="sr-only peer">
+                                        <div
+                                            class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all">
+                                        </div>
+                                        <div
+                                            class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform">
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="flex items-center justify-between cursor-pointer group">
+                                    <span class="text-white/70 text-xs uppercase tracking-wider">Diffusion
+                                        multi-plateformes</span>
+                                    <div class="relative">
+                                        <input type="checkbox" id="sim-multi-platform" class="sr-only peer">
+                                        <div
+                                            class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all">
+                                        </div>
+                                        <div
+                                            class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform">
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
-                        <div class="flex gap-4">
-                            <button id="sim-photos-yes"
-                                class="flex-1 py-2.5 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 transition-all">Oui</button>
-                            <button id="sim-photos-no"
-                                class="flex-1 py-2.5 rounded-xl bg-gold text-primary font-bold shadow-neon transition-all">Non</button>
-                        </div>
-                        <input type="hidden" id="sim-photos" value="false">
                     </div>
                 </div>
                 <!-- Right Column: Results -->
@@ -718,16 +867,16 @@
             <div class="flex flex-col justify-center">
                 <span class="material-icons-round text-gold text-6xl opacity-30 mb-6">format_quote</span>
                 <p class="text-4xl md:text-5xl font-serif text-primary mb-10 leading-snug">
-                    "Une rigueur humaine dans la gestion. Mes revenus ont doublé grâce à leurs conseils avisés."
+                    "Une rigueur exemplaire et des conseils très pertinents. Mes revenus ont doublé grâce à
+                    l'accompagnement de Kazas."
                 </p>
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-gold shadow-lg">
-                        <img alt="Owner" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ_L2mqR4A9zc0aI8lAkP2DDDJa7xoDzoSPyxjCyKjgUWFxTuXH1uTQyUpQdqap0J1N5xi6D_IpjlRF3VjMKkpcX5397oAC3AIRPMJWuG6FH-RIv3xMXkTbI4PL6I2MDLOaWN_zh9voIrkCWtFaf6l6FjfLgHWKzpd321FA1XAxjjlW9VIBF05VPzOwcAHfkhQD427wJQ--zkDxPYsvsFP9IrR9uLjE2bNe0sRqWaqxS_21i3je8RsvN2v9pMNrqr42vnsJVBCOz1E" />
+                        <img alt="Owner" class="w-full h-full object-cover" src="./assets/reviews/cyril.jpg" />
                     </div>
                     <div>
-                        <h4 class="text-primary font-bold text-lg">Sophie M.</h4>
-                        <p class="text-gray-500 text-sm">Propriétaire Villa Turquoise</p>
+                        <h4 class="text-primary font-bold text-lg">Cyril</h4>
+                        <p class="text-gray-500 text-sm">Propriétaire villa Cacyli</p>
                     </div>
                 </div>
             </div>
