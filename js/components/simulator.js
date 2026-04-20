@@ -1,5 +1,5 @@
 /**
- * CasasSimulatorEngineLight v1
+ * KazasSimulatorEngineLight v1
  * Dual-scenario: without_casas (valeur brute) vs with_casas (headroom boost).
  */
 export function initSimulator() {
@@ -287,8 +287,8 @@ export function initSimulator() {
         }
         h += '</div>';
         h += `<div class="flex justify-center gap-4 mt-2">
-            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 bg-white/15 rounded-sm"></div><span class="text-[9px] text-white/40">Sans Casas</span></div>
-            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 bg-gold rounded-sm"></div><span class="text-[9px] text-gold/60">Avec Casas</span></div>
+            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 bg-white/15 rounded-sm"></div><span class="text-[9px] text-white/40">Sans Kazas</span></div>
+            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 bg-gold rounded-sm"></div><span class="text-[9px] text-gold/60">Avec Kazas</span></div>
         </div>`;
         c.innerHTML = h;
     }
