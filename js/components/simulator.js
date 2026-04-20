@@ -89,14 +89,8 @@ export function initSimulator() {
         tub: $('sim-hot-tub'), ac: $('sim-ac'),
         photos: $('sim-pro-photos'), multi: $('sim-multi-platform')
     };
-    const out = {
-        revK: $('sim-revenue-display'), revS: $('sim-market-display'),
-        prS: $('sim-price-standard'), ocS: $('sim-occupancy-standard'),
-        prK: $('sim-price-kazas'), ocK: $('sim-occupancy-kazas'),
-        impacts: $('sim-impacts-list')
-    };
     const advBtn = $('sim-toggle-advanced'), advP = $('sim-advanced-options'), advI = $('sim-toggle-icon');
-    if (!out.revK) return;
+    if (!$('sim-range-min')) return;
 
     // ═══ HELPERS ═══
     const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -205,53 +199,57 @@ export function initSimulator() {
 
         const r = compute(inp);
 
-        // Monthly revenue with seasonality
-        const mStd = [], mOpt = [];
+        // Monthly revenue totals
         let rStd = 0, rOpt = 0;
         for (let i = 0; i < 12; i++) {
-            const ms = Math.round(r.adrW * S_ADR[i] * DAYS[i] * r.occW * S_OCC_STD[i]);
-            const mo = Math.round(r.adrWith * S_ADR[i] * DAYS[i] * r.occWith * S_OCC_OPT[i]);
-            mStd.push(ms); mOpt.push(mo);
-            rStd += ms; rOpt += mo;
+            rStd += Math.round(r.adrW    * S_ADR[i] * DAYS[i] * r.occW    * S_OCC_STD[i]);
+            rOpt += Math.round(r.adrWith * S_ADR[i] * DAYS[i] * r.occWith * S_OCC_OPT[i]);
         }
 
-        // Display results
-        out.revK.textContent = fmt.format(rOpt);
-        out.revS.textContent = fmt.format(rStd);
-        if (out.prS) out.prS.textContent = fmt.format(r.adrW);
-        if (out.ocS) out.ocS.textContent = `${Math.round(r.occW * 100)}%`;
-        if (out.prK) out.prK.textContent = fmt.format(r.adrWith);
-        if (out.ocK) out.ocK.textContent = `${Math.round(r.occWith * 100)}%`;
+        // Free: monthly range (rounded to nearest 100€)
+        const monthlyMin = Math.round((rStd / 12) / 100) * 100;
+        const monthlyMax = Math.round((rOpt / 12) / 100) * 100;
 
-        // Impacts list — Casas-specific advantages
-        if (out.impacts) {
-            const impacts = [];
-            // Compare each casas lever: current vs optimized
-            const pairs = [
-                { key: 'pro_photos', label: 'Photos & annonce pro', from: P_WITHOUT.pro_photos, to: P_WITH.pro_photos },
-                { key: 'amenities_fully_tagged', label: 'Équipements tagués', from: P_WITHOUT.amenities_fully_tagged, to: P_WITH.amenities_fully_tagged },
-                { key: 'dynamic_pricing_enabled', label: 'Pricing dynamique', from: P_WITHOUT.dynamic_pricing_enabled, to: P_WITH.dynamic_pricing_enabled },
-                { key: 'multi_platform_distribution', label: 'Multi-plateformes', from: P_WITHOUT.multi_platform_distribution, to: P_WITH.multi_platform_distribution },
-                { key: 'review_score_band', label: 'Note ≥ 4.8 garantie', from: P_WITHOUT.review_score_band, to: P_WITH.review_score_band },
-                { key: 'wifi_quality', label: 'Wi-Fi excellent', from: P_WITHOUT.wifi_quality, to: P_WITH.wifi_quality }
-            ];
-            pairs.forEach(p => {
-                const from = evalCL(p.key, p.from), to = evalCL(p.key, p.to);
-                const dA = to.a - from.a, dO = to.o - from.o;
-                if (dA > 0 || dO > 0) {
-                    impacts.push({ label: p.label, adr: `+${dA}%`, occ: `+${dO}%` });
-                }
-            });
-            out.impacts.innerHTML = '';
-            impacts.forEach(im => {
-                const li = document.createElement('li');
-                li.className = 'flex justify-between items-center text-[10px] text-white/80';
-                li.innerHTML = `<span>${im.label}</span><span class="font-bold text-gold bg-gold/10 px-1 rounded">${im.adr} Prix / ${im.occ} Occup.</span>`;
-                out.impacts.appendChild(li);
-            });
+        const rangeMin = $('sim-range-min');
+        const rangeMax = $('sim-range-max');
+        if (rangeMin) rangeMin.textContent = fmt.format(monthlyMin);
+        if (rangeMax) rangeMax.textContent = fmt.format(monthlyMax);
+
+        // Free: contextual insight
+        const insightEl = $('sim-free-insight');
+        if (insightEl) insightEl.textContent = buildInsight(inp);
+
+        // Store for paywall form submission
+        window._kazasSimData = {
+            zone: inp.zone,
+            bedrooms: inp.bedrooms,
+            bathrooms: inp.bathrooms,
+            private_pool: inp.private_pool,
+            ocean_view: inp.ocean_view,
+            monthly_min: monthlyMin,
+            monthly_max: monthlyMax,
+            annual_std: rStd,
+            annual_opt: rOpt,
+        };
+    }
+
+    function buildInsight(inp) {
+        if (!inp.private_pool && !inp.hot_tub_jacuzzi) {
+            return "L'ajout d'une piscine privée peut augmenter vos revenus de 15-25%. L'audit détaille le ROI pour votre bien spécifique.";
         }
-
-        renderChart(mStd, mOpt);
+        if (!inp.pro_photos) {
+            return "Des photos professionnelles améliorent le taux de conversion de 8-15% selon nos données marché en Martinique.";
+        }
+        if (inp.ocean_view === 'none' && inp.zone === 'Sud_Caraibes') {
+            return "Dans le Sud Caraïbes, les biens sans vue mer compensent par des équipements différenciants. L'audit identifie lesquels sont prioritaires.";
+        }
+        if (inp.zone.startsWith('Nord')) {
+            return "Le Nord de la Martinique est moins saturé que le Sud — fort potentiel pour qui sait valoriser sa singularité.";
+        }
+        if (inp.bedrooms >= 5) {
+            return "Les grands biens (5+ chambres) sont rares et très demandés pour les fêtes et séminaires. Votre pricing doit le refléter.";
+        }
+        return "Votre bien présente des leviers d'optimisation non exploités. L'audit identifie les 5 actions prioritaires avec le gain estimé pour chacune.";
     }
 
     // ═══ CHART ═══
