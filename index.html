@@ -12,6 +12,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kazasfwi.com/">
     <meta property="og:title" content="Kazas | Gestion Locative & Conciergerie Premium">
     <meta property="og:description"
         content="Maximisez vos revenus locatifs en Martinique avec Kazas. Gestion premium, optimisation tarifaire et décoration pour votre villa.">
@@ -20,11 +21,49 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.kazasfwi.com/">
     <meta property="twitter:title" content="Kazas | Gestion Locative & Conciergerie Premium">
     <meta property="twitter:description"
         content="Maximisez vos revenus locatifs en Martinique avec Kazas. Gestion premium, optimisation tarifaire et décoration pour votre villa.">
     <meta property="twitter:image"
         content="https://lh3.googleusercontent.com/aida-public/AB6AXuCZVnkuBZjqUzJs5Yx0nfeH2sumVpieW87MtLR5o3Z84AlBrNV8pz-j-6PncpEcJI3LJQ_kgujH6pZeyjwNgOkcDPpcSOIEr4Ba9Cz7Fs058pAxNB9QVd5Wau82WBtGOHuF_MSj_KupIJPj0PAQ3sWE_1bIOYcC11iOp9Oouk17EoYPaFRkDLfGnBUdpGhbjhcnhjksGvveYP6WP4Tn_tVG012U2DjUcn7tF3SOTKGvQK7oenxKqU9wDxliTXCsnGGAwyhk3Ej1CnW0">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Kazas",
+      "legalName": "KAZAS FWI",
+      "description": "Gestion locative et conciergerie premium pour villas en Martinique. Optimisation tarifaire, accueil des voyageurs et maximisation des revenus locatifs.",
+      "url": "https://www.kazasfwi.com",
+      "logo": "https://www.kazasfwi.com/assets/img/favicon.png",
+      "telephone": "+33667554448",
+      "email": "hello@kazasfwi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Quartier Cocotte",
+        "addressLocality": "Le Vauclin",
+        "postalCode": "97280",
+        "addressRegion": "Martinique",
+        "addressCountry": "FR"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Martinique"
+      },
+      "sameAs": [
+        "https://www.instagram.com/kazasfwi/"
+      ],
+      "priceRange": "€€€",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&amp;display=swap" rel="stylesheet" />
@@ -294,6 +333,8 @@
             </div>
         </div>
     </header>
+    <main>
+    <main>
     <header data-header-style="hero"
         class="relative h-[100dvh] min-h-[750px] md:min-h-[900px] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
@@ -965,6 +1006,7 @@
             </div>
         </div>
     </section>
+    </main>
     <footer data-header-style="dark"
         class="bg-gradient-to-b from-primary to-surface-dark text-white rounded-t-[4rem] mt-20 relative overflow-hidden"
         id="contact">
@@ -1113,6 +1155,31 @@
             </div>
         </div>
     </footer>
+    <!-- RGPD Banner -->
+    <div id="rgpd-banner" class="fixed bottom-0 left-0 right-0 z-[100] p-4 md:p-6 pointer-events-none">
+        <div class="max-w-4xl mx-auto glass-morphism-strong border border-white/10 rounded-2xl px-6 py-4 flex flex-col md:flex-row items-start md:items-center gap-4 pointer-events-auto shadow-2xl">
+            <p class="text-white/70 text-sm flex-1 leading-relaxed">
+                Ce site utilise des polices et icônes Google (cookies techniques). Aucun cookie publicitaire ni de traçage n'est utilisé.
+                <a href="/confidentialite.html" class="text-gold hover:underline ml-1">En savoir plus</a>
+            </p>
+            <button id="rgpd-accept"
+                class="shrink-0 bg-gold hover:bg-gold/80 text-primary-dark font-bold text-sm px-6 py-2.5 rounded-full transition-all whitespace-nowrap">
+                J'ai compris
+            </button>
+        </div>
+    </div>
+    <script>
+        (function () {
+            if (localStorage.getItem('rgpd') === '1') {
+                document.getElementById('rgpd-banner').remove();
+            } else {
+                document.getElementById('rgpd-accept').addEventListener('click', function () {
+                    localStorage.setItem('rgpd', '1');
+                    document.getElementById('rgpd-banner').remove();
+                });
+            }
+        })();
+    </script>
     <!-- Vercel Analytics -->
     <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
     <script defer src="/_vercel/insights/script.js"></script>
