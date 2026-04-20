@@ -1042,12 +1042,32 @@
                                     placeholder="https://airbnb.com/..." type="text" />
                             </div>
                             <button
-                                class="w-full bg-gold hover:bg-white hover:text-primary text-primary-dark font-bold text-lg py-5 rounded-full shadow-neon transition-all flex items-center justify-center gap-2 group mt-4 btn-submit"
+                                class="w-full bg-gold hover:bg-white hover:text-primary text-primary-dark font-bold text-lg py-5 rounded-full shadow-neon transition-all flex items-center justify-center gap-2 group mt-4 btn-submit disabled:opacity-60 disabled:cursor-not-allowed"
                                 type="submit">
-                                Demander mon estimation gratuite
-                                <span
-                                    class="material-icons-round group-hover:translate-x-1 transition-transform">send</span>
+                                <span class="btn-label flex items-center gap-2">
+                                    Demander mon estimation gratuite
+                                    <span class="material-icons-round group-hover:translate-x-1 transition-transform">send</span>
+                                </span>
+                                <span class="btn-spinner hidden flex items-center gap-2">
+                                    <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                                    </svg>
+                                    Envoi en cours…
+                                </span>
                             </button>
+
+                            <!-- Success -->
+                            <div id="contact-success" class="hidden mt-4 flex items-center gap-3 bg-green-500/10 border border-green-500/30 rounded-2xl px-5 py-4">
+                                <span class="material-icons-round text-green-400">check_circle</span>
+                                <p class="text-green-300 text-sm font-medium">Message envoyé ! Nous vous recontacterons sous 24h.</p>
+                            </div>
+
+                            <!-- Error -->
+                            <div id="contact-error" class="hidden mt-4 flex items-center gap-3 bg-red-500/10 border border-red-500/30 rounded-2xl px-5 py-4">
+                                <span class="material-icons-round text-red-400">error_outline</span>
+                                <p class="text-red-300 text-sm font-medium">Une erreur est survenue. Veuillez nous contacter directement par email.</p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1062,6 +1082,8 @@
             </div>
         </div>
     </footer>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Main Logic -->
     <script type="module" src="js/main.js"></script>
 </body>

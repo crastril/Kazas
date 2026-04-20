@@ -1,10 +1,12 @@
 import { initHeader } from './components/header.js';
 import { initSimulator } from './components/simulator.js';
+import { initContact } from './components/contact.js';
 
 // Init All Components
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initSimulator();
+    initContact();
 });
 
 // Expose legacy function for mobile tab switching (called from HTML onclick)
