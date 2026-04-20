@@ -90,9 +90,7 @@
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors"
-                    href="#simulator">Estimation</a>
-                <a class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors"
-                    href="#audit-pro">Audit</a>
+                    href="/audit">Audit</a>
                 <a class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors"
                     href="#services">Services</a>
                 <a class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors"
@@ -102,8 +100,8 @@
             </div>
             <!-- Desktop CTA -->
             <a class="hidden md:flex bg-primary hover:bg-primary-light text-white px-6 py-2 rounded-full text-xs uppercase font-bold tracking-widest transition-all shadow-lg hover:shadow-neon hover:-translate-y-0.5 items-center gap-2"
-                href="#simulator">
-                <span>Estimation gratuite</span>
+                href="/audit">
+                <span>Audit gratuit</span>
             </a>
             <!-- Mobile hamburger -->
             <button id="mobile-menu-button"
@@ -119,9 +117,7 @@
         <div id="mobile-menu"
             class="hidden pointer-events-auto mt-2 max-w-5xl w-full">
             <div class="glass-morphism-strong rounded-3xl p-6 border border-white/10 flex flex-col gap-1">
-                <a href="#simulator"
-                    class="text-sm font-bold uppercase tracking-widest text-white/80 hover:text-gold transition-colors py-3 border-b border-white/10">Estimation</a>
-                <a href="#audit-pro"
+                <a href="/audit"
                     class="text-sm font-bold uppercase tracking-widest text-white/80 hover:text-gold transition-colors py-3 border-b border-white/10">Audit</a>
                 <a href="#services"
                     class="text-sm font-bold uppercase tracking-widest text-white/80 hover:text-gold transition-colors py-3 border-b border-white/10">Services</a>
@@ -129,9 +125,9 @@
                     class="text-sm font-bold uppercase tracking-widest text-white/80 hover:text-gold transition-colors py-3 border-b border-white/10">Avis</a>
                 <a href="/blog/"
                     class="text-sm font-bold uppercase tracking-widest text-white/80 hover:text-gold transition-colors py-3 border-b border-white/10">Blog</a>
-                <a href="#simulator"
+                <a href="/audit"
                     class="mt-3 squishy-btn w-full bg-gold text-primary-dark font-bold text-sm py-4 flex items-center justify-center gap-2">
-                    Estimation gratuite
+                    Audit gratuit
                     <span class="material-icons-round text-sm">trending_up</span>
                 </a>
             </div>
@@ -166,9 +162,9 @@
         <p class="text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
             En 2 minutes, obtenez une estimation de vos revenus locatifs potentiels en Martinique — basée sur les vraies données du marché.
         </p>
-        <a href="#simulator"
+        <a href="/audit"
             class="squishy-btn inline-flex bg-gold hover:bg-[#c9a330] text-primary-dark font-bold text-lg py-5 px-10 shadow-squishy-gold items-center gap-2">
-            Lancer mon estimation gratuite
+            Lancer mon audit gratuit
             <span class="material-icons-round">trending_up</span>
         </a>
         <div class="flex items-center justify-center gap-8 md:gap-14 mt-14 flex-wrap">
@@ -239,7 +235,7 @@
                     <span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span><span>M6</span>
                 </div>
             </div>
-            <a href="#simulator"
+            <a href="/audit"
                 class="inline-flex items-center gap-3 text-gold font-bold hover:text-white transition-colors group">
                 Estimer mon propre potentiel
                 <span class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-primary transition-all">
@@ -251,340 +247,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════
-     3. SIMULATOR + PAYWALL
-═══════════════════════════════════════════════ -->
-<section data-header-style="dark" class="py-24 px-4 relative overflow-hidden bg-surface-dark text-white" id="simulator">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
-    <div class="max-w-6xl mx-auto relative z-10">
-        <div class="text-center mb-12">
-            <h2 class="text-sm font-bold text-gold uppercase tracking-[0.3em] mb-4">Simulateur</h2>
-            <h3 class="text-4xl md:text-5xl font-bold mb-4">Estimez vos revenus en 2 min</h3>
-            <p class="text-white/60 text-base max-w-xl mx-auto font-light">Renseignez les caractéristiques de votre bien pour obtenir votre estimation — et débloquez l'audit complet.</p>
-        </div>
-
-        <div class="glass-morphism rounded-[3rem] p-6 md:p-8 border border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start shadow-glass-high">
-
-            <!-- LEFT: INPUTS -->
-            <div class="space-y-5">
-                <!-- GROUP 1: LOCALISATION -->
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gold uppercase tracking-[0.2em] flex items-center gap-2">
-                        <span class="material-icons-round text-sm">location_on</span> Localisation
-                    </h4>
-                    <div class="space-y-2">
-                        <span class="text-white/70 text-xs uppercase tracking-wider">Zone</span>
-                        <div class="grid grid-cols-2 gap-2" id="sim-zone-group">
-                            <button data-value="Sud_Caraibes" class="sim-seg-btn sim-seg-active">Sud Caraïbes</button>
-                            <button data-value="Sud_Atlantique" class="sim-seg-btn">Sud Atlantique</button>
-                            <button data-value="Nord_Caraibes" class="sim-seg-btn">Nord Caraïbes</button>
-                            <button data-value="Nord_Atlantique" class="sim-seg-btn">Nord Atlantique</button>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <span class="text-white/70 text-xs uppercase tracking-wider">Vue mer</span>
-                        <div class="grid grid-cols-3 gap-2" id="sim-ocean-view-group">
-                            <button data-value="none" class="sim-seg-btn sim-seg-active">Aucune</button>
-                            <button data-value="partial" class="sim-seg-btn">Partielle</button>
-                            <button data-value="dominant" class="sim-seg-btn">Dominante</button>
-                        </div>
-                    </div>
-                    <label class="flex items-center justify-between cursor-pointer group">
-                        <span class="text-white/70 text-xs uppercase tracking-wider">Plage accessible à pied</span>
-                        <div class="relative">
-                            <input type="checkbox" id="sim-beach-walkable" class="sr-only peer">
-                            <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all"></div>
-                            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
-                        </div>
-                    </label>
-                </div>
-
-                <div class="border-t border-white/10"></div>
-
-                <!-- GROUP 2: LE BIEN -->
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gold uppercase tracking-[0.2em] flex items-center gap-2">
-                        <span class="material-icons-round text-sm">villa</span> Le Bien
-                    </h4>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span class="text-white/70 uppercase tracking-wider">Chambres</span>
-                            <span class="text-gold font-bold" id="sim-bedrooms-value">3</span>
-                        </div>
-                        <input class="sim-slider" type="range" min="1" max="10" value="3" id="sim-bedrooms" />
-                        <div class="flex justify-between text-[10px] text-white/30 font-mono"><span>1</span><span>10</span></div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span class="text-white/70 uppercase tracking-wider">Salles de bain</span>
-                            <span class="text-gold font-bold" id="sim-bathrooms-value">2</span>
-                        </div>
-                        <input class="sim-slider" type="range" min="1" max="10" value="2" id="sim-bathrooms" />
-                        <div class="flex justify-between text-[10px] text-white/30 font-mono"><span>1</span><span>10</span></div>
-                    </div>
-                    <div class="space-y-3">
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-white/70 text-xs uppercase tracking-wider">Piscine privée</span>
-                            <div class="relative">
-                                <input type="checkbox" id="sim-private-pool" class="sr-only peer">
-                                <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all"></div>
-                                <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
-                            </div>
-                        </label>
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-white/70 text-xs uppercase tracking-wider">Jacuzzi / Bain à remous</span>
-                            <div class="relative">
-                                <input type="checkbox" id="sim-hot-tub" class="sr-only peer">
-                                <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all"></div>
-                                <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
-                            </div>
-                        </label>
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-white/70 text-xs uppercase tracking-wider">Climatisation (toutes chambres)</span>
-                            <div class="relative">
-                                <input type="checkbox" id="sim-ac" class="sr-only peer">
-                                <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all"></div>
-                                <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="border-t border-white/10"></div>
-
-                <!-- GROUP 3: GESTION & VISIBILITÉ (collapsible) -->
-                <div>
-                    <button id="sim-toggle-advanced"
-                        class="w-full py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl flex items-center justify-between group transition-all">
-                        <span class="text-white/80 font-medium text-sm flex items-center gap-2">
-                            <span class="material-icons-round text-gold text-sm">tune</span>
-                            Gestion &amp; Visibilité
-                        </span>
-                        <span class="material-icons-round text-gold group-hover:translate-y-1 transition-transform" id="sim-toggle-icon">expand_more</span>
-                    </button>
-                    <div id="sim-advanced-options" class="hidden space-y-4 mt-4">
-                        <div class="space-y-2">
-                            <span class="text-white/70 text-xs uppercase tracking-wider">Qualité du Wi-Fi</span>
-                            <div class="grid grid-cols-4 gap-1" id="sim-wifi-group">
-                                <button data-value="poor" class="sim-seg-btn text-[10px]">Faible</button>
-                                <button data-value="ok" class="sim-seg-btn sim-seg-active text-[10px]">Correct</button>
-                                <button data-value="good" class="sim-seg-btn text-[10px]">Bon</button>
-                                <button data-value="excellent" class="sim-seg-btn text-[10px]">Excellent</button>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <span class="text-white/70 text-xs uppercase tracking-wider">Note moyenne</span>
-                            <div class="grid grid-cols-3 gap-2" id="sim-review-group">
-                                <button data-value="lt_4_6" class="sim-seg-btn text-[10px]">&lt; 4.6</button>
-                                <button data-value="4_6_to_4_79" class="sim-seg-btn sim-seg-active text-[10px]">4.6 – 4.79</button>
-                                <button data-value="gte_4_8" class="sim-seg-btn text-[10px]">≥ 4.8</button>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <span class="text-white/70 text-xs uppercase tracking-wider">Durée min. de séjour</span>
-                            <div class="grid grid-cols-3 gap-2" id="sim-min-nights-group">
-                                <button data-value="1_2" class="sim-seg-btn sim-seg-active text-[10px]">1–2 nuits</button>
-                                <button data-value="3_4" class="sim-seg-btn text-[10px]">3–4 nuits</button>
-                                <button data-value="gte_5" class="sim-seg-btn text-[10px]">5+ nuits</button>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <label class="flex items-center justify-between cursor-pointer">
-                                <span class="text-white/70 text-xs uppercase tracking-wider">Photos professionnelles</span>
-                                <div class="relative">
-                                    <input type="checkbox" id="sim-pro-photos" class="sr-only peer">
-                                    <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all"></div>
-                                    <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
-                                </div>
-                            </label>
-                            <label class="flex items-center justify-between cursor-pointer">
-                                <span class="text-white/70 text-xs uppercase tracking-wider">Diffusion multi-plateformes</span>
-                                <div class="relative">
-                                    <input type="checkbox" id="sim-multi-platform" class="sr-only peer">
-                                    <div class="w-10 h-5 bg-white/10 rounded-full peer-checked:bg-gold transition-all"></div>
-                                    <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT: RESULTS with PAYWALL -->
-            <div class="space-y-5">
-                <!-- FREE: monthly range -->
-                <div class="bg-white/5 rounded-2xl border border-white/10 p-6 text-center">
-                    <p class="text-xs font-bold text-gold uppercase tracking-[0.2em] mb-3">Votre potentiel mensuel estimé</p>
-                    <div class="flex items-baseline justify-center gap-3">
-                        <span class="text-3xl md:text-4xl font-bold text-white" id="sim-range-min">—</span>
-                        <span class="text-white/30 text-2xl">–</span>
-                        <span class="text-3xl md:text-4xl font-bold text-gold" id="sim-range-max">—</span>
-                    </div>
-                    <p class="text-white/40 text-xs mt-2 uppercase tracking-wider">revenus bruts mensuels potentiels</p>
-                </div>
-
-                <!-- FREE: insight -->
-                <div class="flex gap-3 bg-gold/5 border border-gold/20 rounded-2xl p-4 items-start">
-                    <span class="material-icons-round text-gold text-base shrink-0 mt-0.5">lightbulb</span>
-                    <p class="text-white/70 text-sm leading-relaxed" id="sim-free-insight">Renseignez votre bien pour obtenir votre insight personnalisé.</p>
-                </div>
-
-                <!-- LOCKED: blurred details + overlay -->
-                <div class="relative rounded-2xl overflow-hidden">
-                    <!-- Static blurred preview -->
-                    <div class="blur-md pointer-events-none select-none opacity-40 space-y-3">
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="bg-white/5 rounded-2xl p-4 border border-white/10">
-                                <p class="text-[9px] text-white/40 mb-1 uppercase tracking-wider">Prix / Nuit optimal</p>
-                                <p class="text-2xl font-bold text-gold">340 €</p>
-                            </div>
-                            <div class="bg-white/5 rounded-2xl p-4 border border-white/10">
-                                <p class="text-[9px] text-white/40 mb-1 uppercase tracking-wider">Taux d'occupation</p>
-                                <p class="text-2xl font-bold text-white">78%</p>
-                            </div>
-                        </div>
-                        <div class="bg-white/5 rounded-2xl p-4 border border-white/10 h-28 flex items-end justify-around gap-1 pb-2">
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:55%"></div>
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:78%"></div>
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:95%"></div>
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:82%"></div>
-                            <div class="w-4 bg-white/20 rounded-t" style="height:38%"></div>
-                            <div class="w-4 bg-white/20 rounded-t" style="height:32%"></div>
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:68%"></div>
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:72%"></div>
-                            <div class="w-4 bg-white/20 rounded-t" style="height:52%"></div>
-                            <div class="w-4 bg-white/20 rounded-t" style="height:48%"></div>
-                            <div class="w-4 bg-white/20 rounded-t" style="height:58%"></div>
-                            <div class="w-4 bg-gold/50 rounded-t" style="height:88%"></div>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center bg-white/5 rounded-xl px-3 py-2.5">
-                                <span class="text-xs text-white/50">Photos &amp; annonce pro</span>
-                                <span class="text-xs font-bold text-gold bg-gold/10 px-2 py-0.5 rounded">+3% Prix / +8% Occup.</span>
-                            </div>
-                            <div class="flex justify-between items-center bg-white/5 rounded-xl px-3 py-2.5">
-                                <span class="text-xs text-white/50">Pricing dynamique</span>
-                                <span class="text-xs font-bold text-gold bg-gold/10 px-2 py-0.5 rounded">+4% Prix / +2% Occup.</span>
-                            </div>
-                            <div class="flex justify-between items-center bg-white/5 rounded-xl px-3 py-2.5">
-                                <span class="text-xs text-white/50">Multi-plateformes</span>
-                                <span class="text-xs font-bold text-gold bg-gold/10 px-2 py-0.5 rounded">+1% Prix / +6% Occup.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Paywall overlay -->
-                    <div class="absolute inset-0 flex flex-col items-center justify-center rounded-2xl p-6"
-                         style="background:linear-gradient(to bottom,rgba(17,17,27,0.2) 0%,rgba(17,17,27,0.97) 28%)">
-                        <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mb-4">
-                            <span class="material-icons-round text-gold">lock</span>
-                        </div>
-                        <h4 class="text-white font-bold text-xl text-center mb-1">Rapport complet</h4>
-                        <p class="text-white/50 text-sm text-center mb-5 max-w-xs">Prix optimal · Benchmark concurrents · Plan 90 jours · Diagnostic annonce</p>
-                        <ul class="space-y-2 mb-6 self-stretch max-w-xs mx-auto">
-                            <li class="flex items-center gap-2 text-white/60 text-xs">
-                                <span class="material-icons-round text-gold text-sm">check_circle</span>
-                                Revenus mois par mois avec saisonnalité
-                            </li>
-                            <li class="flex items-center gap-2 text-white/60 text-xs">
-                                <span class="material-icons-round text-gold text-sm">check_circle</span>
-                                Benchmark 15 concurrents dans votre zone
-                            </li>
-                            <li class="flex items-center gap-2 text-white/60 text-xs">
-                                <span class="material-icons-round text-gold text-sm">check_circle</span>
-                                Diagnostic annonce (20 points)
-                            </li>
-                            <li class="flex items-center gap-2 text-white/60 text-xs">
-                                <span class="material-icons-round text-gold text-sm">check_circle</span>
-                                Plan d'action 30 / 60 / 90 jours chiffré
-                            </li>
-                            <li class="flex items-center gap-2 text-white/60 text-xs">
-                                <span class="material-icons-round text-gold text-sm">check_circle</span>
-                                Appel 30 min avec Cyril inclus
-                            </li>
-                        </ul>
-                        <button id="unlock-audit-btn"
-                            class="squishy-btn w-full max-w-xs bg-gold text-primary-dark font-bold py-4 flex items-center justify-center gap-2">
-                            Débloquer mon Audit — 79€
-                            <span class="material-icons-round text-sm">arrow_forward</span>
-                        </button>
-                        <p class="text-white/30 text-xs mt-3 text-center">Cyril vous contacte sous 48h</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     4. AUDIT PRO CONTENTS
-═══════════════════════════════════════════════ -->
-<section id="audit-pro" data-header-style="light" class="py-24 px-4 bg-[#Fdfcf8]">
-    <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-14">
-            <span class="text-gold font-semibold tracking-wider uppercase text-sm mb-2 block">Audit Pro</span>
-            <h2 class="text-4xl md:text-5xl font-display text-primary-dark">Ce que vous <span class="text-gold">recevrez</span></h2>
-            <p class="text-gray-500 text-lg max-w-xl mx-auto mt-4">Un dossier personnalisé, livré sous 48h, pour savoir exactement quoi faire et dans quel ordre.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">bar_chart</span>
-                <h3 class="font-bold text-primary mb-1">Revenus prévisionnels</h3>
-                <p class="text-gray-500 text-sm">Mois par mois sur 12 mois avec saisonnalité Martinique.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">compare</span>
-                <h3 class="font-bold text-primary mb-1">Benchmark concurrents</h3>
-                <p class="text-gray-500 text-sm">Analyse de 15 biens comparables dans votre zone.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">price_change</span>
-                <h3 class="font-bold text-primary mb-1">Grille tarifaire</h3>
-                <p class="text-gray-500 text-sm">Prix / nuit optimal par saison et type de semaine.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">checklist</span>
-                <h3 class="font-bold text-primary mb-1">Diagnostic annonce</h3>
-                <p class="text-gray-500 text-sm">20 points d'audit : titre, photos, description, équipements.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">photo_camera</span>
-                <h3 class="font-bold text-primary mb-1">Recommandations photos</h3>
-                <p class="text-gray-500 text-sm">Angles, équipements à valoriser, mise en scène.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">device_hub</span>
-                <h3 class="font-bold text-primary mb-1">Stratégie multi-canaux</h3>
-                <p class="text-gray-500 text-sm">Airbnb, Booking, direct : quel mix pour votre profil.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">calendar_today</span>
-                <h3 class="font-bold text-primary mb-1">Plan d'action 90 jours</h3>
-                <p class="text-gray-500 text-sm">Priorisé, chiffré, concret. Semaine par semaine.</p>
-            </div>
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-squishy">
-                <span class="material-icons-round text-gold text-2xl mb-3 block">headset_mic</span>
-                <h3 class="font-bold text-primary mb-1">Appel 30 min avec Cyril</h3>
-                <p class="text-gray-500 text-sm">Pour challenger le plan et répondre à vos questions.</p>
-            </div>
-        </div>
-        <!-- Price CTA -->
-        <div class="flex justify-center">
-            <div class="bg-surface-dark text-white rounded-[2.5rem] p-10 max-w-md w-full text-center shadow-2xl">
-                <p class="text-gold text-xs uppercase tracking-[0.2em] font-bold mb-2">Audit Pro Kazas</p>
-                <p class="text-7xl font-bold mb-1">79€</p>
-                <p class="text-white/40 text-sm mb-8">paiement unique · livraison sous 48h</p>
-                <button id="unlock-audit-btn-2"
-                    class="squishy-btn w-full bg-gold text-primary-dark font-bold py-4 flex items-center justify-center gap-2">
-                    Commencer mon audit
-                    <span class="material-icons-round text-sm">arrow_forward</span>
-                </button>
-                <p class="text-white/30 text-xs mt-4">Cyril vous contacte sous 48h avec les instructions</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     5. TESTIMONIALS
+     3. TESTIMONIALS
 ═══════════════════════════════════════════════ -->
 <section data-header-style="light" class="py-24 px-4 bg-cream overflow-hidden relative" id="reviews">
     <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-white/40 rounded-full mix-blend-soft-light filter blur-3xl animate-float pointer-events-none"></div>
@@ -959,87 +622,6 @@
             </div>
         </div>
     </footer>
-
-<!-- PAYWALL MODAL -->
-<div id="paywall-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="paywall-backdrop"></div>
-    <div class="relative bg-surface-dark border border-white/10 rounded-[2rem] p-8 max-w-lg w-full shadow-2xl max-h-[90vh] overflow-y-auto">
-        <button id="paywall-close"
-            class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all z-10">
-            <span class="material-icons-round text-white text-sm">close</span>
-        </button>
-
-        <!-- FORM STATE -->
-        <div id="paywall-form-section">
-            <div class="flex items-center gap-3 mb-5">
-                <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
-                    <span class="material-icons-round text-gold text-sm">lock_open</span>
-                </div>
-                <div>
-                    <h3 class="text-white font-bold text-xl leading-tight">Réserver mon Audit Pro</h3>
-                    <p class="text-white/50 text-sm">Livraison sous 48h · 79€</p>
-                </div>
-            </div>
-            <p class="text-white/60 text-sm mb-6 leading-relaxed">
-                Renseignez vos coordonnées et Cyril vous contacte sous 48h avec le lien de paiement et votre dossier personnalisé.
-            </p>
-            <form id="auditForm" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest font-bold text-white/40 ml-1 mb-1.5 block">Prénom &amp; Nom *</label>
-                        <input id="audit-name" name="name" type="text" required placeholder="Jean Dupont"
-                            class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all text-sm" />
-                    </div>
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest font-bold text-white/40 ml-1 mb-1.5 block">Email *</label>
-                        <input id="audit-email" name="email" type="email" required placeholder="jean@mail.com"
-                            class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all text-sm" />
-                    </div>
-                </div>
-                <div>
-                    <label class="text-[10px] uppercase tracking-widest font-bold text-white/40 ml-1 mb-1.5 block">Téléphone *</label>
-                    <input id="audit-phone" name="phone" type="tel" required placeholder="+33 6 00 00 00 00"
-                        class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all text-sm" />
-                </div>
-                <div>
-                    <label class="text-[10px] uppercase tracking-widest font-bold text-white/40 ml-1 mb-1.5 block">URL Airbnb (optionnel)</label>
-                    <input id="audit-url" name="url" type="url" placeholder="https://airbnb.com/rooms/..."
-                        class="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all text-sm" />
-                </div>
-                <button type="submit"
-                    class="w-full bg-gold hover:bg-[#c9a330] text-primary-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-neon mt-2 disabled:opacity-60 disabled:cursor-not-allowed btn-audit-submit">
-                    <span class="btn-audit-label flex items-center gap-2">
-                        Envoyer ma demande
-                        <span class="material-icons-round text-sm">send</span>
-                    </span>
-                    <span class="btn-audit-spinner hidden items-center gap-2">
-                        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                        </svg>
-                        Envoi…
-                    </span>
-                </button>
-                <div id="audit-error" class="hidden items-center gap-3 bg-red-500/10 border border-red-500/30 rounded-2xl px-4 py-3">
-                    <span class="material-icons-round text-red-400 text-sm">error_outline</span>
-                    <p class="text-red-300 text-sm">Une erreur est survenue. Contactez-nous directement par email.</p>
-                </div>
-            </form>
-        </div>
-
-        <!-- SUCCESS STATE -->
-        <div id="paywall-success" class="hidden text-center py-8">
-            <div class="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-4">
-                <span class="material-icons-round text-green-400 text-3xl">check_circle</span>
-            </div>
-            <h3 class="text-white font-bold text-2xl mb-3">Demande envoyée !</h3>
-            <p class="text-white/60 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
-                Cyril vous contacte sous 48h avec les instructions de paiement et votre audit personnalisé.
-            </p>
-            <p class="text-gold text-xs uppercase tracking-widest font-bold">À très bientôt 🌴</p>
-        </div>
-    </div>
-</div>
 
     <!-- FAQ Accordion -->
     <script>
