@@ -1155,31 +1155,6 @@
             </div>
         </div>
     </footer>
-    <!-- RGPD Banner -->
-    <div id="rgpd-banner" class="fixed bottom-0 left-0 right-0 z-[100] p-4 md:p-6 pointer-events-none">
-        <div class="max-w-4xl mx-auto glass-morphism-strong border border-white/10 rounded-2xl px-6 py-4 flex flex-col md:flex-row items-start md:items-center gap-4 pointer-events-auto shadow-2xl">
-            <p class="text-white/70 text-sm flex-1 leading-relaxed">
-                Ce site utilise des polices et icônes Google (cookies techniques). Aucun cookie publicitaire ni de traçage n'est utilisé.
-                <a href="/confidentialite.html" class="text-gold hover:underline ml-1">En savoir plus</a>
-            </p>
-            <button id="rgpd-accept"
-                class="shrink-0 bg-gold hover:bg-gold/80 text-primary-dark font-bold text-sm px-6 py-2.5 rounded-full transition-all whitespace-nowrap">
-                J'ai compris
-            </button>
-        </div>
-    </div>
-    <script>
-        (function () {
-            if (localStorage.getItem('rgpd') === '1') {
-                document.getElementById('rgpd-banner').remove();
-            } else {
-                document.getElementById('rgpd-accept').addEventListener('click', function () {
-                    localStorage.setItem('rgpd', '1');
-                    document.getElementById('rgpd-banner').remove();
-                });
-            }
-        })();
-    </script>
     <!-- Vercel Analytics -->
     <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
     <script defer src="/_vercel/insights/script.js"></script>
