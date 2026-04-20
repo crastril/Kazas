@@ -1,0 +1,26 @@
+# Kazas — Gestionnaire de villas en Martinique
+> Kazas FWI est une agence de gestion locative saisonnière spécialisée en Martinique. Nous gérons des villas de prestige pour le compte de propriétaires et maximisons leurs revenus via l'optimisation tarifaire dynamique, la photographie professionnelle et la diffusion multi-plateformes (Airbnb, Booking, VRBO, site direct).
+
+## Pages prioritaires
+
+- https://www.kazasfwi.com/ — Page d'accueil : services, villas gérées, simulateur de revenus, contact
+- https://www.kazasfwi.com/blog/ — Blog : conseils et guides pour propriétaires de villas en Martinique
+- https://www.kazasfwi.com/blog/combien-rapporte-une-villa-en-martinique.html — Guide complet sur les revenus locatifs d'une villa en Martinique en 2026
+- https://www.kazasfwi.com/auteurs/allison.html — Allison, experte en location saisonnière aux Antilles, auteure des articles Kazas
+- https://www.kazasfwi.com/mentions-legales.html — Mentions légales KAZAS FWI
+- https://www.kazasfwi.com/confidentialite.html — Politique de confidentialité
+
+## À propos de Kazas
+
+- Fondée en Martinique, spécialisée en location courte durée depuis 2022
+- SIRET : 988 635 249 00010
+- Zone de couverture : Martinique (Sud Caraïbes, Sud Atlantique, Nord Caraïbes, Nord Atlantique)
+- Contact : hello@kazasfwi.com
+- Site : https://www.kazasfwi.com
+
+## Données de marché clés (2026)
+
+- Prix nuitée moyen villa 3ch Sud Caraïbes : 320–450 €
+- Taux d'occupation optimisé : 70–85 %
+- Revenu annuel estimé villa bien gérée : 80 000–140 000 €
+- Gain moyen gestion professionnelle vs autogestion : +30 à +40 %

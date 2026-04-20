@@ -4,23 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ════════════════════════════════════════
-         CHECKLIST POUR CRÉER UN NOUVEL ARTICLE
-         ════════════════════════════════════════
-         1. Dupliquer ce fichier et le renommer en :
-            blog/[slug-de-l-article].html
-            ex: blog/optimiser-annonce-airbnb-martinique.html
+    <!-- ════════════════════════════════════════════════════════════════
+         CHECKLIST ARTICLE 2026 (15 POINTS — tous obligatoires)
+         ════════════════════════════════════════════════════════════════
+         [ ] 1.  H1 = question ou bénéfice explicite (mot-clé principal dedans)
+         [ ] 2.  TL;DR encadré 40-60 mots en haut de l'article
+         [ ] 3.  Auteure nommée : Allison — bio + lien vers /auteurs/allison.html
+         [ ] 4.  Date ISO dans <time datetime="AAAA-MM-JJ">
+         [ ] 5.  Au moins 1 donnée propriétaire (stat interne Kazas ou retour villa)
+         [ ] 6.  H2 et H3 rédigés comme des questions exactes cherchées sur Google
+         [ ] 7.  5 à 8 sections H2 — chaque chunk = 100-300 mots autonomes
+         [ ] 8.  ≥ 15 entités nommées (villes, plateformes, chiffres, noms propres…)
+         [ ] 9.  2-3 liens sortants vers sources d'autorité (INSEE, Airbnb, notaires…)
+         [ ] 10. ≥ 3 liens internes : 1 vers pilier, 2-3 vers cluster, 1-2 vers zone
+         [ ] 11. Schema JSON-LD complet : @graph BlogPosting + Person + Organization + Breadcrumb + FAQPage
+         [ ] 12. Bloc "En résumé" en fin d'article (liste à puces des points clés)
+         [ ] 13. ≥ 1 tableau OU liste de données chiffrées
+         [ ] 14. 3-5 questions/réponses FAQPage visibles à l'écran (accordion ou statique)
+         [ ] 15. Republier tous les 3-6 mois (mettre à jour dateModified dans le schema)
 
-         2. Remplir les balises META ci-dessous
-
-         3. Remplir le contenu de l'article (chercher les balises CONTENU)
-
+         ÉTAPES DE CRÉATION
+         ════════════════════════════════════════════════════════════════
+         1. Dupliquer ce fichier → blog/[slug-de-l-article].html
+         2. Remplacer tous les SLUG / TITRE / META ci-dessous
+         3. Remplir le contenu (chercher les balises CONTENU)
          4. Ajouter la card dans blog/index.html
-
          5. Ajouter l'URL dans sitemap.xml
-
-         6. Lancer : npm run build
-    ════════════════════════════════════════ -->
+         6. Ajouter la card dans /auteurs/allison.html
+         7. npm run build
+    ════════════════════════════════════════════════════════════════ -->
 
     <!-- META — à remplir -->
     <title>TITRE DE L'ARTICLE — Kazas Blog</title>
@@ -32,6 +44,8 @@
     <meta property="og:title" content="TITRE DE L'ARTICLE">
     <meta property="og:description" content="DESCRIPTION SEO">
     <meta property="og:image" content="URL_IMAGE_HERO">
+    <meta property="article:author" content="Allison">
+    <meta property="article:published_time" content="AAAA-MM-JJ">
 
     <link rel="stylesheet" href="../style.css">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet" />
@@ -39,7 +53,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
 
     <style>
-        /* Styles typographiques pour le contenu de l'article */
         .article-body h2 { font-size: 1.75rem; font-weight: 700; color: #1e3d1f; margin-top: 2.5rem; margin-bottom: 1rem; }
         .article-body h3 { font-size: 1.25rem; font-weight: 700; color: #1e3d1f; margin-top: 2rem; margin-bottom: 0.75rem; }
         .article-body p  { color: #4b5563; line-height: 1.8; margin-bottom: 1.25rem; }
@@ -50,11 +63,96 @@
         .article-body strong { color: #1e3d1f; font-weight: 700; }
         .article-body blockquote { border-left: 3px solid #D4AF37; padding-left: 1.5rem; font-style: italic; color: #6b7280; margin: 2rem 0; }
         .article-body .callout { background: #f5f0e1; border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; }
+        .article-body .tldr { background: #eaf2ea; border-left: 4px solid #1e3d1f; border-radius: 0.75rem; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+        .article-body .tldr p { color: #1e3d1f; margin-bottom: 0; font-size: 0.95rem; }
         .article-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; }
         .article-body th { background: #1e3d1f; color: white; padding: 0.75rem 1rem; text-align: left; }
         .article-body td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; color: #4b5563; }
         .article-body tr:nth-child(even) td { background: #f9fafb; }
+        .article-body .summary-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; margin: 2.5rem 0; }
+        .article-body .summary-box h3 { margin-top: 0; }
+        /* FAQ accordion */
+        .faq-item { border-bottom: 1px solid #e5e7eb; }
+        .faq-item summary { cursor: pointer; font-weight: 700; color: #1e3d1f; padding: 1rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: #D4AF37; }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item p { padding: 0 0 1rem; margin: 0; }
+        /* CTA contextuel inline */
+        .article-body .cta-inline { background: #1e3d1f; color: white; border-radius: 1rem; padding: 1.5rem; margin: 2.5rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+        @media(min-width:640px){ .article-body .cta-inline { flex-direction: row; align-items: center; justify-content: space-between; } }
+        .article-body .cta-inline p { color: white/80; margin: 0; font-size: 0.95rem; }
+        .article-body .cta-inline a { flex-shrink: 0; background: #D4AF37; color: #1e3d1f; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.65rem 1.5rem; border-radius: 999px; text-decoration: none; white-space: nowrap; }
     </style>
+
+    <!-- ════ SCHEMA JSON-LD — @graph complet ════
+         Remplacer : SLUG, TITRE, DESCRIPTION, URL_IMAGE, AAAA-MM-JJ, "CATEGORIE"
+         Ajouter les FAQ (min 3, max 5) dans FAQPage
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://www.kazasfwi.com/blog/SLUG-DE-L-ARTICLE.html#article",
+          "headline": "TITRE DE L'ARTICLE",
+          "description": "DESCRIPTION SEO",
+          "datePublished": "AAAA-MM-JJ",
+          "dateModified": "AAAA-MM-JJ",
+          "image": "URL_IMAGE_HERO",
+          "url": "https://www.kazasfwi.com/blog/SLUG-DE-L-ARTICLE.html",
+          "author": { "@id": "https://www.kazasfwi.com/auteurs/allison.html#author" },
+          "publisher": { "@id": "https://www.kazasfwi.com/#organization" },
+          "mainEntityOfPage": "https://www.kazasfwi.com/blog/SLUG-DE-L-ARTICLE.html",
+          "inLanguage": "fr-FR",
+          "isPartOf": { "@id": "https://www.kazasfwi.com/blog/" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.kazasfwi.com/auteurs/allison.html#author",
+          "name": "Allison",
+          "jobTitle": "Experte en location saisonnière",
+          "url": "https://www.kazasfwi.com/auteurs/allison.html",
+          "worksFor": { "@id": "https://www.kazasfwi.com/#organization" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.kazasfwi.com/#organization",
+          "name": "Kazas",
+          "url": "https://www.kazasfwi.com",
+          "logo": "https://www.kazasfwi.com/assets/img/favicon.png"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.kazasfwi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.kazasfwi.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "TITRE DE L'ARTICLE", "item": "https://www.kazasfwi.com/blog/SLUG-DE-L-ARTICLE.html" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "QUESTION 1 ?",
+              "acceptedAnswer": { "@type": "Answer", "text": "RÉPONSE 1 (100-300 mots, autonome, sans renvoi au reste de l'article)." }
+            },
+            {
+              "@type": "Question",
+              "name": "QUESTION 2 ?",
+              "acceptedAnswer": { "@type": "Answer", "text": "RÉPONSE 2." }
+            },
+            {
+              "@type": "Question",
+              "name": "QUESTION 3 ?",
+              "acceptedAnswer": { "@type": "Answer", "text": "RÉPONSE 3." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="bg-[#Fdfcf8] font-sans text-primary antialiased">
 
@@ -76,82 +174,203 @@
         </div>
     </nav>
 
-    <article class="max-w-3xl mx-auto px-6 py-16">
+    <!-- Fil d'Ariane -->
+    <nav class="max-w-3xl mx-auto px-6 pt-8" aria-label="Fil d'Ariane">
+        <ol class="flex items-center gap-2 text-xs text-gray-400">
+            <li><a href="/" class="hover:text-primary transition-colors">Accueil</a></li>
+            <li><span class="material-icons-round text-xs">chevron_right</span></li>
+            <li><a href="/blog/" class="hover:text-primary transition-colors">Blog</a></li>
+            <li><span class="material-icons-round text-xs">chevron_right</span></li>
+            <li class="text-gray-600 font-medium truncate max-w-[200px]">TITRE COURT</li>
+        </ol>
+    </nav>
 
-        <!-- EN-TÊTE DE L'ARTICLE -->
-        <header class="mb-12">
-            <!-- CATÉGORIE — ex: Rentabilité / Airbnb / Fiscalité / Décoration / Conseils -->
+    <article class="max-w-3xl mx-auto px-6 py-12">
+
+        <!-- EN-TÊTE -->
+        <header class="mb-10">
+            <!-- CATÉGORIE — ex: Rentabilité / Airbnb / Fiscalité / Décoration / Conseils / Juridique -->
             <span class="text-gold text-xs font-bold uppercase tracking-[0.3em]">CATÉGORIE</span>
 
-            <!-- TITRE H1 -->
+            <!-- H1 = question ou bénéfice — mot-clé principal dedans -->
             <h1 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6 leading-tight">
-                TITRE DE L'ARTICLE
+                TITRE DE L'ARTICLE — rédigé comme une question ou un bénéfice
             </h1>
 
-            <!-- MÉTADONNÉES -->
-            <div class="flex items-center gap-4 text-sm text-gray-400 mb-8">
-                <span>JJ Mois AAAA</span>
-                <span>•</span>
+            <!-- MÉTADONNÉES + AUTEURE -->
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-400 mb-8">
+                <a href="/auteurs/allison.html" class="flex items-center gap-2 font-semibold text-primary hover:text-gold transition-colors">
+                    <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">A</span>
+                    Allison
+                </a>
+                <span>·</span>
+                <time datetime="AAAA-MM-JJ">JJ Mois AAAA</time>
+                <span>·</span>
                 <span>X min de lecture</span>
             </div>
 
-            <!-- IMAGE HERO — optionnelle, supprimer si pas d'image -->
+            <!-- IMAGE HERO -->
             <div class="rounded-3xl overflow-hidden h-72 md:h-96 mb-8">
                 <img src="URL_IMAGE_HERO"
                     alt="DESCRIPTION IMAGE"
-                    class="w-full h-full object-cover" />
+                    class="w-full h-full object-cover"
+                    loading="eager" />
             </div>
 
             <!-- INTRODUCTION / CHAPEAU -->
             <p class="text-xl text-gray-600 leading-relaxed border-l-4 border-gold pl-6">
-                PHRASE D'ACCROCHE — 2 ou 3 phrases qui résument l'article et donnent envie de lire la suite.
+                PHRASE D'ACCROCHE — 2-3 phrases qui résument l'article et donnent envie de lire la suite. Structure pyramide inversée : la réponse principale d'abord.
             </p>
         </header>
 
-        <!-- ═══════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════════════════
              CONTENU DE L'ARTICLE
-             Utiliser les classes disponibles :
-             - <h2> pour les titres de section
-             - <h3> pour les sous-sections
-             - <p> pour les paragraphes
-             - <ul><li> pour les listes à puces
-             - <blockquote> pour les citations
-             - <div class="callout"> pour les encadrés importants
-             - <table> pour les tableaux de données
-        ═══════════════════════════════════════════ -->
+             Règles AEO (Answer Engine Optimization) :
+             · Chaque H2/H3 = question exacte que quelqu'un tape sur Google
+             · Chaque chunk = 100-300 mots, autonome (lisible sans contexte)
+             · ≥ 15 entités nommées dans l'article (lieux, chiffres, marques…)
+             · Pyramide inversée : réponse directe → détails → nuances
+             · ≥ 1 tableau ou liste de données chiffrées
+             · 2-3 liens sortants vers sources d'autorité
+             · ≥ 3 liens internes : 1 pilier + 2-3 cluster + 1-2 zone
+        ════════════════════════════════════════════════════════════════ -->
         <div class="article-body">
 
-            <h2>Titre de section 1</h2>
-            <p>Contenu du paragraphe...</p>
-
-            <h2>Titre de section 2</h2>
-            <p>Contenu du paragraphe...</p>
-
-            <ul>
-                <li>Point 1</li>
-                <li>Point 2</li>
-                <li>Point 3</li>
-            </ul>
-
-            <div class="callout">
-                <strong>À retenir :</strong> Message clé ou conseil important à mettre en avant.
+            <!-- TL;DR — obligatoire, 40-60 mots -->
+            <div class="tldr">
+                <strong>En bref :</strong>
+                <p>RÉSUMÉ DE L'ARTICLE EN 40-60 MOTS. Répondre à la question principale directement. Citer 1-2 chiffres clés. Formuler de manière autonome : quelqu'un qui ne lit que ce bloc doit avoir sa réponse.</p>
             </div>
 
-            <h2>Conclusion</h2>
-            <p>Contenu de la conclusion...</p>
+            <!-- SECTION 1 — H2 = question -->
+            <h2>Question exacte que l'internaute pose sur Google ?</h2>
+            <p>Réponse directe en 1-2 phrases. Puis développement. Chunk autonome de 100-300 mots.</p>
+            <p>Corps de la section...</p>
+
+            <!-- SECTION 2 — H2 = question -->
+            <h2>Deuxième question importante sur le sujet ?</h2>
+            <p>Contenu de la section...</p>
+
+            <!-- Tableau de données — obligatoire dans au moins 1 section -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Colonne A</th>
+                        <th>Colonne B</th>
+                        <th>Colonne C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Donnée 1</td><td>Valeur</td><td>Valeur</td></tr>
+                    <tr><td>Donnée 2</td><td>Valeur</td><td>Valeur</td></tr>
+                </tbody>
+            </table>
+
+            <div class="callout">
+                <strong>À retenir :</strong> Message clé avec 1 donnée propriétaire Kazas (stat interne, retour d'expérience villa réelle).
+            </div>
+
+            <!-- SECTION 3 — sous-sections H3 possibles -->
+            <h2>Troisième question clé ?</h2>
+            <p>Contenu...</p>
+
+            <h3>Sous-question plus précise ?</h3>
+            <ul>
+                <li><strong>Point 1</strong> — explication</li>
+                <li><strong>Point 2</strong> — explication</li>
+                <li><strong>Point 3</strong> — explication</li>
+            </ul>
+
+            <!-- CTA contextuel — à placer à mi-article (après section 3-4) -->
+            <div class="cta-inline">
+                <p>Vous voulez savoir combien peut rapporter votre villa en Martinique ?</p>
+                <a href="/#simulator">Simuler mes revenus</a>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2>Quatrième question importante ?</h2>
+            <p>Contenu...</p>
+
+            <blockquote>
+                "Citation ou retour terrain de l'équipe Kazas ou d'un propriétaire (donnée propriétaire)."
+            </blockquote>
+
+            <!-- SECTION 5 — liens internes obligatoires -->
+            <h2>Cinquième question ?</h2>
+            <p>
+                Contenu avec liens internes :
+                <a href="/blog/[article-pilier].html" class="text-gold hover:underline font-semibold">lien vers l'article pilier</a>,
+                <a href="/blog/[article-cluster].html" class="text-gold hover:underline font-semibold">lien vers un article cluster</a>,
+                et un lien vers <a href="/#simulator" class="text-gold hover:underline font-semibold">le simulateur de revenus</a>.
+                Avec aussi 1-2 liens sortants vers
+                <a href="URL_SOURCE_AUTORITE" class="text-gold hover:underline font-semibold" target="_blank" rel="noopener">une source d'autorité externe</a>.
+            </p>
+
+            <!-- BLOC EN RÉSUMÉ — obligatoire en fin d'article -->
+            <div class="summary-box">
+                <h3>En résumé</h3>
+                <ul>
+                    <li>Point clé 1 — chiffre ou fait concret</li>
+                    <li>Point clé 2 — chiffre ou fait concret</li>
+                    <li>Point clé 3 — chiffre ou fait concret</li>
+                    <li>Point clé 4 — chiffre ou fait concret</li>
+                    <li>Point clé 5 — chiffre ou fait concret</li>
+                </ul>
+            </div>
+
+            <!-- FAQ — 3 à 5 questions/réponses, visibles à l'écran -->
+            <!-- Dupliquées dans le Schema FAQPage ci-dessus -->
+            <h2>Questions fréquentes</h2>
+            <div class="border-t border-gray-100 mt-2">
+
+                <details class="faq-item">
+                    <summary>QUESTION FAQ 1 ?</summary>
+                    <p>Réponse autonome de 100-300 mots. Formulée pour être lue seule, sans le reste de l'article.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>QUESTION FAQ 2 ?</summary>
+                    <p>Réponse autonome...</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>QUESTION FAQ 3 ?</summary>
+                    <p>Réponse autonome...</p>
+                </details>
+
+            </div>
 
         </div>
         <!-- FIN CONTENU -->
 
+        <!-- BIO AUTEURE — toujours en bas d'article -->
+        <aside class="mt-16 pt-8 border-t border-gray-100 flex items-start gap-5">
+            <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <span class="text-xl font-bold text-primary/40">A</span>
+            </div>
+            <div>
+                <p class="text-xs text-gold font-bold uppercase tracking-widest mb-1">À propos de l'auteure</p>
+                <a href="/auteurs/allison.html" class="font-bold text-primary hover:text-gold transition-colors">Allison</a>
+                <p class="text-sm text-gray-500 mt-1 leading-relaxed">
+                    Experte en location saisonnière aux Antilles, Allison accompagne les propriétaires de villas en Martinique depuis plusieurs années. Elle partage ses analyses et conseils sur le blog Kazas.
+                </p>
+            </div>
+        </aside>
+
     </article>
 
-    <!-- CTA — ne pas modifier -->
+    <!-- CTA fin d'article -->
     <section class="bg-primary text-white py-20 px-6 text-center">
         <h2 class="text-3xl font-bold mb-4">Prêt à maximiser vos revenus ?</h2>
         <p class="text-white/60 mb-8 max-w-md mx-auto">Obtenez une estimation gratuite et personnalisée pour votre villa en Martinique.</p>
-        <a href="/#contact" class="inline-block bg-gold hover:bg-gold/80 text-primary-dark font-bold px-8 py-4 rounded-full transition-all">
-            Demander mon estimation gratuite
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/#simulator" class="inline-block bg-white text-primary font-bold px-8 py-4 rounded-full transition-all hover:bg-cream">
+                Simuler mes revenus
+            </a>
+            <a href="/#contact" class="inline-block bg-gold hover:bg-gold/80 text-primary-dark font-bold px-8 py-4 rounded-full transition-all">
+                Demander mon estimation gratuite
+            </a>
+        </div>
     </section>
 
     <!-- Retour au blog -->
