@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ════════════════════════════════════════
+         CHECKLIST POUR CRÉER UN NOUVEL ARTICLE
+         ════════════════════════════════════════
+         1. Dupliquer ce fichier et le renommer en :
+            blog/[slug-de-l-article].html
+            ex: blog/optimiser-annonce-airbnb-martinique.html
+
+         2. Remplir les balises META ci-dessous
+
+         3. Remplir le contenu de l'article (chercher les balises CONTENU)
+
+         4. Ajouter la card dans blog/index.html
+
+         5. Ajouter l'URL dans sitemap.xml
+
+         6. Lancer : npm run build
+    ════════════════════════════════════════ -->
+
+    <!-- META — à remplir -->
+    <title>TITRE DE L'ARTICLE — Kazas Blog</title>
+    <meta name="description" content="DESCRIPTION SEO (150-160 caractères)">
+    <link rel="canonical" href="https://www.kazasfwi.com/blog/SLUG-DE-L-ARTICLE.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.kazasfwi.com/blog/SLUG-DE-L-ARTICLE.html">
+    <meta property="og:title" content="TITRE DE L'ARTICLE">
+    <meta property="og:description" content="DESCRIPTION SEO">
+    <meta property="og:image" content="URL_IMAGE_HERO">
+
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+
+    <style>
+        /* Styles typographiques pour le contenu de l'article */
+        .article-body h2 { font-size: 1.75rem; font-weight: 700; color: #1e3d1f; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .article-body h3 { font-size: 1.25rem; font-weight: 700; color: #1e3d1f; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .article-body p  { color: #4b5563; line-height: 1.8; margin-bottom: 1.25rem; }
+        .article-body ul { list-style: disc; padding-left: 1.5rem; color: #4b5563; margin-bottom: 1.25rem; }
+        .article-body ul li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .article-body ol { list-style: decimal; padding-left: 1.5rem; color: #4b5563; margin-bottom: 1.25rem; }
+        .article-body ol li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .article-body strong { color: #1e3d1f; font-weight: 700; }
+        .article-body blockquote { border-left: 3px solid #D4AF37; padding-left: 1.5rem; font-style: italic; color: #6b7280; margin: 2rem 0; }
+        .article-body .callout { background: #f5f0e1; border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; }
+        .article-body table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .article-body th { background: #1e3d1f; color: white; padding: 0.75rem 1rem; text-align: left; }
+        .article-body td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; color: #4b5563; }
+        .article-body tr:nth-child(even) td { background: #f9fafb; }
+    </style>
+</head>
+<body class="bg-[#Fdfcf8] font-sans text-primary antialiased">
+
+    <!-- Nav -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="/" class="text-xl font-bold tracking-tighter flex items-center gap-0.5">
+                Kazas<span class="text-gold text-2xl leading-none">.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="/#services" class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors">Services</a>
+                <a href="/#portfolio" class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors">Villas</a>
+                <a href="/#simulator" class="text-xs uppercase font-bold tracking-widest hover:text-gold transition-colors">Estimation</a>
+                <a href="/blog/" class="text-xs uppercase font-bold tracking-widest text-gold">Blog</a>
+            </div>
+            <a href="/#contact" class="bg-primary hover:bg-primary-light text-white px-5 py-2 rounded-full text-xs uppercase font-bold tracking-widest transition-all">
+                Estimation gratuite
+            </a>
+        </div>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-6 py-16">
+
+        <!-- EN-TÊTE DE L'ARTICLE -->
+        <header class="mb-12">
+            <!-- CATÉGORIE — ex: Rentabilité / Airbnb / Fiscalité / Décoration / Conseils -->
+            <span class="text-gold text-xs font-bold uppercase tracking-[0.3em]">CATÉGORIE</span>
+
+            <!-- TITRE H1 -->
+            <h1 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6 leading-tight">
+                TITRE DE L'ARTICLE
+            </h1>
+
+            <!-- MÉTADONNÉES -->
+            <div class="flex items-center gap-4 text-sm text-gray-400 mb-8">
+                <span>JJ Mois AAAA</span>
+                <span>•</span>
+                <span>X min de lecture</span>
+            </div>
+
+            <!-- IMAGE HERO — optionnelle, supprimer si pas d'image -->
+            <div class="rounded-3xl overflow-hidden h-72 md:h-96 mb-8">
+                <img src="URL_IMAGE_HERO"
+                    alt="DESCRIPTION IMAGE"
+                    class="w-full h-full object-cover" />
+            </div>
+
+            <!-- INTRODUCTION / CHAPEAU -->
+            <p class="text-xl text-gray-600 leading-relaxed border-l-4 border-gold pl-6">
+                PHRASE D'ACCROCHE — 2 ou 3 phrases qui résument l'article et donnent envie de lire la suite.
+            </p>
+        </header>
+
+        <!-- ═══════════════════════════════════════════
+             CONTENU DE L'ARTICLE
+             Utiliser les classes disponibles :
+             - <h2> pour les titres de section
+             - <h3> pour les sous-sections
+             - <p> pour les paragraphes
+             - <ul><li> pour les listes à puces
+             - <blockquote> pour les citations
+             - <div class="callout"> pour les encadrés importants
+             - <table> pour les tableaux de données
+        ═══════════════════════════════════════════ -->
+        <div class="article-body">
+
+            <h2>Titre de section 1</h2>
+            <p>Contenu du paragraphe...</p>
+
+            <h2>Titre de section 2</h2>
+            <p>Contenu du paragraphe...</p>
+
+            <ul>
+                <li>Point 1</li>
+                <li>Point 2</li>
+                <li>Point 3</li>
+            </ul>
+
+            <div class="callout">
+                <strong>À retenir :</strong> Message clé ou conseil important à mettre en avant.
+            </div>
+
+            <h2>Conclusion</h2>
+            <p>Contenu de la conclusion...</p>
+
+        </div>
+        <!-- FIN CONTENU -->
+
+    </article>
+
+    <!-- CTA — ne pas modifier -->
+    <section class="bg-primary text-white py-20 px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">Prêt à maximiser vos revenus ?</h2>
+        <p class="text-white/60 mb-8 max-w-md mx-auto">Obtenez une estimation gratuite et personnalisée pour votre villa en Martinique.</p>
+        <a href="/#contact" class="inline-block bg-gold hover:bg-gold/80 text-primary-dark font-bold px-8 py-4 rounded-full transition-all">
+            Demander mon estimation gratuite
+        </a>
+    </section>
+
+    <!-- Retour au blog -->
+    <div class="text-center py-8 bg-[#Fdfcf8]">
+        <a href="/blog/" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors">
+            <span class="material-icons-round text-base">arrow_back</span>
+            Retour au blog
+        </a>
+    </div>
+
+    <footer class="border-t border-white/10 bg-surface-dark py-8 text-center text-xs text-white/30">
+        © 2026 KAZAS FWI —
+        <a href="/mentions-legales.html" class="hover:text-white transition-colors ml-2">Mentions légales</a>
+        <a href="/confidentialite.html" class="hover:text-white transition-colors ml-2">Confidentialité</a>
+    </footer>
+
+</body>
+</html>
