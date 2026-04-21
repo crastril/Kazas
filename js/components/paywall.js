@@ -47,30 +47,27 @@ export function initPaywall() {
         const simData = window._kazasSimData || {};
 
         const payload = {
-            from_name:    document.getElementById('audit-name')?.value,
-            from_email:   document.getElementById('audit-email')?.value,
-            phone:        document.getElementById('audit-phone')?.value,
-            airbnb_url:   document.getElementById('audit-url')?.value || '',
-            sim_data:     JSON.stringify(simData),
+            from_name:  document.getElementById('audit-name')?.value,
+            from_email: document.getElementById('audit-email')?.value,
+            phone:      document.getElementById('audit-phone')?.value,
+            airbnb_url: document.getElementById('audit-url')?.value || '',
+            sim_data:   JSON.stringify(simData),
         };
 
         try {
-            const res = await fetch('/api/audit', {
+            const res = await fetch('/api/create-checkout', {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body:    JSON.stringify(payload),
             });
             if (!res.ok) throw new Error(await res.text());
 
-            // Show success
-            formSec.classList.add('hidden');
-            success?.classList.remove('hidden');
-            success?.classList.add('block');
+            const { url } = await res.json();
+            window.location.href = url;
         } catch (err) {
-            console.error('[Kazas] Audit form error:', err);
+            console.error('[Kazas] Checkout error:', err);
             errDiv?.classList.remove('hidden');
             errDiv?.classList.add('flex');
-        } finally {
             setLoading(false);
         }
     });
