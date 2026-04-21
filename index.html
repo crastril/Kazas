@@ -149,7 +149,7 @@
             class="w-full h-full object-cover scale-105"
             fetchpriority="high" decoding="async"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZVnkuBZjqUzJs5Yx0nfeH2sumVpieW87MtLR5o3Z84AlBrNV8pz-j-6PncpEcJI3LJQ_kgujH6pZeyjwNgOkcDPpcSOIEr4Ba9Cz7Fs058pAxNB9QVd5Wau82WBtGOHuF_MSj_KupIJPj0PAQ3sWE_1bIOYcC11iOp9Oouk17EoYPaFRkDLfGnBUdpGhbjhcnhjksGvveYP6WP4Tn_tVG012U2DjUcn7tF3SOTKGvQK7oenxKqU9wDxliTXCsnGGAwyhk3Ej1CnW0" />
-        <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/95 via-surface-dark/50 to-surface-dark/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-dark via-surface-dark/55 to-surface-dark/10"></div>
     </div>
     <div class="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/30 blob-bg-shape animate-morph"></div>
     <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-gold/20 blob-bg-shape animate-morph" style="animation-delay:-3s"></div>
@@ -171,17 +171,18 @@
             Lancer mon audit gratuit
             <span class="material-icons-round">trending_up</span>
         </a>
-        <div class="flex items-center justify-center gap-8 md:gap-14 mt-6 md:mt-14 flex-wrap">
+        <!-- KPIs desktop uniquement — sur mobile ils sont dans la bande sous le hero -->
+        <div class="hidden md:flex items-center justify-center gap-14 mt-14 flex-wrap">
             <div class="text-center">
                 <p class="text-3xl font-bold text-gold">+112%</p>
-                <p class="text-white/40 text-xs uppercase tracking-wider mt-1">Revenus · Villa Mahogan</p>
+                <p class="text-white/40 text-xs uppercase tracking-wider mt-1">Revenus · Villa Cacyli</p>
             </div>
-            <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+            <div class="w-px h-10 bg-white/10"></div>
             <div class="text-center">
                 <p class="text-3xl font-bold text-gold">5.0★</p>
                 <p class="text-white/40 text-xs uppercase tracking-wider mt-1">Note moyenne gérée</p>
             </div>
-            <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+            <div class="w-px h-10 bg-white/10"></div>
             <div class="text-center">
                 <p class="text-3xl font-bold text-gold">7 ans</p>
                 <p class="text-white/40 text-xs uppercase tracking-wider mt-1">d'expérience Martinique</p>
@@ -194,8 +195,28 @@
     </div>
 </header>
 
+<!-- KPI strip mobile — s'affiche au scroll juste sous le hero -->
+<div class="md:hidden bg-surface-dark py-8 px-4 border-t border-white/5">
+    <div class="flex items-center justify-center gap-0 max-w-sm mx-auto">
+        <div class="text-center flex-1">
+            <p class="text-3xl font-bold text-gold">+112%</p>
+            <p class="text-white/40 text-xs uppercase tracking-wider mt-1">Revenus · Villa Cacyli</p>
+        </div>
+        <div class="w-px h-10 bg-white/10 flex-shrink-0"></div>
+        <div class="text-center flex-1">
+            <p class="text-3xl font-bold text-gold">5.0★</p>
+            <p class="text-white/40 text-xs uppercase tracking-wider mt-1">Note moyenne</p>
+        </div>
+        <div class="w-px h-10 bg-white/10 flex-shrink-0"></div>
+        <div class="text-center flex-1">
+            <p class="text-3xl font-bold text-gold">7 ans</p>
+            <p class="text-white/40 text-xs uppercase tracking-wider mt-1">Martinique</p>
+        </div>
+    </div>
+</div>
+
 <!-- ═══════════════════════════════════════════════
-     2. CASE STUDY — Villa Mahogan
+     2. CASE STUDY — Villa Cacyli
 ═══════════════════════════════════════════════ -->
 <section id="case-study" data-header-style="dark"
     class="py-24 px-4 relative bg-surface-dark overflow-hidden text-white">
@@ -203,7 +224,7 @@
     <div class="absolute top-0 right-0 w-[700px] h-[700px] bg-primary/20 rounded-full blur-[150px] pointer-events-none hidden md:block"></div>
     <div class="max-w-3xl mx-auto relative z-10">
         <div>
-            <span class="text-gold font-bold tracking-widest text-sm uppercase mb-4 block">Étude de cas · Villa Mahogan</span>
+            <span class="text-gold font-bold tracking-widest text-sm uppercase mb-4 block">Étude de cas · Villa Cacyli</span>
             <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">De 1 200€ à<br />
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-white">3 600€/mois en moyenne</span>
             </h2>
@@ -401,7 +422,7 @@
                     <span class="material-icons-round text-gold flex-shrink-0 faq-icon">add</span>
                 </button>
                 <div class="faq-a hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-                    Pour les biens existants, les premières améliorations (photos, titre, tarification) produisent un effet visible en 2 à 4 semaines. Une optimisation complète — décoration, équipements, note Airbnb — se déploie sur 4 à 6 mois, comme pour la Villa Mahogan qui est passée de 1 200 € à 3 600 € de revenus mensuels moyens (lissés sur l'année).
+                    Pour les biens existants, les premières améliorations (photos, titre, tarification) produisent un effet visible en 2 à 4 semaines. Une optimisation complète — décoration, équipements, note Airbnb — se déploie sur 4 à 6 mois, comme pour la Villa Cacyli qui est passée de 1 200 € à 3 600 € de revenus mensuels moyens (lissés sur l'année).
                 </div>
             </div>
         </div>
