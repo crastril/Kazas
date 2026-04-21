@@ -1,90 +1,103 @@
 /**
- * Header Component Logic
- * Handles scroll effects, mobile menu toggling, and responsive adaptability.
+ * Header Component
+ * – Mobile menu toggle
+ * – Header style switching via rAF-throttled scroll (passive) + cached positions
+ *   → No per-scroll DOM reads → no main-thread blocking → burger clicks register instantly
  */
 export function initHeader() {
-    const header = document.querySelector('header');
     const navContainer = document.getElementById('mainNavContainer');
-    const navLogo = document.getElementById('navLogo');
+    const navLogo      = document.getElementById('navLogo');
 
-    // Define styles for different section types
-    const headerStyles = {
+    // ── Mobile menu ───────────────────────────────────────────────────────────
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+            const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', String(!expanded));
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    if (!navContainer) return;
+
+    // ── Style definitions ─────────────────────────────────────────────────────
+    const STYLES = {
         hero: {
-            // Transparent background, White text
-            add: ['bg-transparent', 'text-white'],
-            remove: ['bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'text-primary']
+            add:    ['bg-transparent', 'text-white'],
+            remove: ['bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'text-primary'],
         },
         light: {
-            // White/Blurred background, Dark text
-            add: ['bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'text-primary'],
-            remove: ['bg-transparent', 'text-white']
+            add:    ['bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'text-primary'],
+            remove: ['bg-transparent', 'text-white'],
         },
         dark: {
-            // Darker/Blurred background, White text
-            add: ['bg-surface-dark/90', 'backdrop-blur-md', 'shadow-sm', 'text-white'],
-            remove: ['bg-transparent', 'bg-white/80', 'text-primary']
-        }
+            add:    ['bg-surface-dark/90', 'backdrop-blur-md', 'shadow-sm', 'text-white'],
+            remove: ['bg-transparent', 'bg-white/80', 'text-primary'],
+        },
     };
 
-    const sections = document.querySelectorAll('section, header, footer');
+    function applyStyle(type) {
+        const style = STYLES[type] || STYLES.hero;
+        navContainer.classList.remove(...style.remove);
+        navContainer.classList.add(...style.add);
+        if (navLogo) {
+            if (type === 'light') {
+                navLogo.classList.remove('text-white');
+                navLogo.classList.add('text-primary');
+            } else {
+                navLogo.classList.remove('text-primary');
+                navLogo.classList.add('text-white');
+            }
+        }
+    }
+
+    // ── Cache section positions once — only re-read on resize ─────────────────
+    // Never read from the DOM inside the scroll handler.
+    const sectionEls = [...document.querySelectorAll('[data-header-style]')];
+    let sectionCache = [];
+
+    function cacheSections() {
+        sectionCache = sectionEls.map(el => ({
+            style:  el.dataset.headerStyle || 'hero',
+            top:    Math.round(el.getBoundingClientRect().top + window.scrollY),
+            height: el.offsetHeight,
+        }));
+    }
+
+    // ── rAF-throttled scroll handler — passive so touch scroll is never blocked ─
+    let ticking = false;
 
     function updateHeader() {
-        const scrollPosition = window.scrollY + 100; // Check point slightly below top
-        let currentSection = null;
-
-        // Find the current section
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                currentSection = section;
+        const checkY = window.scrollY + 80; // 80px ≈ nav pill height
+        let active = sectionCache.length ? sectionCache[0].style : 'hero';
+        for (const s of sectionCache) {
+            if (checkY >= s.top && checkY < s.top + s.height) {
+                active = s.style;
+                break;
             }
-        });
+        }
+        applyStyle(active);
+        ticking = false;
+    }
 
-        // Default to hero if no section found
-        const styleType = currentSection ? (currentSection.dataset.headerStyle || 'hero') : 'hero';
-        const style = headerStyles[styleType];
-
-        if (style && navContainer) {
-            navContainer.classList.remove(...style.remove);
-            navContainer.classList.add(...style.add);
-
-            if (navLogo) {
-                if (styleType === 'light') {
-                    navLogo.classList.remove('text-white');
-                    navLogo.classList.add('text-primary');
-                } else {
-                    navLogo.classList.remove('text-primary');
-                    navLogo.classList.add('text-white');
-                }
-            }
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
         }
     }
 
-    if (header && navContainer) {
-        // Mobile Menu Logic
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', () => {
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Close mobile menu on link click
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuButton.setAttribute('aria-expanded', 'false');
-                });
-            });
-        }
-
-        window.addEventListener('scroll', updateHeader);
-        updateHeader(); // Initial check
-    }
+    // Init
+    cacheSections();
+    updateHeader();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { cacheSections(); updateHeader(); }, { passive: true });
 }

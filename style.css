@@ -1580,6 +1580,10 @@ body {
           user-select: none;
 }
 
+.resize {
+  resize: both;
+}
+
 .list-inside {
   list-style-position: inside;
 }
@@ -1688,6 +1692,10 @@ body {
 
 .gap-\[5px\] {
   gap: 5px;
+}
+
+.gap-2\.5 {
+  gap: 0.625rem;
 }
 
 .gap-x-4 {
@@ -1928,6 +1936,10 @@ body {
 
 .border-white\/5 {
   border-color: rgb(255 255 255 / 0.05);
+}
+
+.border-gold\/20 {
+  border-color: rgb(212 175 55 / 0.2);
 }
 
 .bg-\[\#Fdfcf8\] {
@@ -2444,6 +2456,10 @@ body {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[11px\] {
+  font-size: 11px;
 }
 
 .font-bold {
