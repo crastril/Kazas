@@ -3356,3 +3356,34 @@ input[type=range]::-webkit-slider-runnable-track {
     line-height: 1;
   }
 }
+
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE PERFORMANCE — strip GPU-heavy layers on phones
+   Kills: animations, backdrop-filter, large blurs, scale-105
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* 1. Stop morph & float keyframes — biggest GPU drain */
+  .animate-morph,
+  .animate-float {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* 2. Hide blob shapes (they carry filter:blur(80px) in their base CSS) */
+  .blob-bg-shape {
+    display: none !important;
+  }
+
+  /* 3. Glass form — drop backdrop-filter, use opaque bg instead */
+  .glass-morphism-strong {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(15, 26, 15, 0.97) !important;
+  }
+
+  /* 4. Hero image — remove scale-105 to avoid promoting a GPU layer */
+  .scale-105 {
+    transform: none !important;
+  }
+}
