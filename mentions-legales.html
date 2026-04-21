@@ -24,18 +24,24 @@
         };
     </script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
 </head>
 <body class="bg-[#Fdfcf8] text-primary font-sans antialiased">
 
     <!-- Nav -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-        <a href="/" class="text-xl font-bold tracking-tighter flex items-center gap-0.5">
-            Kazas<span class="text-gold text-2xl leading-none">.</span>
-        </a>
-        <a href="/" class="text-sm text-gray-500 hover:text-primary transition-colors">← Retour au site</a>
-    </nav>
+    <header class="fixed top-0 left-0 right-0 z-50 flex flex-col items-center px-4 pt-4 pointer-events-none">
+        <div class="pointer-events-auto rounded-full px-6 md:px-8 py-3 flex items-center justify-between shadow-2xl max-w-5xl w-full border border-white/10 bg-surface-dark/90 backdrop-blur-xl">
+            <a class="text-2xl font-bold tracking-tighter text-white flex items-center gap-1" href="/">
+                Kazas<span class="text-gold text-3xl leading-none">.</span>
+            </a>
+            <a href="/" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/70 hover:text-gold transition-colors">
+                <span class="material-icons-round text-sm">arrow_back</span>
+                Retour
+            </a>
+        </div>
+    </header>
 
-    <main class="max-w-3xl mx-auto px-6 py-16">
+    <main class="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <h1 class="text-4xl font-bold text-primary mb-2">Mentions Légales</h1>
         <p class="text-gray-400 text-sm mb-12">Dernière mise à jour : avril 2026</p>
 
