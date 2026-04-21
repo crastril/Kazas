@@ -9,8 +9,9 @@ export function initHeader() {
     const navLogo      = document.getElementById('navLogo');
 
     // ── Mobile menu ───────────────────────────────────────────────────────────
-    const menuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const menuButton   = document.getElementById('mobile-menu-button');
+    const menuBarLines = menuButton ? menuButton.querySelectorAll('span') : [];
+    const mobileMenu   = document.getElementById('mobile-menu');
 
     if (menuButton && mobileMenu) {
         menuButton.addEventListener('click', () => {
@@ -55,6 +56,19 @@ export function initHeader() {
             } else {
                 navLogo.classList.remove('text-primary');
                 navLogo.classList.add('text-white');
+            }
+        }
+
+        // Burger button — adapte border, fond et couleur des barres selon le fond
+        if (menuButton) {
+            if (type === 'light') {
+                menuButton.classList.remove('border-white/20', 'bg-white/10', 'hover:bg-white/20');
+                menuButton.classList.add('border-primary/30', 'bg-primary/10', 'hover:bg-primary/20');
+                menuBarLines.forEach(s => { s.classList.remove('bg-white'); s.classList.add('bg-primary'); });
+            } else {
+                menuButton.classList.remove('border-primary/30', 'bg-primary/10', 'hover:bg-primary/20');
+                menuButton.classList.add('border-white/20', 'bg-white/10', 'hover:bg-white/20');
+                menuBarLines.forEach(s => { s.classList.remove('bg-primary'); s.classList.add('bg-white'); });
             }
         }
     }
