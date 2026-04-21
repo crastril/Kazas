@@ -87,6 +87,38 @@ function buildInsight(inp) {
     return "Votre bien présente des leviers d'optimisation non exploités. L'audit identifie les 5 actions prioritaires.";
 }
 
+// ─── Audit score /100 ─────────────────────────────────────────────────────────
+function computeAuditScore(d) {
+    const zoneBase = {Sud_Caraibes:9,Sud_Atlantique:7,Nord_Caraibes:6,Nord_Atlantique:5};
+    const viewBase = {dominant:8,partial:4,none:0};
+    const loc  = Math.min(20,(zoneBase[d.zone]||5)+(viewBase[d.ocean_view]||0)+(d.beach_walkable?3:0));
+    const eq   = Math.min(20,(d.private_pool?9:0)+(d.hot_tub_jacuzzi?4:0)+(d.ac_all_bedrooms?4:0)+Math.min(3,Math.max(0,d.bedrooms-3)));
+    const pres = d.pro_photos ? 17 : 7;
+    const minNS = {'1_2':7,'3_4':5,'gte_5':2}[d.min_nights_band]||5;
+    const dist = Math.min(20,(d.multi_platform_distribution?11:0)+minNS);
+    const perf = {'gte_4_8':19,'4_6_to_4_79':13,'lt_4_6':6}[d.review_score_band]||10;
+    const score = loc+eq+pres+dist+perf;
+    const optimised = [loc,eq,pres,dist,perf].filter(v=>v>=14).length;
+    return {axes:{loc,eq,pres,dist,perf},score,optimised};
+}
+
+// ─── Gain marginal si un levier est activé ────────────────────────────────────
+function quickGain(key, val, d) {
+    const base = compute(d);
+    const mod  = compute({...d,[key]:val});
+    return Math.max(0, Math.round((mod.rOpt - base.rOpt) / 12 / 100) * 100);
+}
+
+// ─── Analyse zone ─────────────────────────────────────────────────────────────
+function zoneAnalysis(zone) {
+    return {
+        Sud_Caraibes:    {label:'Sud Caraïbes',    text:"La zone la plus prisée de Martinique — et la plus compétitive. Les biens bien présentés atteignent 70–85% de taux d'occupation en haute saison. La différenciation par les équipements et la qualité des photos est décisive."},
+        Sud_Atlantique:  {label:'Sud Atlantique',  text:"Zone en forte progression, appréciée pour ses paysages naturels et son authenticité. Moins saturée que le Caraïbes, elle offre un excellent rapport effort/rendement pour les propriétaires qui soignent leur annonce."},
+        Nord_Caraibes:   {label:'Nord Caraïbes',   text:"Zone d'aventure et de découverte, moins concurrentielle. Fort potentiel pour les biens qui valorisent leur singularité — végétation dense, accès à la forêt, paysages sauvages. L'ADR y est plus bas mais la fidélisation client y est forte."},
+        Nord_Atlantique: {label:'Nord Atlantique', text:"Zone au plus grand potentiel de développement en Martinique. Peu saturée, elle s'adresse à une clientèle en quête de tranquillité et de paysages préservés. La montée en gamme y est particulièrement rentable."},
+    }[zone] || {label:'Martinique', text:''};
+}
+
 // ════════════════════════════════════════════
 // FORM STATE
 // ════════════════════════════════════════════
@@ -172,111 +204,255 @@ export function initAuditForm() {
     }
 
     function renderResults() {
-        const r = compute(state.data);
+        const r   = compute(state.data);
+        const d   = state.data;
         const monthlyMin = Math.round((r.rStd / 12) / 100) * 100;
         const monthlyMax = Math.round((r.rOpt / 12) / 100) * 100;
-        const insight = buildInsight(state.data);
+        const annualGap  = Math.max(0, Math.round((r.rOpt - r.rStd) / 100) * 100);
+
+        // ── Score ──
+        const {axes, score, optimised} = computeAuditScore(d);
+        const verdict = score >= 72 ? 'Profil solide — optimisations ciblées possibles'
+                      : score >= 55 ? 'Bon positionnement, des leviers restent actifs'
+                      : score >= 38 ? 'Beau potentiel, plusieurs axes à développer'
+                      : 'Fort potentiel inexploité';
+
+        // ── Zone ──
+        const zone = zoneAnalysis(d.zone);
+
+        // ── Quick wins ──
+        const candidates = [
+            !d.pro_photos && {
+                icon:'photo_camera', label:'Photos professionnelles',
+                gain:quickGain('pro_photos',true,d), locked:false,
+                detail:"Le levier le plus rapide. Un shooting pro améliore le taux de conversion de 15–25%."
+            },
+            !d.multi_platform_distribution && {
+                icon:'hub', label:'Multi-diffusion (Booking, Vrbo…)',
+                gain:quickGain('multi_platform_distribution',true,d), locked:false,
+                detail:"Chaque plateforme supplémentaire réduit les périodes creuses et lisse l'occupation annuelle."
+            },
+            d.min_nights_band === 'gte_5' && {
+                icon:'event_available', label:'Réduire la durée min. de séjour',
+                gain:quickGain('min_nights_band','1_2',d), locked:false,
+                detail:"Passer à 1–2 nuits minimum comble les trous du calendrier en basse saison."
+            },
+            d.review_score_band === 'lt_4_6' && {
+                icon:'star', label:'Amélioration des avis voyageurs',
+                gain:0, locked:false,
+                detail:"Passer sous 4.6 réduit la visibilité de 20–30% sur Airbnb. Priorité absolue."
+            },
+            !d.private_pool && {
+                icon:'pool', label:'Piscine privée',
+                gain:quickGain('private_pool',true,d), locked:true,
+                detail:"Investissement structurant. L'Audit Pro chiffre le ROI exact et le délai d'amortissement pour votre bien."
+            },
+            !d.hot_tub_jacuzzi && d.private_pool && {
+                icon:'hot_tub', label:'Jacuzzi / Bain à remous',
+                gain:quickGain('hot_tub_jacuzzi',true,d), locked:true,
+                detail:"Différenciateur fort en clientèle premium. Impact direct sur l'ADR."
+            },
+        ].filter(Boolean).sort((a,b) => {
+            if (a.locked !== b.locked) return a.locked ? 1 : -1;
+            return b.gain - a.gain;
+        });
+
+        const freeWins  = candidates.filter(w => !w.locked).slice(0, 2);
+        const lockedWin = candidates.find(w => w.locked);
+
+        // ── Helpers ──
+        function pill(s) {
+            return s >= 14
+                ? `<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full ml-auto shrink-0">Optimisé</span>`
+                : s >= 9
+                ? `<span class="text-[10px] font-bold text-amber-600 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full ml-auto shrink-0">À améliorer</span>`
+                : `<span class="text-[10px] font-bold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full ml-auto shrink-0">Point faible</span>`;
+        }
+
+        const axesHTML = [
+            {label:'Localisation', s:axes.loc},
+            {label:'Équipements',  s:axes.eq},
+            {label:'Présentation', s:axes.pres},
+            {label:'Distribution', s:axes.dist},
+            {label:'Performance',  s:axes.perf},
+        ].map(({label, s}) => `
+            <div class="flex items-center gap-3">
+                <span class="text-sm text-gray-500 w-[7.5rem] shrink-0">${label}</span>
+                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-700 ${s>=14?'bg-emerald-400':s>=9?'bg-amber-400':'bg-red-400'}" style="width:${Math.round(s/20*100)}%"></div>
+                </div>
+                <span class="text-xs font-bold text-gray-400 w-7 text-right shrink-0">${s}/20</span>
+                ${pill(s)}
+            </div>
+        `).join('');
+
+        function winCard(w) {
+            const gainStr   = w.gain > 0 ? `+${fmt.format(w.gain)}/mois` : 'Impact fort';
+            const gainColor = w.gain > 0 ? 'text-emerald-600' : 'text-amber-600';
+            return `<div class="flex gap-3 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+                <div class="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-icons-round text-gold text-base">${w.icon}</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-start justify-between gap-2 mb-0.5">
+                        <span class="text-sm font-bold text-gray-800 leading-snug">${w.label}</span>
+                        <span class="text-sm font-bold ${gainColor} shrink-0">${gainStr}</span>
+                    </div>
+                    <p class="text-xs text-gray-500 leading-relaxed">${w.detail}</p>
+                </div>
+            </div>`;
+        }
+
+        // ── 12-month bar chart (inside locked blur) ──
+        const monthRevs   = DAYS.map((days,i) => r.adrWith * S_ADR[i] * days * r.occWith * S_OCC_OPT[i]);
+        const maxMonthRev = Math.max(...monthRevs);
+        const MONTH_LABELS = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+        const barsHTML = monthRevs.map((rev, i) => {
+            const h = Math.round(rev / maxMonthRev * 52);
+            const color = h > 39 ? '#B8922A' : 'rgba(184,146,42,0.45)';
+            return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+                <div style="width:100%;height:${h}px;background:${color};border-radius:3px 3px 0 0"></div>
+                <span style="font-size:8px;color:#9ca3af">${MONTH_LABELS[i]}</span>
+            </div>`;
+        }).join('');
+
+        // ── Score circle ──
+        const circ   = 188;
+        const filled = Math.round(circ * score / 100);
+        const firstName = (window._auditContact?.name || '').split(' ')[0];
 
         root.innerHTML = `
-            <!-- Header -->
-            <div class="mb-8">
-                <div class="h-1.5 bg-gold rounded-full mb-6"></div>
-                <h1 class="text-3xl font-bold text-primary mb-2">Votre estimation</h1>
-                <p class="text-gray-500 text-sm">Basé sur les données du marché martiniquais.</p>
-            </div>
 
-            <!-- FREE: Range -->
-            <div class="bg-primary text-white rounded-3xl p-6 mb-4 text-center shadow-xl">
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-white/60 mb-3">Potentiel mensuel estimé</p>
-                <div class="flex items-baseline justify-center gap-3 mb-1">
-                    <span class="text-4xl font-bold">${fmt.format(monthlyMin)}</span>
-                    <span class="text-white/40 text-2xl">–</span>
-                    <span class="text-4xl font-bold text-gold">${fmt.format(monthlyMax)}</span>
-                </div>
-                <p class="text-white/50 text-xs uppercase tracking-wider">revenus bruts mensuels</p>
+        <!-- Header -->
+        <div class="mb-5">
+            <div class="h-1.5 bg-gold rounded-full mb-5"></div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="material-icons-round text-gold text-sm">check_circle</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-gold">Diagnostic complété</span>
             </div>
+            <h1 class="text-2xl font-bold text-primary">${firstName ? `Votre audit, ${firstName}` : 'Votre audit'}</h1>
+        </div>
 
-            <!-- FREE: Insight -->
-            <div class="flex gap-3 bg-gold/5 border border-gold/20 rounded-2xl p-4 items-start mb-4">
-                <span class="material-icons-round text-gold text-base shrink-0 mt-0.5">lightbulb</span>
-                <p class="text-gray-700 text-sm leading-relaxed">${insight}</p>
-            </div>
-
-            <!-- LOCKED: Paywall -->
-            <div class="relative rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
-                <!-- Blurred preview -->
-                <div class="blur-md pointer-events-none select-none opacity-40 p-5 space-y-3 bg-white">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
-                            <p class="text-[9px] text-gray-400 mb-1 uppercase">Prix / Nuit</p>
-                            <p class="text-xl font-bold text-gold">340 €</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
-                            <p class="text-[9px] text-gray-400 mb-1 uppercase">Taux occup.</p>
-                            <p class="text-xl font-bold text-primary">78%</p>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 rounded-2xl p-3 border border-gray-100 h-20 flex items-end gap-1 pb-2">
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:55%"></div>
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:80%"></div>
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:95%"></div>
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:78%"></div>
-                        <div class="flex-1 bg-gray-300 rounded-t" style="height:40%"></div>
-                        <div class="flex-1 bg-gray-300 rounded-t" style="height:35%"></div>
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:65%"></div>
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:72%"></div>
-                        <div class="flex-1 bg-gray-300 rounded-t" style="height:50%"></div>
-                        <div class="flex-1 bg-gray-300 rounded-t" style="height:45%"></div>
-                        <div class="flex-1 bg-gray-300 rounded-t" style="height:55%"></div>
-                        <div class="flex-1 bg-gold/40 rounded-t" style="height:88%"></div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between bg-gray-50 rounded-xl px-3 py-2 border border-gray-100">
-                            <span class="text-xs text-gray-500">Benchmark concurrents</span>
-                            <span class="text-xs font-bold text-gray-800">15 biens analysés</span>
-                        </div>
-                        <div class="flex justify-between bg-gray-50 rounded-xl px-3 py-2 border border-gray-100">
-                            <span class="text-xs text-gray-500">Plan d'action</span>
-                            <span class="text-xs font-bold text-gray-800">30 / 60 / 90 jours</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Overlay -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-6 rounded-3xl"
-                     style="background:linear-gradient(to bottom,rgba(253,252,248,0.1) 0%,rgba(253,252,248,0.98) 25%)">
-                    <div class="w-11 h-11 rounded-full bg-primary/5 border border-primary/20 flex items-center justify-center mb-3">
-                        <span class="material-icons-round text-primary">lock</span>
-                    </div>
-                    <h4 class="text-primary font-bold text-lg text-center mb-1">Rapport complet</h4>
-                    <p class="text-gray-500 text-sm text-center mb-4 max-w-xs">Benchmark · Plan 90 jours · Prix optimal · Diagnostic annonce · Appel 30 min</p>
-                    <ul class="space-y-1.5 mb-5 self-stretch max-w-xs mx-auto">
-                        <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Revenus mois par mois sur 12 mois</li>
-                        <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Benchmark 15 concurrents directs</li>
-                        <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Diagnostic annonce (20 points)</li>
-                        <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Plan d'action 30/60/90 jours chiffré</li>
-                        <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Appel 30 min avec Cyril</li>
-                    </ul>
-                    <button id="unlock-audit-btn"
-                        class="squishy-btn w-full max-w-xs bg-gold text-primary-dark font-bold py-4 flex items-center justify-center gap-2">
-                        Débloquer mon Audit — 79€
-                        <span class="material-icons-round text-sm">arrow_forward</span>
-                    </button>
-                    <p class="text-gray-400 text-xs mt-2 text-center">Cyril vous contacte sous 48h</p>
+        <!-- Score global -->
+        <div class="bg-primary text-white rounded-3xl p-5 mb-4 flex items-center gap-5 shadow-xl">
+            <div class="relative shrink-0" style="width:72px;height:72px">
+                <svg width="72" height="72" viewBox="0 0 72 72" style="transform:rotate(-90deg)">
+                    <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="5"/>
+                    <circle cx="36" cy="36" r="30" fill="none" stroke="#B8922A" stroke-width="5"
+                        stroke-dasharray="${filled} ${circ - filled}" stroke-linecap="round"/>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span class="text-xl font-bold text-white leading-none">${score}</span>
+                    <span class="text-[9px] text-white/40 leading-none">/100</span>
                 </div>
             </div>
+            <div>
+                <p class="font-bold text-base leading-snug mb-1">${verdict}</p>
+                <p class="text-white/50 text-xs">${optimised}/5 axes au-dessus de la moyenne</p>
+            </div>
+        </div>
 
-            <!-- Restart -->
-            <button id="btn-restart" class="w-full mt-4 text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-2">
-                ← Recommencer avec un autre bien
-            </button>
+        <!-- Sub-scores -->
+        <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 mb-4">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Analyse détaillée</p>
+            <div class="space-y-3">${axesHTML}</div>
+        </div>
+
+        <!-- Revenue estimate -->
+        <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 mb-4">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Estimation de revenus</p>
+            <div class="grid grid-cols-2 gap-4 mb-3">
+                <div>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Situation actuelle</p>
+                    <p class="text-2xl font-bold text-gray-700">${fmt.format(monthlyMin)}<span class="text-sm text-gray-400 font-normal">/mois</span></p>
+                </div>
+                <div>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Potentiel optimisé</p>
+                    <p class="text-2xl font-bold text-gold">${fmt.format(monthlyMax)}<span class="text-sm text-gray-400 font-normal">/mois</span></p>
+                </div>
+            </div>
+            <p class="text-[10px] text-gray-400 mb-3">Revenus bruts lissés sur l'année · estimation conservatrice</p>
+            ${annualGap > 200 ? `<div class="flex items-center gap-2 bg-emerald-50 border border-emerald-100 rounded-2xl px-3 py-2">
+                <span class="material-icons-round text-emerald-500 text-sm">trending_up</span>
+                <p class="text-emerald-700 text-xs">Potentiel inexploité estimé : <span class="font-bold">+${fmt.format(annualGap)}/an</span></p>
+            </div>` : ''}
+        </div>
+
+        <!-- Zone analysis -->
+        <div class="bg-gold/5 border border-gold/15 rounded-3xl p-5 mb-4">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="material-icons-round text-gold text-sm">place</span>
+                <span class="text-[10px] font-bold text-gold uppercase tracking-wider">${zone.label}</span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">${zone.text}</p>
+        </div>
+
+        <!-- Quick wins (free) -->
+        ${freeWins.length ? `
+        <div class="mb-4">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Quick wins identifiés</p>
+            <div class="space-y-3">${freeWins.map(winCard).join('')}</div>
+        </div>` : ''}
+
+        <!-- Locked section -->
+        <div class="relative rounded-3xl overflow-hidden border border-gray-100 shadow-sm mb-4">
+            <!-- Blurred preview -->
+            <div class="pointer-events-none select-none p-5 space-y-3 bg-white" style="filter:blur(10px);opacity:0.4">
+                ${lockedWin ? winCard(lockedWin) : ''}
+                <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                    <p style="font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Revenus estimés · 12 mois</p>
+                    <div style="display:flex;align-items:flex-end;gap:3px;height:52px">${barsHTML}</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between bg-gray-50 rounded-xl px-3 py-2 border border-gray-100">
+                        <span class="text-xs text-gray-500">Prix optimal / nuit</span>
+                        <span class="text-xs font-bold text-gray-800">${fmt.format(Math.round(r.adrWith / 10) * 10)}</span>
+                    </div>
+                    <div class="flex justify-between bg-gray-50 rounded-xl px-3 py-2 border border-gray-100">
+                        <span class="text-xs text-gray-500">Benchmark concurrents</span>
+                        <span class="text-xs font-bold text-gray-800">15 biens analysés</span>
+                    </div>
+                    <div class="flex justify-between bg-gray-50 rounded-xl px-3 py-2 border border-gray-100">
+                        <span class="text-xs text-gray-500">Plan d'action</span>
+                        <span class="text-xs font-bold text-gray-800">30 / 60 / 90 jours</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Overlay -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6"
+                 style="background:linear-gradient(to bottom,rgba(253,252,248,0) 0%,rgba(253,252,248,0.97) 28%)">
+                <div class="w-11 h-11 rounded-full bg-primary/5 border border-primary/20 flex items-center justify-center mb-3">
+                    <span class="material-icons-round text-primary">lock</span>
+                </div>
+                <h4 class="text-primary font-bold text-lg text-center mb-1">Rapport Audit Pro</h4>
+                <p class="text-gray-500 text-sm text-center mb-4 max-w-xs">Gains chiffrés · Revenus 12 mois · Benchmark · Plan d'action · Appel Cyril</p>
+                <ul class="space-y-1.5 mb-5 self-stretch max-w-xs mx-auto">
+                    <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Gain estimé pour chaque levier non activé</li>
+                    <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Projection de revenus mois par mois (12 mois)</li>
+                    <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Benchmark 15 concurrents directs dans votre zone</li>
+                    <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Plan d'action 30/60/90 jours chiffré</li>
+                    <li class="flex items-center gap-2 text-gray-600 text-xs"><span class="material-icons-round text-gold text-sm">check_circle</span>Appel 30 min avec Cyril</li>
+                </ul>
+                <button id="unlock-audit-btn"
+                    class="squishy-btn w-full max-w-xs bg-gold text-primary-dark font-bold py-4 flex items-center justify-center gap-2">
+                    Débloquer mon Audit Pro — 79€
+                    <span class="material-icons-round text-sm">arrow_forward</span>
+                </button>
+                <p class="text-gray-400 text-xs mt-2 text-center">Livré sous 48h · Cyril vous contacte directement</p>
+            </div>
+        </div>
+
+        <!-- Restart -->
+        <button id="btn-restart" class="w-full text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-2 mb-2">
+            ← Recommencer avec un autre bien
+        </button>
         `;
 
-        // Store for paywall
         window._kazasSimData = {
-            zone: state.data.zone, bedrooms: state.data.bedrooms, bathrooms: state.data.bathrooms,
-            private_pool: state.data.private_pool, ocean_view: state.data.ocean_view,
-            monthly_min: monthlyMin, monthly_max: monthlyMax,
-            annual_std: r.rStd, annual_opt: r.rOpt,
+            zone:d.zone, bedrooms:d.bedrooms, bathrooms:d.bathrooms,
+            private_pool:d.private_pool, ocean_view:d.ocean_view,
+            monthly_min:monthlyMin, monthly_max:monthlyMax,
+            annual_std:r.rStd, annual_opt:r.rOpt, score,
         };
 
         document.getElementById('btn-restart')?.addEventListener('click', () => {
