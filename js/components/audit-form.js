@@ -2,16 +2,16 @@
 // SIMULATOR ENGINE (adapted from simulator.js)
 // ════════════════════════════════════════════
 const CAPS = {
-    ADR_floor: 90, ADR_cap: 1200,
+    ADR_floor: 45, ADR_cap: 600,
     OCC_floor: 0.15, OCC_cap: 0.92,
     ADR_pct_min: -25, ADR_pct_max: 60,
     OCC_pct_min: -30, OCC_pct_max: 35
 };
 const ZONE = {
-    Sud_Caraibes:   { adr: 260, occ: 0.55 },
-    Sud_Atlantique: { adr: 230, occ: 0.50 },
-    Nord_Caraibes:  { adr: 210, occ: 0.48 },
-    Nord_Atlantique:{ adr: 190, occ: 0.45 }
+    Sud_Caraibes:   { adr: 130, occ: 0.55 },
+    Sud_Atlantique: { adr: 115, occ: 0.50 },
+    Nord_Caraibes:  { adr: 105, occ: 0.48 },
+    Nord_Atlantique:{ adr:  95, occ: 0.45 }
 };
 const ALPHA = 1.25, BETA = 1.35;
 const H_OV   = { none:{a:0,o:0}, partial:{a:6,o:2}, dominant:{a:14,o:4} };

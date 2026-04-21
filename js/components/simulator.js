@@ -5,7 +5,7 @@
 export function initSimulator() {
     // ═══ CAPS ═══
     const CAPS = {
-        ADR_floor: 90, ADR_cap: 1200, ADR_hard_cap: 1400,
+        ADR_floor: 45, ADR_cap: 600, ADR_hard_cap: 700,
         OCC_floor: 0.15, OCC_cap: 0.92, OCC_hard_cap: 0.95,
         ADR_pct_min: -25, ADR_pct_max: 60,
         OCC_pct_min: -30, OCC_pct_max: 35
@@ -13,10 +13,10 @@ export function initSimulator() {
 
     // ═══ ZONE BASES (ADR_base € / OCC_base ratio) ═══
     const ZONE = {
-        Sud_Caraibes: { adr: 260, occ: 0.55 },
-        Sud_Atlantique: { adr: 230, occ: 0.50 },
-        Nord_Caraibes: { adr: 210, occ: 0.48 },
-        Nord_Atlantique: { adr: 190, occ: 0.45 }
+        Sud_Caraibes: { adr: 130, occ: 0.55 },
+        Sud_Atlantique: { adr: 115, occ: 0.50 },
+        Nord_Caraibes: { adr: 105, occ: 0.48 },
+        Nord_Atlantique: { adr:  95, occ: 0.45 }
     };
 
     // ═══ BOOST MODEL ═══
