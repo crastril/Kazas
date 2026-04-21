@@ -814,29 +814,18 @@ export function initAuditForm() {
 
         // ── STEP 0 — Localisation ──────────────────────────────────────────
         if (s === 0) {
-            const communeOptions = (() => {
-                const groups = [
-                    { label: 'Zone A — Sud Caraïbes', items: COMMUNES.filter(c => c.cz === 'A') },
-                    { label: 'Zone B — Sud Atlantique', items: COMMUNES.filter(c => c.cz === 'B') },
-                    { label: 'Zone C — Nord Caraïbes', items: COMMUNES.filter(c => c.cz === 'C') },
-                    { label: 'Zone D — Autres', items: COMMUNES.filter(c => c.cz === 'D') },
-                ];
-                return groups.map(g =>
-                    `<optgroup label="${g.label}">${g.items.map(c =>
-                        `<option value="${c.label}" ${d.commune===c.label?'selected':''}>${c.label}</option>`
-                    ).join('')}</optgroup>`
-                ).join('');
-            })();
-
             return `
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">Commune</label>
-                <div class="relative">
-                    <select id="commune-select"
-                        class="w-full px-5 py-4 rounded-2xl bg-white border border-gray-200 focus:border-primary focus:ring-0 text-primary transition-all text-sm shadow-sm appearance-none cursor-pointer pr-10">
-                        ${communeOptions}
-                    </select>
-                    <span class="material-icons-round absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">expand_more</span>
+                <div class="relative" id="commune-autocomplete">
+                    <input id="commune-input" type="text" autocomplete="off"
+                        placeholder="Tapez pour rechercher…" value="${d.commune}"
+                        class="w-full px-5 py-4 rounded-2xl bg-white border border-gray-200 focus:border-primary focus:ring-0 text-primary placeholder-gray-300 transition-all text-sm shadow-sm pr-10" />
+                    <span class="material-icons-round absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">search</span>
+                    <div id="commune-dropdown"
+                        class="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-2xl shadow-xl overflow-y-auto hidden"
+                        style="max-height:220px">
+                    </div>
                 </div>
             </div>
             <div>
@@ -1024,12 +1013,65 @@ export function initAuditForm() {
     // ── Event binding ────────────────────────────────────────────────────────
     function bindStepEvents(s) {
 
-        // Commune select (step 0 only)
-        document.getElementById('commune-select')?.addEventListener('change', function () {
-            state.data.commune = this.value;
-            const info = communeInfo(this.value);
-            state.data.zone = info.zone;
-        });
+        // Commune autocomplete (step 0 only)
+        if (s === 0) {
+            const communeInput    = document.getElementById('commune-input');
+            const communeDropdown = document.getElementById('commune-dropdown');
+            const sorted = [...COMMUNES].sort((a, b) => a.label.localeCompare(b.label, 'fr'));
+
+            function filterCommunes(q) {
+                const norm = q.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                return sorted.filter(c =>
+                    c.label.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(norm)
+                );
+            }
+
+            function showDropdown(q) {
+                const matches = filterCommunes(q);
+                communeDropdown.innerHTML = matches.length
+                    ? matches.map(c =>
+                        `<button type="button" data-commune="${c.label}"
+                            class="commune-opt w-full text-left px-4 py-3 text-sm text-primary hover:bg-gold/5 font-medium border-b border-gray-50 last:border-0 transition-colors">${c.label}</button>`
+                      ).join('')
+                    : `<div class="px-4 py-3 text-sm text-gray-400">Aucune commune trouvée</div>`;
+                communeDropdown.classList.remove('hidden');
+                communeDropdown.querySelectorAll('.commune-opt').forEach(opt => {
+                    opt.addEventListener('mousedown', (e) => {
+                        e.preventDefault(); // keep focus on input, prevent blur
+                        const label = opt.dataset.commune;
+                        communeInput.value = label;
+                        state.data.commune = label;
+                        state.data.zone = communeInfo(label).zone;
+                        communeDropdown.classList.add('hidden');
+                    });
+                });
+            }
+
+            if (communeInput) {
+                communeInput.addEventListener('input',  () => showDropdown(communeInput.value));
+                communeInput.addEventListener('focus',  () => showDropdown(communeInput.value));
+                communeInput.addEventListener('blur',   () => {
+                    // slight delay so mousedown on option fires first
+                    setTimeout(() => {
+                        communeDropdown.classList.add('hidden');
+                        // revert to last valid value if input doesn't match
+                        const match = sorted.find(
+                            c => c.label.toLowerCase() === communeInput.value.toLowerCase().trim()
+                        );
+                        if (match) {
+                            communeInput.value = match.label;
+                            state.data.commune = match.label;
+                            state.data.zone = match.zone;
+                        } else {
+                            communeInput.value = state.data.commune;
+                        }
+                    }, 150);
+                });
+                communeInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') communeDropdown.classList.add('hidden');
+                });
+            }
+        }
 
         // Segmented buttons
         root.querySelectorAll('[data-seg]').forEach(group => {
