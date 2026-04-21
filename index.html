@@ -66,6 +66,9 @@
     }
     </script>
 
+    <!-- Preconnect CDN images pour éviter la latence DNS/TCP au scroll -->
+    <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin />
+    <link rel="preconnect" href="https://a0.muscache.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -144,6 +147,7 @@
     <div class="absolute inset-0 z-0">
         <img alt="Villa avec piscine à débordement en Martinique au coucher du soleil"
             class="w-full h-full object-cover scale-105"
+            fetchpriority="high" decoding="async"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZVnkuBZjqUzJs5Yx0nfeH2sumVpieW87MtLR5o3Z84AlBrNV8pz-j-6PncpEcJI3LJQ_kgujH6pZeyjwNgOkcDPpcSOIEr4Ba9Cz7Fs058pAxNB9QVd5Wau82WBtGOHuF_MSj_KupIJPj0PAQ3sWE_1bIOYcC11iOp9Oouk17EoYPaFRkDLfGnBUdpGhbjhcnhjksGvveYP6WP4Tn_tVG012U2DjUcn7tF3SOTKGvQK7oenxKqU9wDxliTXCsnGGAwyhk3Ej1CnW0" />
         <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/95 via-surface-dark/50 to-surface-dark/20"></div>
     </div>
@@ -200,7 +204,8 @@
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         <div class="relative h-[360px] md:h-[500px] w-full flex items-center justify-center">
             <div class="absolute w-[90%] h-[90%] mask-blob-split z-10 animate-float">
-                <img alt="Villa Mahogan après optimisation Kazas" class="w-full h-full object-cover" loading="lazy"
+                <img alt="Villa Mahogan après optimisation Kazas" class="w-full h-full object-cover"
+                    loading="eager" decoding="async" fetchpriority="low"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUa1JugMJhgj8TUXYVNrN_A9Wt1eiMu4sBf-oUpoCqCUpEhGxuYwaRlRqsmP0BRYeu2JurCQI6OJpzVtUlf5_AzEqaYzQA7g4YSgSuBrllEaFvLepy041G4ugFVK1jj25nwEbgSVYLyW3O8CWdX6JEA-Z_FDraM8YuMJFraUQHO9qC9Uj_hhzmU7cJaIxhlLfjKTadDuRp3M0_NEn-sQDZyZd4MvOCJpd-ZBcmkS2mIZfPTQcPkXS8jaME_KbNvGZF9DqWqGivMP92" />
                 <div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent pointer-events-none"></div>
                 <div class="absolute bottom-8 right-8 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
@@ -258,7 +263,7 @@
             </p>
             <div class="flex items-center gap-4">
                 <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-gold shadow-lg">
-                    <img alt="Allison, propriétaire villa Cacyli" class="w-full h-full object-cover" src="./assets/reviews/allison.jpg" loading="lazy" />
+                    <img alt="Allison, propriétaire villa Cacyli" class="w-full h-full object-cover" src="./assets/reviews/allison.jpg" loading="lazy" decoding="async" />
                 </div>
                 <div>
                     <h4 class="text-primary font-bold text-lg">Allison</h4>
@@ -272,7 +277,7 @@
                 <p class="text-gray-600 text-sm mb-4">"Un lieu absolument somptueux, à l'abri des regards, idéal pour se retrouver entre amis. La maison est très bien équipée, rien ne manque, on s'y sent tout de suite à l'aise."</p>
                 <div class="flex items-center gap-2">
                     <img src="https://a0.muscache.com/im/pictures/user/fec221c7-b777-498f-a62a-b554a1938724.jpg?im_w=240"
-                        alt="Gabriel" class="w-8 h-8 rounded-full object-cover" loading="lazy" />
+                        alt="Gabriel" class="w-8 h-8 rounded-full object-cover" loading="lazy" decoding="async" />
                     <span class="text-xs font-bold text-gray-400">Gabriel, Airbnb</span>
                 </div>
             </div>
@@ -281,7 +286,7 @@
                 <p class="text-gray-600 text-sm mb-4">"Une villa parfaite, rien ne manque. Confortable, située au calme, agréablement ventilée par les alizés. Que du bonheur tous les matins avec le soleil levant sur la mer !"</p>
                 <div class="flex items-center gap-2">
                     <img src="https://a0.muscache.com/im/pictures/user/8c0ad62b-8c08-4d0a-af8b-4a36702c9d80.jpg?im_w=240"
-                        alt="Sylvie" class="w-8 h-8 rounded-full object-cover" loading="lazy" />
+                        alt="Sylvie" class="w-8 h-8 rounded-full object-cover" loading="lazy" decoding="async" />
                     <span class="text-xs font-bold text-gray-400">Sylvie, Airbnb</span>
                 </div>
             </div>
