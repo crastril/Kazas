@@ -32,11 +32,11 @@
     </header>
 
     <!-- Split layout -->
-    <div class="flex flex-col lg:flex-row min-h-screen pt-[57px]">
+    <div class="flex flex-col lg:flex-row min-h-screen pt-[57px] lg:pt-0">
 
         <!-- FORM PANEL — order 1 on mobile (top), right on desktop -->
         <div class="w-full lg:w-[55%] order-1 lg:order-2 bg-[#Fdfcf8]" id="form-panel">
-            <div class="min-h-[calc(100vh-57px)] flex flex-col justify-center px-6 py-12 lg:px-16 lg:py-16">
+            <div class="min-h-[calc(100vh-57px)] lg:min-h-screen lg:pt-[57px] flex flex-col justify-center px-6 py-12 lg:px-16 lg:py-16">
                 <div class="max-w-md mx-auto w-full">
                     <!-- Form content injected here by JS -->
                     <div id="audit-form-root"></div>
@@ -46,7 +46,7 @@
 
         <!-- PROOF PANEL — order 2 on mobile (bottom), left on desktop -->
         <div class="w-full lg:w-[45%] order-2 lg:order-1 bg-surface-dark text-white" id="proof-panel">
-            <div class="lg:sticky lg:top-[57px] lg:h-[calc(100vh-57px)] flex flex-col justify-center px-8 py-12 lg:px-10 lg:py-10 overflow-hidden relative">
+            <div class="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-8 py-12 lg:px-10 lg:py-10 overflow-hidden relative">
 
                 <!-- Background texture -->
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
@@ -54,12 +54,12 @@
 
                 <div class="relative z-10">
                     <!-- Label -->
-                    <span class="text-gold font-bold tracking-widest text-xs uppercase mb-4 block">Étude de cas · Villa Mahogan</span>
+                    <span class="text-gold font-bold tracking-widest text-xs uppercase mb-4 block">Étude de cas · Villa Cacyli</span>
 
                     <!-- Photo -->
                     <div class="relative h-48 lg:h-52 mb-6">
                         <div class="absolute inset-0 mask-blob-split overflow-hidden">
-                            <img alt="Villa Mahogan après optimisation Kazas"
+                            <img alt="Villa Cacyli après optimisation Kazas"
                                 class="w-full h-full object-cover"
                                 loading="lazy"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUa1JugMJhgj8TUXYVNrN_A9Wt1eiMu4sBf-oUpoCqCUpEhGxuYwaRlRqsmP0BRYeu2JurCQI6OJpzVtUlf5_AzEqaYzQA7g4YSgSuBrllEaFvLepy041G4ugFVK1jj25nwEbgSVYLyW3O8CWdX6JEA-Z_FDraM8YuMJFraUQHO9qC9Uj_hhzmU7cJaIxhlLfjKTadDuRp3M0_NEn-sQDZyZd4MvOCJpd-ZBcmkS2mIZfPTQcPkXS8jaME_KbNvGZF9DqWqGivMP92" />
