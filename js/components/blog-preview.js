@@ -17,7 +17,7 @@ export async function initBlogPreview() {
         return;
     }
 
-    const latest = articles.slice(0, 3);
+    const latest = articles.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
 
     grid.innerHTML = latest.map(a => {
         const date = new Date(a.date).toLocaleDateString('fr-FR', {
