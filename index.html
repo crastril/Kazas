@@ -83,7 +83,7 @@
 <body
     class="bg-[#Fdfcf8] dark:bg-surface-dark font-sans text-primary dark:text-cream antialiased selection:bg-gold/30 selection:text-white overflow-x-hidden">
     <header
-        class="fixed top-0 left-0 right-0 z-50 flex flex-col items-center px-4 pt-0 md:pt-6 transition-all duration-300 pointer-events-none">
+        class="fixed top-0 left-0 right-0 z-50 flex flex-col items-center px-4 pt-4 md:pt-6 transition-all duration-300 pointer-events-none">
         <div id="mainNavContainer"
             class="pointer-events-auto rounded-full px-6 md:px-8 py-3 flex items-center justify-between shadow-2xl max-w-5xl w-full transition-all duration-300 border border-white/10 bg-surface-dark/90 backdrop-blur-xl md:bg-white/5 md:backdrop-blur-md">
             <a id="navLogo"
@@ -517,27 +517,6 @@
                             <span class="material-icons-round text-6xl text-white">edit_note</span>
                         </div>
                         <form class="space-y-8" id="contactForm">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Quel
-                                    est votre profil ?</label>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <label class="cursor-pointer">
-                                        <input checked="" class="peer sr-only" name="profile" type="radio"
-                                            value="Propriétaire Existant" />
-                                        <div
-                                            class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 peer-checked:bg-gold peer-checked:text-primary peer-checked:border-gold transition-all text-center">
-                                            Propriétaire Existant
-                                        </div>
-                                    </label>
-                                    <label class="cursor-pointer">
-                                        <input class="peer sr-only" name="profile" type="radio" value="Investisseur" />
-                                        <div
-                                            class="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 peer-checked:bg-gold peer-checked:text-primary peer-checked:border-gold transition-all text-center">
-                                            Investisseur
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
                             <!-- Amenities Grid -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                                 <div class="space-y-2">
@@ -555,12 +534,46 @@
                                         placeholder="john@company.com" type="email" required />
                                 </div>
                             </div>
+                            <!-- Phone + Service -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs uppercase tracking-widest font-bold ml-2 text-white/50">Téléphone</label>
+                                    <input id="phone" name="phone"
+                                        class="w-full px-6 py-4 rounded-full bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all"
+                                        placeholder="+33 6 12 34 56 78" type="tel" autocomplete="tel" required />
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs uppercase tracking-widest font-bold ml-2 text-white/50">Service
+                                        qui vous intéresse</label>
+                                    <div class="relative">
+                                        <select id="service" name="service"
+                                            class="w-full appearance-none px-6 py-4 pr-12 rounded-full bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white transition-all cursor-pointer">
+                                            <option value="" class="bg-primary text-white">Choisir un service…</option>
+                                            <option value="Idée et stratégie" class="bg-primary text-white">Idée et stratégie</option>
+                                            <option value="Dossier bancaire" class="bg-primary text-white">Dossier bancaire</option>
+                                            <option value="Construction" class="bg-primary text-white">Construction</option>
+                                            <option value="Mise en ligne" class="bg-primary text-white">Mise en ligne</option>
+                                            <option value="Gestion locative" class="bg-primary text-white">Gestion locative</option>
+                                            <option value="Conciergerie" class="bg-primary text-white">Conciergerie</option>
+                                            <option value="Offre complète" class="bg-primary text-white">Offre complète</option>
+                                        </select>
+                                        <span class="material-icons-round absolute right-5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="space-y-2">
                                 <label class="text-xs uppercase tracking-widest font-bold ml-2 text-white/50">Lien du
                                     bien (Facultatif)</label>
                                 <input id="link" name="property_link"
                                     class="w-full px-6 py-4 rounded-full bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all"
                                     placeholder="https://airbnb.com/..." type="text" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest font-bold ml-2 text-white/50">Votre
+                                    message</label>
+                                <textarea id="message" name="message" rows="4"
+                                    class="w-full px-6 py-4 rounded-3xl bg-white/5 border border-white/10 focus:border-gold focus:ring-0 text-white placeholder-white/20 transition-all resize-none"
+                                    placeholder="Parlez-nous de votre projet, de vos objectifs, de vos questions…" required></textarea>
                             </div>
                             <button
                                 class="w-full bg-gold hover:bg-white hover:text-primary text-primary-dark font-bold text-lg py-5 rounded-full shadow-neon transition-all flex items-center justify-center gap-2 group mt-4 btn-submit disabled:opacity-60 disabled:cursor-not-allowed"
@@ -593,8 +606,20 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mt-24 border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-white/30 text-sm font-light">
+            <!-- Zones d'intervention -->
+            <div class="mt-24 border-t border-white/10 pt-10">
+                <p class="text-xs uppercase tracking-[0.3em] text-white/30 font-bold mb-4">Nos zones d'intervention</p>
+                <div class="flex flex-wrap gap-x-6 gap-y-2 mb-10">
+                    <a href="/gestion-locative-sainte-luce" class="text-sm text-white/40 hover:text-white/70 transition-colors">Sainte-Luce</a>
+                    <a href="/conciergerie-le-vauclin" class="text-sm text-white/40 hover:text-white/70 transition-colors">Le Vauclin</a>
+                    <a href="/gestion-airbnb-trois-ilets" class="text-sm text-white/40 hover:text-white/70 transition-colors">Les Trois-Îlets</a>
+                    <a href="/gestion-locative-le-diamant" class="text-sm text-white/40 hover:text-white/70 transition-colors">Le Diamant</a>
+                    <a href="/conciergerie-le-francois" class="text-sm text-white/40 hover:text-white/70 transition-colors">Le François</a>
+                    <a href="/gestion-locative-sainte-anne" class="text-sm text-white/40 hover:text-white/70 transition-colors">Sainte-Anne</a>
+                    <a href="/conciergerie-anses-darlet" class="text-sm text-white/40 hover:text-white/70 transition-colors">Les Anses-d'Arlet</a>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-white/30 text-sm font-light">
                 <p>© 2026 Kazas FWI. Tous droits réservés.</p>
                 <div class="flex gap-6 mt-4 md:mt-0">
                     <a class="hover:text-white transition-colors" href="/mentions-legales.html">Mentions Légales</a>
